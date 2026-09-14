@@ -8,7 +8,18 @@ import {
   FaYoutube,
   FaMagnifyingGlass,
 } from 'react-icons/fa6'
-export default function Header() {
+import { getPayload } from 'payload'
+import buildConfig from '@/payload.config'
+
+async function getHeaderData() {
+  const payload = await getPayload({ config: buildConfig })
+
+  const headerData = await payload.findGlobal({
+    slug: 'header',
+  })
+  return headerData
+}
+export default async function Header() {
   return (
     <header className="w-full">
       <div className="container flex justify-between border-b border-gray-200">
@@ -91,8 +102,8 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div className="container flex h-15 items-center justify-between">
-        <div className="flex cursor-pointer items-center gap-4 text-lg font-semibold">
+      <div className="container flex h-13 items-center justify-between">
+        <div className="flex cursor-pointer items-center gap-4 font-semibold">
           <p className="transition hover:text-red-600">Beria</p>
           <p className="transition hover:text-red-600">Sukan</p>
           <p className="transition hover:text-red-600">Hiburan</p>
@@ -105,7 +116,7 @@ export default function Header() {
         </div>
         <div className="relative flex items-center">
           <input placeholder="Cari kata kunci" className="w-80 rounded border bg-gray-100 p-0.5" />
-          <FaMagnifyingGlass className="absolute right-3 text-gray-600" size={16} />
+          <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />
         </div>
       </div>
     </header>
