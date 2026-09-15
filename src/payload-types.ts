@@ -326,6 +326,15 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: string;
   logo: string | Media;
+  siteTitle: string | Media;
+  socialMediaLinks?:
+    | {
+        platform: 'facebook' | 'x' | 'instagram' | 'youtube' | 'linkedin' | 'tiktok';
+        url: string;
+        icon: string | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -335,6 +344,15 @@ export interface Header {
  */
 export interface HeaderSelect<T extends boolean = true> {
   logo?: T;
+  siteTitle?: T;
+  socialMediaLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
