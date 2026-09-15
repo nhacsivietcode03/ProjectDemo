@@ -8,28 +8,25 @@ import {
   FaYoutube,
   FaMagnifyingGlass,
 } from 'react-icons/fa6'
-import { getPayload } from 'payload'
-import buildConfig from '@/payload.config'
+import getHeader from '@/data/header/getHeader'
+import { Media } from '@/payload-types'
 
-async function getHeaderData() {
-  const payload = await getPayload({ config: buildConfig })
-
-  const headerData = await payload.findGlobal({
-    slug: 'header',
-  })
-  return headerData
-}
 export default async function Header() {
-  const header = await getHeaderData()
-  const logo = header?.logo as { url?: string; alt?: string; width?: number; height?: number }
-
+  const headerData = await getHeader()
+  const logo = headerData?.logo as Media
   return (
     <header className="w-full">
       <div className="container flex justify-between border-b border-gray-200">
         {/*Left Top bar*/}
         <div className="flex items-center gap-3 p-2">
           {/*logo*/}
-          <Image src={logo?.url} alt={logo?.alt || 'Site Logo'} width={70} height={50} priority />
+          <Image
+            src={logo?.url || ''}
+            alt={logo?.alt || 'Site Logo'}
+            width={70}
+            height={50}
+            priority
+          />
           <Image
             src="/image/fed3e89abbf06beeb15489920dff64202115a58c.png"
             width={350}
