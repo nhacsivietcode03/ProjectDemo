@@ -20,13 +20,16 @@ async function getHeaderData() {
   return headerData
 }
 export default async function Header() {
+  const header = await getHeaderData()
+  const logo = header?.logo as { url?: string; alt?: string; width?: number; height?: number }
+
   return (
     <header className="w-full">
       <div className="container flex justify-between border-b border-gray-200">
         {/*Left Top bar*/}
         <div className="flex items-center gap-3 p-2">
           {/*logo*/}
-          <Image src="/image/logo.png" width={70} height={50} alt="Logo của dự án" />
+          <Image src={logo?.url} alt={logo?.alt || 'Site Logo'} width={70} height={50} priority />
           <Image
             src="/image/fed3e89abbf06beeb15489920dff64202115a58c.png"
             width={350}
