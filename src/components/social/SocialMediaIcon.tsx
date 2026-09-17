@@ -35,7 +35,7 @@ export default function SocialMediaIcon({ social }: SocialMediaIconProps) {
       rel="noreferrer noopener"
       aria-label={social.platform}
       title={social.platform}
-      className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111] text-white transition-colors hover:bg-red-600"
+      className="flex h-6.5 w-6.5 items-center justify-center rounded-full bg-[#111] text-white transition-colors hover:bg-red-600"
     >
       <Icon aria-hidden="true" className="h-4 w-4 shrink-0" />
     </a>

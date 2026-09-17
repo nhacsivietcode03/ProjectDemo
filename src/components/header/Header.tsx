@@ -3,6 +3,7 @@ import { FaMagnifyingGlass } from 'react-icons/fa6'
 import getHeader from '@/data/header/getHeader'
 import { Media } from '@/payload-types'
 import SocialMediaIcon from '@/components/social/SocialMediaIcon'
+import NavigationBar from './NavigationBar'
 
 export default async function Header() {
   // Lấy dữ liệu Header từ Payload
@@ -64,17 +65,7 @@ export default async function Header() {
         </div>
       </div>
       <div className="container flex h-13 items-center justify-between">
-        <div className="flex w-220 cursor-pointer items-center justify-between font-semibold">
-          <p className="transition hover:text-red-600">Beria</p>
-          <p className="transition hover:text-red-600">Sukan</p>
-          <p className="transition hover:text-red-600">Hiburan</p>
-          <p className="transition hover:text-red-600">Dunia</p>
-          <p className="transition hover:text-red-600">Bisnes</p>
-          <p className="transition hover:text-red-600">Rencana</p>
-          <p className="transition hover:text-red-600">Gaya Hidup</p>
-          <p className="transition hover:text-red-600">#Marilokal</p>
-          <p className="transition hover:text-red-600">1Klassified</p>
-        </div>
+        <NavigationBar />
         <div className="relative flex items-center">
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
           <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />
