@@ -1,9 +1,10 @@
 import Image from 'next/image'
-import { FaMagnifyingGlass } from 'react-icons/fa6'
+import { FaMagnifyingGlass, FaRegUser } from 'react-icons/fa6'
 import getHeader from '@/data/header/getHeader'
 import { Media } from '@/payload-types'
 import SocialMediaIcon from '@/components/social/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
+import { PiMoonBold } from 'react-icons/pi'
 
 export default async function Header() {
   // Lấy dữ liệu Header từ Payload
@@ -51,16 +52,20 @@ export default async function Header() {
               .replace(' PTG', ' pm')}
           </p>
           {/* Social icons + Theme toggle */}
-          <div className="flex gap-5 pt-2">
-            <div className="flex items-center gap-2">
+          <div className="flex gap-3 pt-2">
+            <div className="mr-6 flex items-center gap-2">
               {socialMedias.map((social) => (
                 <SocialMediaIcon key={social.platform} social={social} />
               ))}
             </div>
-            <select className="text-gray-850 flex w-24 cursor-pointer justify-end rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-xs outline-none hover:border-gray-400">
-              <option>Light</option>
-              <option>Dark</option>
-            </select>
+            <div className="mr-5 flex items-center justify-between gap-6">
+              <div>
+                <FaRegUser size={22} className="text-red-500" />
+              </div>
+              <div>
+                <PiMoonBold size={22} className="text-red-500" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
