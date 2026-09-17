@@ -1,4 +1,5 @@
 'use server'
+
 import { getPayload } from 'payload'
 import buildConfig from '@/payload.config'
 

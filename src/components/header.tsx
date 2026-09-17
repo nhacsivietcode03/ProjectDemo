@@ -5,10 +5,14 @@ import { Media } from '@/payload-types'
 import SocialMediaIcon from '@/components/social/SocialMediaIcon'
 
 export default async function Header() {
+  // Lấy dữ liệu Header từ Payload
   const headerData = await getHeader()
-  const logo = headerData && typeof headerData.logo === 'object' ? headerData.logo : null
+
+  // Kiểm tra dữ liệu logo và site tittle có phải là Media hay ko hay là String
+  const logo = headerData.logo as Media | null
   const siteTitle =
     headerData && typeof headerData.siteTitle === 'object' ? headerData.siteTitle : null
+
   const socialMedias = headerData.socialMediaLinks || []
 
   return (
@@ -49,7 +53,7 @@ export default async function Header() {
           <div className="flex gap-5 pt-2">
             <div className="flex items-center gap-2">
               {socialMedias.map((social) => (
-                <SocialMediaIcon key={social.id || social.platform} social={social} />
+                <SocialMediaIcon key={social.platform} social={social} />
               ))}
             </div>
             <select className="text-gray-850 flex w-24 cursor-pointer justify-end rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-xs outline-none hover:border-gray-400">

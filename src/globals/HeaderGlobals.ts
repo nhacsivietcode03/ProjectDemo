@@ -37,12 +37,6 @@ export const Header: GlobalConfig = {
           type: 'text',
           required: true,
         },
-        {
-          name: 'icon',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
       ],
     },
   ],

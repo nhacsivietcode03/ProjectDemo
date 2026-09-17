@@ -331,7 +331,6 @@ export interface Header {
     | {
         platform: 'facebook' | 'x' | 'instagram' | 'youtube' | 'linkedin' | 'tiktok';
         url: string;
-        icon: string | Media;
         id?: string | null;
       }[]
     | null;
@@ -350,7 +349,6 @@ export interface HeaderSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
-        icon?: T;
         id?: T;
       };
   updatedAt?: T;

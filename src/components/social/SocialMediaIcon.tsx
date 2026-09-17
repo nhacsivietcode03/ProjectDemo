@@ -1,5 +1,13 @@
-import Image from 'next/image'
-import type { Header as HeaderData, Media } from '@/payload-types'
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+  FaXTwitter,
+  FaYoutube,
+} from 'react-icons/fa6'
+import type { IconType } from 'react-icons'
+import type { Header as HeaderData } from '@/payload-types'
 
 type SocialMediaLink = NonNullable<HeaderData['socialMediaLinks']>[number]
 
@@ -8,25 +16,28 @@ type SocialMediaIconProps = {
 }
 
 export default function SocialMediaIcon({ social }: SocialMediaIconProps) {
-  const icon =
-    typeof social.icon === 'object' && social.icon !== null ? (social.icon as Media) : null
+  const icons: Record<SocialMediaLink['platform'], IconType> = {
+    facebook: FaFacebook,
+    x: FaXTwitter,
+    instagram: FaInstagram,
+    youtube: FaYoutube,
+    linkedin: FaLinkedin,
+    tiktok: FaTiktok,
+  }
+  const Icon = icons[social.platform]
 
-  if (!icon?.url) return null
+  if (!social.url || !Icon) return null
 
   return (
     <a
       href={social.url}
       target="_blank"
-      rel="noreferrer"
-      className="flex h-7 w-7 items-center justify-center hover:opacity-85"
+      rel="noreferrer noopener"
+      aria-label={social.platform}
       title={social.platform}
+      className="flex h-7 w-7 items-center justify-center rounded-full bg-[#111] text-white transition-colors hover:bg-red-600"
     >
-      <Image
-        src={icon.url}
-        alt={icon.alt || social.platform}
-        width={icon.width || 24}
-        height={icon.height || 24}
-      />
+      <Icon aria-hidden="true" className="h-4 w-4 shrink-0" />
     </a>
   )
 }
