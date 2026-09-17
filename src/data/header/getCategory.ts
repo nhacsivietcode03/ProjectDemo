@@ -3,11 +3,12 @@
 import { getPayload } from 'payload'
 import buildConfig from '@/payload.config'
 
-export default async function getHeader() {
+export default async function getCategories() {
   const payload = await getPayload({ config: buildConfig })
-  const headerData = await payload.findGlobal({
-    slug: 'header',
+  const categories = await payload.find({
+    collection: 'categories',
     depth: 1,
+    sort: 'createdAt',
   })
-  return headerData
+  return categories.docs
 }
