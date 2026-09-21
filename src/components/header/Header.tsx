@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import { FaMagnifyingGlass, FaRegUser } from 'react-icons/fa6'
+import { PiMoonBold } from 'react-icons/pi'
 import getHeader from '@/data/header/getHeader'
 import { Media } from '@/payload-types'
 import SocialMediaIcon from '@/components/social/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
-import { PiMoonBold } from 'react-icons/pi'
+import NewsCarousel from './NewsCarousel'
 
 export default async function Header() {
   // Lấy dữ liệu Header từ Payload
@@ -16,6 +17,8 @@ export default async function Header() {
     headerData && typeof headerData.siteTitle === 'object' ? headerData.siteTitle : null
 
   const socialMedias = headerData.socialMediaLinks || []
+  const carousels = headerData.caroselItems || []
+  console.log(carousels)
 
   return (
     <header className="w-full">
@@ -75,6 +78,9 @@ export default async function Header() {
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
           <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />
         </div>
+      </div>
+      <div className="mt-3">
+        <NewsCarousel carousel={carousels} />
       </div>
     </header>
   )

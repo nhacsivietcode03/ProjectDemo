@@ -359,6 +359,14 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  caroselItems?:
+    | {
+        title?: string | null;
+        content?: string | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -374,6 +382,14 @@ export interface HeaderSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
+        id?: T;
+      };
+  caroselItems?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        image?: T;
         id?: T;
       };
   updatedAt?: T;

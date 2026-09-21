@@ -7,9 +7,9 @@ import {
   FaYoutube,
 } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
-import type { Header as HeaderData } from '@/payload-types'
+import type { Header } from '@/payload-types'
 
-type SocialMediaLink = NonNullable<HeaderData['socialMediaLinks']>[number]
+type SocialMediaLink = NonNullable<Header['socialMediaLinks']>[number]
 
 type SocialMediaIconProps = {
   social: SocialMediaLink
