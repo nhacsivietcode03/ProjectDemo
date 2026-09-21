@@ -6,18 +6,19 @@ import SocialMediaIcon from '@/components/social/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
-import AdSlot from '../Common/Ads'
+import AdSlot from '../common/Ads'
+import getSiteSettings from '@/data/common/getSiteSettings'
 
 export default async function Header() {
-  // Lấy dữ liệu Header từ Payload
+  // Lấy dữ liệu Header và Site Settings từ Payload
   const headerData = await getHeader()
-
+  const siteSettingData = await getSiteSettings()
   // Kiểm tra dữ liệu logo và site tittle có phải là Media hay ko hay là String
-  const logo = headerData.logo as Media | null
+  const logo = siteSettingData.logo as Media | null
   const siteTitle =
     headerData && typeof headerData.siteTitle === 'object' ? headerData.siteTitle : null
 
-  const socialMedias = headerData.socialMediaLinks || []
+  const socialMedias = siteSettingData.socialMediaLinks || []
   const carousels = headerData.caroselItems || []
   console.log(carousels)
 

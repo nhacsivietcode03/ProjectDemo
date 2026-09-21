@@ -1,20 +1,14 @@
 import Image from 'next/image'
-import { getPayload } from 'payload'
-import buildConfig from '@/payload.config'
+import getAds from '@/data/common/getAds'
 
 type AdSlotProps = {
-  slot: '970x90' | '300x250' | '300x600' | '400x200' | '1x1_oop' | 'mgid_native'
+  slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300' | 'mgid_native'
   width: number
   height: number
 }
 
 export default async function AdSlot({ slot, width, height }: AdSlotProps) {
-  const payload = await getPayload({ config: buildConfig })
-  const { banners } = await payload.findGlobal({
-    slug: 'ads',
-    depth: 1,
-  })
-
+  const banners = await getAds()
   const banner = banners?.find((banner) => banner.slot === slot)
 
   if (!banner || typeof banner.image !== 'object' || !banner.image.url) return null
