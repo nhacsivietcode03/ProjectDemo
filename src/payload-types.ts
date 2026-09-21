@@ -92,10 +92,12 @@ export interface Config {
   globals: {
     header: Header;
     nav: Nav;
+    ads: Ad;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     nav: NavSelect<false> | NavSelect<true>;
+    ads: AdsSelect<false> | AdsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -391,6 +393,24 @@ export interface Nav {
   createdAt?: string | null;
 }
 /**
+ * Quản lý toàn bộ banner quảng cáo tĩnh của site
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ads".
+ */
+export interface Ad {
+  id: string;
+  banners?:
+    | {
+        slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300';
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
@@ -428,6 +448,22 @@ export interface NavSelect<T extends boolean = true> {
         type?: T;
         tag?: T;
         url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ads_select".
+ */
+export interface AdsSelect<T extends boolean = true> {
+  banners?:
+    | T
+    | {
+        slot?: T;
+        image?: T;
         id?: T;
       };
   updatedAt?: T;

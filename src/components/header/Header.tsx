@@ -6,6 +6,7 @@ import SocialMediaIcon from '@/components/social/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
+import AdSlot from '../Common/Ads'
 
 export default async function Header() {
   // Lấy dữ liệu Header từ Payload
@@ -79,6 +80,9 @@ export default async function Header() {
         <NewsCarousel carousel={carousels} />
       </div>
       <Trending />
+      <div className="container mt-4 w-full">
+        <AdSlot slot="970x90" width={970} height={90} />
+      </div>
     </header>
   )
 }
