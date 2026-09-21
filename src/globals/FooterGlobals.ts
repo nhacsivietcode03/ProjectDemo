@@ -4,10 +4,43 @@ export const Footer: GlobalConfig = {
   slug: 'footer',
   fields: [
     {
-      name: 'logo',
-      type: 'upload',
-      relationTo: 'media',
-      required: true,
+      name: 'AppStore',
+      type: 'array',
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'url',
+          type: 'text',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'bottomBar',
+      type: 'group',
+      fields: [
+        {
+          name: 'copyright',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'links',
+          type: 'array',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+      ],
     },
   ],
 }
