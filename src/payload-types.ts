@@ -91,9 +91,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     header: Header;
+    nav: Nav;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
+    nav: NavSelect<false> | NavSelect<true>;
   };
   locale: null;
   widgets: {
@@ -372,6 +374,24 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav".
+ */
+export interface Nav {
+  id: string;
+  items?:
+    | {
+        label: string;
+        type: 'tag' | 'external';
+        tag?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -390,6 +410,24 @@ export interface HeaderSelect<T extends boolean = true> {
         title?: T;
         content?: T;
         image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav_select".
+ */
+export interface NavSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        label?: T;
+        type?: T;
+        tag?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;
