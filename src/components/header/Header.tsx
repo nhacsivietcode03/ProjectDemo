@@ -5,6 +5,7 @@ import { Media } from '@/payload-types'
 import SocialMediaIcon from '@/components/social/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
+import Trending from './Trending'
 
 export default async function Header() {
   // Lấy dữ liệu Header từ Payload
@@ -77,6 +78,7 @@ export default async function Header() {
       <div className="mt-3">
         <NewsCarousel carousel={carousels} />
       </div>
+      <Trending />
     </header>
   )
 }
