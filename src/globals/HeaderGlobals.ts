@@ -39,5 +39,24 @@ export const Header: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'caroselItems',
+      type: 'array',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'content',
+          type: 'text',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+      ],
+    },
   ],
 }

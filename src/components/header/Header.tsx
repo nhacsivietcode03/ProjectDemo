@@ -4,6 +4,9 @@ import getHeader from '@/data/header/getHeader'
 import { Media } from '@/payload-types'
 import SocialMediaIcon from '@/components/social/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
+import NewsCarousel from './NewsCarousel'
+import Trending from './Trending'
+import AdSlot from '../Common/Ads'
 
 export default async function Header() {
   // Lấy dữ liệu Header từ Payload
@@ -15,6 +18,8 @@ export default async function Header() {
     headerData && typeof headerData.siteTitle === 'object' ? headerData.siteTitle : null
 
   const socialMedias = headerData.socialMediaLinks || []
+  const carousels = headerData.caroselItems || []
+  console.log(carousels)
 
   return (
     <header className="w-full">
@@ -51,8 +56,8 @@ export default async function Header() {
               .replace(' PTG', ' pm')}
           </p>
           {/* Social icons + Theme toggle */}
-          <div className="flex gap-5 pt-2">
-            <div className="flex items-center gap-2">
+          <div className="flex gap-3 pt-2">
+            <div className="mr-6 flex items-center gap-2">
               {socialMedias.map((social) => (
                 <SocialMediaIcon key={social.platform} social={social} />
               ))}
@@ -70,6 +75,13 @@ export default async function Header() {
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
           <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />
         </div>
+      </div>
+      <div className="mt-3">
+        <NewsCarousel carousel={carousels} />
+      </div>
+      <Trending />
+      <div className="container mt-4 w-full">
+        <AdSlot slot="970x90" width={970} height={90} />
       </div>
     </header>
   )

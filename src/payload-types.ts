@@ -91,9 +91,13 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     header: Header;
+    nav: Nav;
+    ads: Ad;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
+    nav: NavSelect<false> | NavSelect<true>;
+    ads: AdsSelect<false> | AdsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -359,6 +363,50 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  caroselItems?:
+    | {
+        title?: string | null;
+        content?: string | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav".
+ */
+export interface Nav {
+  id: string;
+  items?:
+    | {
+        label: string;
+        type: 'tag' | 'external';
+        tag?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Quản lý toàn bộ banner quảng cáo tĩnh của site
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ads".
+ */
+export interface Ad {
+  id: string;
+  banners?:
+    | {
+        slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300';
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -374,6 +422,48 @@ export interface HeaderSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
+        id?: T;
+      };
+  caroselItems?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav_select".
+ */
+export interface NavSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        label?: T;
+        type?: T;
+        tag?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ads_select".
+ */
+export interface AdsSelect<T extends boolean = true> {
+  banners?:
+    | T
+    | {
+        slot?: T;
+        image?: T;
         id?: T;
       };
   updatedAt?: T;
