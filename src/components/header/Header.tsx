@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import { FaMagnifyingGlass, FaRegUser } from 'react-icons/fa6'
-import { PiMoonBold } from 'react-icons/pi'
+import { FaMagnifyingGlass } from 'react-icons/fa6'
 import getHeader from '@/data/header/getHeader'
 import { Media } from '@/payload-types'
 import SocialMediaIcon from '@/components/social/SocialMediaIcon'
@@ -61,14 +60,10 @@ export default async function Header() {
                 <SocialMediaIcon key={social.platform} social={social} />
               ))}
             </div>
-            <div className="mr-5 flex items-center justify-between gap-6">
-              <div>
-                <FaRegUser size={22} className="text-red-500" />
-              </div>
-              <div>
-                <PiMoonBold size={22} className="text-red-500" />
-              </div>
-            </div>
+            <select className="text-gray-850 flex w-24 cursor-pointer justify-end rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-xs outline-none hover:border-gray-400">
+              <option>Light</option>
+              <option>Dark</option>
+            </select>
           </div>
         </div>
       </div>
