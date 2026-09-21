@@ -1,23 +1,19 @@
 import Image from 'next/image'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import getHeader from '@/data/header/getHeader'
-import { Media } from '@/payload-types'
-import SocialMediaIcon from '@/components/social/SocialMediaIcon'
+import SocialMediaIcon from '@/components/common/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
-import AdSlot from '../Common/Ads'
+import AdSlot from '../common/Ads'
+import Logo from '../common/Logo'
 
 export default async function Header() {
-  // Lấy dữ liệu Header từ Payload
+  // Lấy dữ liệu Header và Site Settings từ Payload
   const headerData = await getHeader()
-
-  // Kiểm tra dữ liệu logo và site tittle có phải là Media hay ko hay là String
-  const logo = headerData.logo as Media | null
+  // Kiểm tra dữ liệu  site tittle có phải là Media hay ko hay là String
   const siteTitle =
     headerData && typeof headerData.siteTitle === 'object' ? headerData.siteTitle : null
-
-  const socialMedias = headerData.socialMediaLinks || []
   const carousels = headerData.caroselItems || []
   console.log(carousels)
 
@@ -27,13 +23,7 @@ export default async function Header() {
         {/*Left Top bar*/}
         <div className="flex items-center gap-3 p-2">
           {/*logo*/}
-          <Image
-            src={logo?.url || ''}
-            alt={logo?.alt || 'Site Logo'}
-            width={80}
-            height={50}
-            priority
-          />
+          <Logo />
           <Image src={siteTitle?.url || ''} alt={siteTitle?.alt || ''} width={360} height={50} />
         </div>
         {/*Right top bar*/}
@@ -58,9 +48,7 @@ export default async function Header() {
           {/* Social icons + Theme toggle */}
           <div className="flex gap-3 pt-2">
             <div className="mr-6 flex items-center gap-2">
-              {socialMedias.map((social) => (
-                <SocialMediaIcon key={social.platform} social={social} />
-              ))}
+              <SocialMediaIcon />
             </div>
             <select className="text-gray-850 flex w-24 cursor-pointer justify-end rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-xs outline-none hover:border-gray-400">
               <option>Light</option>

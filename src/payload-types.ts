@@ -93,11 +93,15 @@ export interface Config {
     header: Header;
     nav: Nav;
     ads: Ad;
+    'site-settings': SiteSetting;
+    footer: Footer;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     nav: NavSelect<false> | NavSelect<true>;
     ads: AdsSelect<false> | AdsSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
   widgets: {
@@ -354,15 +358,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
-  logo: string | Media;
   siteTitle: string | Media;
-  socialMediaLinks?:
-    | {
-        platform: 'facebook' | 'x' | 'instagram' | 'youtube' | 'linkedin' | 'tiktok';
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
   caroselItems?:
     | {
         title?: string | null;
@@ -411,19 +407,55 @@ export interface Ad {
   createdAt?: string | null;
 }
 /**
+ * Thông tin chung của site — dùng chung cho Header và Footer
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  logo: string | Media;
+  socialMediaLinks?:
+    | {
+        platform: 'facebook' | 'x' | 'instagram' | 'youtube' | 'linkedin' | 'tiktok';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  AppStore?:
+    | {
+        image: string | Media;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  bottomBar: {
+    copyright: string;
+    links?:
+      | {
+          label: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
   siteTitle?: T;
-  socialMediaLinks?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        id?: T;
-      };
   caroselItems?:
     | T
     | {
@@ -465,6 +497,50 @@ export interface AdsSelect<T extends boolean = true> {
         slot?: T;
         image?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  logo?: T;
+  socialMediaLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  AppStore?:
+    | T
+    | {
+        image?: T;
+        url?: T;
+        id?: T;
+      };
+  bottomBar?:
+    | T
+    | {
+        copyright?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
