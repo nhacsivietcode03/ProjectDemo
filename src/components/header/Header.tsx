@@ -15,7 +15,6 @@ export default async function Header() {
   const siteTitle =
     headerData && typeof headerData.siteTitle === 'object' ? headerData.siteTitle : null
   const carousels = headerData.caroselItems || []
-  console.log(carousels)
 
   return (
     <header className="w-full">
