@@ -1,23 +1,9 @@
 import Image from 'next/image'
 import type { Article } from '@/payload-types'
+import getTimeAgo from '@/utils/getTimeAgo'
 
 type ArticleListItemProps = {
   article: Pick<Article, 'id' | 'title' | 'Image' | 'createdAt'>
-}
-
-function getTimeAgo(createdAt: string) {
-  const minituesPassed = Math.max(
-    0,
-    Math.floor((Date.now() - new Date(createdAt).getTime()) / 60000),
-  )
-
-  if (minituesPassed < 1) return 'Just now'
-  if (minituesPassed < 60) return `${minituesPassed} minutes ago`
-
-  const HoursPassed = Math.floor(minituesPassed / 60)
-  if (HoursPassed < 24) return `${HoursPassed} hours ago`
-
-  return `${Math.floor(HoursPassed / 24)} days ago`
 }
 
 export default function ArticleListItem({ article }: ArticleListItemProps) {

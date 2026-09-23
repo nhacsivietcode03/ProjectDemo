@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
+  admin: {
+    useAsTitle: 'title',
+  },
   fields: [
     {
       name: 'slug',
@@ -32,35 +35,54 @@ export const Articles: CollectionConfig = {
       relationTo: 'media',
     },
     {
-      name: 'publishedAt',
-      type: 'date',
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
       name: 'category',
       type: 'relationship',
       relationTo: 'categories',
       hasMany: false,
+      admin: {
+        position: 'sidebar',
+      },
+      filterOptions: () => {
+        return {
+          parent: {
+            exists: false,
+          },
+        }
+      },
+    },
+    {
+      name: 'subCategory',
+      type: 'relationship',
+      relationTo: 'categories',
+      hasMany: false,
+      label: 'Sub Category',
+      admin: {
+        position: 'sidebar',
+        // Chỉ hiển thị trường này khi đã chọn Category
+        condition: (data) => {
+          return Boolean(data?.category)
+        },
+      },
+      // Lọc danh sách: Chỉ hiển thị các Category có parent trùng với Category vừa chọn
+      filterOptions: ({ data }) => {
+        if (data?.category) {
+          return {
+            parent: {
+              equals: data.category,
+            },
+          }
+        }
+        return false
+      },
     },
     {
       name: 'tags',
       type: 'relationship',
       relationTo: 'tags',
       hasMany: true,
-    },
-    {
-      name: 'trending',
-      type: 'checkbox',
-    },
-    {
-      name: 'isHighlight',
-      type: 'checkbox',
-    },
-    {
-      name: 'isPremium',
-      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'relatedArticles',

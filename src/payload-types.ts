@@ -185,7 +185,12 @@ export interface User {
  */
 export interface Category {
   id: string;
-  name?: string | null;
+  name: string;
+  slug: string;
+  /**
+   * Blank this if this is parent Category. Select parent Category if this is sub-cateogry
+   */
+  parent?: (string | null) | Category;
   updatedAt: string;
   createdAt: string;
 }
@@ -195,7 +200,8 @@ export interface Category {
  */
 export interface Tag {
   id: string;
-  name?: string | null;
+  title: string;
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -225,12 +231,9 @@ export interface Article {
   } | null;
   author?: (string | null) | User;
   Image?: (string | null) | Media;
-  publishedAt?: string | null;
   category?: (string | null) | Category;
+  subCategory?: (string | null) | Category;
   tags?: (string | Tag)[] | null;
-  trending?: boolean | null;
-  isHighlight?: boolean | null;
-  isPremium?: boolean | null;
   relatedArticles?: (string | Article)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -367,6 +370,8 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
+  slug?: T;
+  parent?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -375,7 +380,8 @@ export interface CategoriesSelect<T extends boolean = true> {
  * via the `definition` "tags_select".
  */
 export interface TagsSelect<T extends boolean = true> {
-  name?: T;
+  title?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -390,12 +396,9 @@ export interface ArticlesSelect<T extends boolean = true> {
   content?: T;
   author?: T;
   Image?: T;
-  publishedAt?: T;
   category?: T;
+  subCategory?: T;
   tags?: T;
-  trending?: T;
-  isHighlight?: T;
-  isPremium?: T;
   relatedArticles?: T;
   updatedAt?: T;
   createdAt?: T;
