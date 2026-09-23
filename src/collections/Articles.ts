@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-
+import { autoFormatSlug } from '@/hooks/autoHook'
 export const Articles: CollectionConfig = {
   slug: 'articles',
   admin: {
@@ -10,6 +10,12 @@ export const Articles: CollectionConfig = {
       name: 'slug',
       type: 'text',
       unique: true,
+      hooks: {
+        beforeValidate: [autoFormatSlug],
+      },
+      admin: {
+        description: 'Nếu để trống thì tự động lấy title làm slug',
+      },
     },
     {
       name: 'title',
@@ -42,6 +48,7 @@ export const Articles: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+      // Lọc trường category chỉ gồm những category nào mà không có category cha trong collections category
       filterOptions: () => {
         return {
           parent: {
@@ -64,15 +71,16 @@ export const Articles: CollectionConfig = {
         },
       },
       // Lọc danh sách: Chỉ hiển thị các Category có parent trùng với Category vừa chọn
-      filterOptions: ({ data }) => {
-        if (data?.category) {
-          return {
-            parent: {
-              equals: data.category,
-            },
-          }
+      filterOptions: (options) => {
+        const selectedCategory = options.data?.category
+        if (!selectedCategory) {
+          return false
         }
-        return false
+        return {
+          parent: {
+            equals: selectedCategory,
+          },
+        }
       },
     },
     {

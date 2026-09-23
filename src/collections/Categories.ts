@@ -1,3 +1,4 @@
+import { autoFormatSlug } from '@/hooks/autoHook'
 import type { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
@@ -17,6 +18,12 @@ export const Categories: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
+      hooks: {
+        beforeValidate: [autoFormatSlug],
+      },
+      admin: {
+        description: 'Nếu để trống thì tự động lấy title làm slug',
+      },
     },
     {
       name: 'parent',

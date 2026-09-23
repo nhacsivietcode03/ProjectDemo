@@ -1,3 +1,4 @@
+import { autoFormatSlug } from '@/hooks/autoHook'
 import type { CollectionConfig } from 'payload'
 
 export const Tags: CollectionConfig = {
@@ -18,6 +19,12 @@ export const Tags: CollectionConfig = {
       required: true,
       unique: true,
       label: 'Slug',
+      hooks: {
+        beforeValidate: [autoFormatSlug],
+      },
+      admin: {
+        description: 'Nếu để trống thì tự động lấy title làm slug',
+      },
     },
   ],
 }

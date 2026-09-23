@@ -186,6 +186,9 @@ export interface User {
 export interface Category {
   id: string;
   name: string;
+  /**
+   * Nếu để trống thì tự động lấy title làm slug
+   */
   slug: string;
   /**
    * Blank this if this is parent Category. Select parent Category if this is sub-cateogry
@@ -201,6 +204,9 @@ export interface Category {
 export interface Tag {
   id: string;
   title: string;
+  /**
+   * Nếu để trống thì tự động lấy title làm slug
+   */
   slug: string;
   updatedAt: string;
   createdAt: string;
@@ -211,6 +217,9 @@ export interface Tag {
  */
 export interface Article {
   id: string;
+  /**
+   * Nếu để trống thì tự động lấy title làm slug
+   */
   slug?: string | null;
   title: string;
   excerpt?: string | null;

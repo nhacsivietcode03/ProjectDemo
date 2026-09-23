@@ -14,11 +14,10 @@ export default async function getTrending() {
         equals: 'trending',
       },
     },
-    sort: '-updatedAt',
     select: {
+      slug: true,
       title: true,
       createdAt: true,
-      slug: true,
     },
   })
 

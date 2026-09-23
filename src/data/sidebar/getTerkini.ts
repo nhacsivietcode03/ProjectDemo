@@ -14,6 +14,7 @@ export default async function getTerkini() {
       title: true,
       Image: true,
       createdAt: true,
+      slug: true,
     },
   })
   return TerkiniLists.docs
