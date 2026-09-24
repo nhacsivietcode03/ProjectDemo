@@ -72,6 +72,7 @@ export interface Config {
     categories: Category;
     tags: Tag;
     articles: Article;
+    video: Video;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     tags: TagsSelect<false> | TagsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    video: VideoSelect<false> | VideoSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -249,6 +251,20 @@ export interface Article {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "video".
+ */
+export interface Video {
+  id: string;
+  title: string;
+  type: 'video' | 'short';
+  category?: ('bthv' | 'podcast' | 'sukan' | 'borakhariini' | 'bhtanya' | 'faktabh')[] | null;
+  youtubeUrl: string;
+  youtubeId: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -290,6 +306,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: string | Article;
+      } | null)
+    | ({
+        relationTo: 'video';
+        value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -409,6 +429,19 @@ export interface ArticlesSelect<T extends boolean = true> {
   subCategory?: T;
   tags?: T;
   relatedArticles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "video_select".
+ */
+export interface VideoSelect<T extends boolean = true> {
+  title?: T;
+  type?: T;
+  category?: T;
+  youtubeUrl?: T;
+  youtubeId?: T;
   updatedAt?: T;
   createdAt?: T;
 }
