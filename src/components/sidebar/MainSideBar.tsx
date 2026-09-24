@@ -1,4 +1,6 @@
 import AdSlot from '../common/Ads'
+import GaleriFotoSection from './GaleriFotoSection'
+import InfografikSection from './InfografikSection'
 import PodCastSection from './PostCastSection'
 import Terkini from './Terkini'
 import TrendingSection from './TrendingSection'
@@ -9,6 +11,8 @@ export default async function MainSideBar() {
       <Terkini />
       <TrendingSection />
       <PodCastSection />
+      <InfografikSection />
+      <GaleriFotoSection />
     </div>
   )
 }

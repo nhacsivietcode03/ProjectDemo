@@ -187,15 +187,15 @@ export interface User {
  */
 export interface Category {
   id: string;
-  name: string;
+  title: string;
   /**
-   * Nếu để trống thì tự động lấy title làm slug
+   * Tự động lấy title làm slug
    */
-  slug: string;
+  slug?: string | null;
   /**
    * Blank this if this is parent Category. Select parent Category if this is sub-cateogry
    */
-  parent?: (string | null) | Category;
+  parent?: (string | Category)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -207,7 +207,7 @@ export interface Tag {
   id: string;
   title: string;
   /**
-   * Nếu để trống thì tự động lấy title làm slug
+   * Tự động lấy title làm slug
    */
   slug: string;
   updatedAt: string;
@@ -219,11 +219,10 @@ export interface Tag {
  */
 export interface Article {
   id: string;
-  /**
-   * Nếu để trống thì tự động lấy title làm slug
-   */
   slug?: string | null;
   title: string;
+  category?: (string | Category)[] | null;
+  subCategory?: (string | null) | Category;
   excerpt?: string | null;
   content?: {
     root: {
@@ -240,12 +239,17 @@ export interface Article {
     };
     [k: string]: unknown;
   } | null;
-  author?: (string | null) | User;
-  Image?: (string | null) | Media;
-  category?: (string | null) | Category;
-  subCategory?: (string | null) | Category;
-  tags?: (string | Tag)[] | null;
   relatedArticles?: (string | Article)[] | null;
+  Image?: (string | null) | Media;
+  galleryImages?:
+    | {
+        image: string | Media;
+        caption: string;
+        id?: string | null;
+      }[]
+    | null;
+  author?: (string | null) | User;
+  tags?: (string | Tag)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -398,7 +402,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "categories_select".
  */
 export interface CategoriesSelect<T extends boolean = true> {
-  name?: T;
+  title?: T;
   slug?: T;
   parent?: T;
   updatedAt?: T;
@@ -421,14 +425,21 @@ export interface TagsSelect<T extends boolean = true> {
 export interface ArticlesSelect<T extends boolean = true> {
   slug?: T;
   title?: T;
-  excerpt?: T;
-  content?: T;
-  author?: T;
-  Image?: T;
   category?: T;
   subCategory?: T;
-  tags?: T;
+  excerpt?: T;
+  content?: T;
   relatedArticles?: T;
+  Image?: T;
+  galleryImages?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  author?: T;
+  tags?: T;
   updatedAt?: T;
   createdAt?: T;
 }

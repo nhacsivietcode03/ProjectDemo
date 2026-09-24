@@ -23,7 +23,8 @@ export const Tags: CollectionConfig = {
         beforeValidate: [autoFormatSlug],
       },
       admin: {
-        description: 'Nếu để trống thì tự động lấy title làm slug',
+        description: 'Tự động lấy title làm slug',
+        readOnly: true,
       },
     },
   ],

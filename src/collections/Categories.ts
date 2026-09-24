@@ -4,36 +4,38 @@ import type { CollectionConfig } from 'payload'
 export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: 'title',
   },
   fields: [
     {
-      name: 'name',
+      name: 'title',
       type: 'text',
       required: true,
-      label: 'Category Name',
     },
     {
       name: 'slug',
       type: 'text',
-      required: true,
       unique: true,
       hooks: {
         beforeValidate: [autoFormatSlug],
       },
       admin: {
-        description: 'Nếu để trống thì tự động lấy title làm slug',
+        description: 'Tự động lấy title làm slug',
+        readOnly: true,
       },
     },
     {
       name: 'parent',
       type: 'relationship',
       relationTo: 'categories',
-      hasMany: false,
+      hasMany: true,
       label: 'Parent Category',
       admin: {
         description:
           'Blank this if this is parent Category. Select parent Category if this is sub-cateogry',
+      },
+      filterOptions: ({ id }) => {
+        return id ? { id: { not_equals: id } } : false
       },
     },
   ],

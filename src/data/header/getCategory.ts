@@ -9,6 +9,11 @@ export default async function getCategories() {
     collection: 'categories',
     depth: 1,
     sort: 'createdAt',
+    where: {
+      slug: {
+        not_equals: 'galeri', // Bỏ qua category có slug là 'galeri'
+      },
+    },
   })
   return categories.docs
 }

@@ -10,6 +10,38 @@ export default async function getTerkini() {
     depth: 1,
     limit: 5,
     sort: '-createdAt',
+    where: {
+      and: [
+        {
+          or: [
+            {
+              'subCategory.slug': {
+                not_equals: 'foto',
+              },
+            },
+            {
+              subCategory: {
+                equals: null,
+              },
+            },
+          ],
+        },
+        {
+          or: [
+            {
+              'tags.slug': {
+                not_equals: 'infografik',
+              },
+            },
+            {
+              tags: {
+                equals: null,
+              },
+            },
+          ],
+        },
+      ],
+    },
     select: {
       title: true,
       Image: true,

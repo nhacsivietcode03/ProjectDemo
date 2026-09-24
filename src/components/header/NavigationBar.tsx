@@ -7,8 +7,8 @@ export default async function NavigationBar() {
   const navbar = await getNavbar()
   const categoryItems = categories.map((category) => ({
     key: `category-${category.id}`,
-    label: category.name || 'Category',
-    href: `/${encodeURIComponent(category.name || category.id)}`,
+    label: category.title || 'Category',
+    href: `/${encodeURIComponent(category.title || category.id)}`,
     external: false,
   }))
   const manualItems = (navbar.items || []).map((item, index) => ({
