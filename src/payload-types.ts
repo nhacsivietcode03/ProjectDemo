@@ -70,6 +70,9 @@ export interface Config {
     media: Media;
     users: User;
     categories: Category;
+    tags: Tag;
+    articles: Article;
+    video: Video;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +83,9 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    video: VideoSelect<false> | VideoSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -181,7 +187,83 @@ export interface User {
  */
 export interface Category {
   id: string;
-  name?: string | null;
+  title: string;
+  /**
+   * Tự động lấy title làm slug
+   */
+  slug?: string | null;
+  /**
+   * Blank this if this is parent Category. Select parent Category if this is sub-cateogry
+   */
+  parent?: (string | Category)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: string;
+  title: string;
+  /**
+   * Tự động lấy title làm slug
+   */
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: string;
+  slug?: string | null;
+  title: string;
+  category?: (string | Category)[] | null;
+  subCategory?: (string | null) | Category;
+  excerpt?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  relatedArticles?: (string | Article)[] | null;
+  Image?: (string | null) | Media;
+  galleryImages?:
+    | {
+        image: string | Media;
+        caption: string;
+        id?: string | null;
+      }[]
+    | null;
+  author?: (string | null) | User;
+  tags?: (string | Tag)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "video".
+ */
+export interface Video {
+  id: string;
+  title: string;
+  type: 'video' | 'short';
+  category?: ('bthv' | 'podcast' | 'sukan' | 'borakhariini' | 'bhtanya' | 'faktabh')[] | null;
+  youtubeUrl: string;
+  youtubeId: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -220,6 +302,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: string | Category;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: string | Tag;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: string | Article;
+      } | null)
+    | ({
+        relationTo: 'video';
+        value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -308,7 +402,57 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "categories_select".
  */
 export interface CategoriesSelect<T extends boolean = true> {
-  name?: T;
+  title?: T;
+  slug?: T;
+  parent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  slug?: T;
+  title?: T;
+  category?: T;
+  subCategory?: T;
+  excerpt?: T;
+  content?: T;
+  relatedArticles?: T;
+  Image?: T;
+  galleryImages?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  author?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "video_select".
+ */
+export interface VideoSelect<T extends boolean = true> {
+  title?: T;
+  type?: T;
+  category?: T;
+  youtubeUrl?: T;
+  youtubeId?: T;
   updatedAt?: T;
   createdAt?: T;
 }

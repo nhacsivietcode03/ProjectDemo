@@ -1,10 +1,10 @@
 import Logo from '../common/Logo'
 import SocialMediaIcon from '../common/SocialMediaIcon'
-import getFooter from '@/data/footer/getFooter'
+import getFooter from '@/data/footer/getFooterData'
 import Image from 'next/image'
 
 export default async function Footer() {
-  const footerData = await getFooter()
+  const { footerData } = await getFooter()
   const Stores = footerData.AppStore || []
   const bottomBar = footerData.bottomBar
   return (

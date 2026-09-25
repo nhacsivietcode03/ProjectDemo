@@ -1,0 +1,5 @@
+export { default as GaleriFotoSection } from './GaleriFotoSection'
+export { default as InfografikSection } from './InfografikSection'
+export { default as PodCastSection } from './PostCastSection'
+export { default as Terkini } from './Terkini'
+export { default as TrendingSection } from './TrendingSection'

@@ -1,8 +1,8 @@
 import { autoFormatSlug } from '@/hooks/autoHook'
 import type { CollectionConfig } from 'payload'
 
-export const Categories: CollectionConfig = {
-  slug: 'categories',
+export const Tags: CollectionConfig = {
+  slug: 'tags',
   admin: {
     useAsTitle: 'title',
   },
@@ -11,31 +11,20 @@ export const Categories: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      label: 'Tag',
     },
     {
       name: 'slug',
       type: 'text',
+      required: true,
       unique: true,
+      label: 'Slug',
       hooks: {
         beforeValidate: [autoFormatSlug],
       },
       admin: {
         description: 'Tự động lấy title làm slug',
         readOnly: true,
-      },
-    },
-    {
-      name: 'parent',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-      label: 'Parent Category',
-      admin: {
-        description:
-          'Blank this if this is parent Category. Select parent Category if this is sub-cateogry',
-      },
-      filterOptions: ({ id }) => {
-        return id ? { id: { not_equals: id } } : false
       },
     },
   ],
