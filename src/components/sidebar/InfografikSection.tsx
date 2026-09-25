@@ -1,9 +1,13 @@
-import getInfografik from '@/data/sidebar/getInfografik'
+import type { InfografikItem } from '@/data/sidebar/getSideBarData'
 import HeaderTitle from '../common/HeaderSection'
 import Image from 'next/image'
 
-export default async function InfografikSection() {
-  const [infografik] = await getInfografik()
+type InfografikProps = {
+  infografikData: InfografikItem[]
+}
+
+export default async function InfografikSection({ infografikData }: InfografikProps) {
+  const [infografik] = infografikData
   const imageInfografik =
     infografik && typeof infografik.Image === 'object' ? infografik.Image : null
 

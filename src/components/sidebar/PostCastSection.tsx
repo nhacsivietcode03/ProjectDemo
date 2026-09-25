@@ -1,14 +1,17 @@
-import getPodCasts from '@/data/sidebar/getVideos'
+import type { PodcastItem } from '@/data/sidebar/getSideBarData'
 import HeaderTitle from '../common/HeaderSection'
-import Video from '../common/Video'
+import VideoComp from '../common/VideoComp'
 
-export default async function PodCastSection() {
-  const podCastLists = await getPodCasts()
+type PodcastProps = {
+  podCastData: PodcastItem[]
+}
+
+export default function PodCastSection({ podCastData }: PodcastProps) {
   return (
     <section className="pb-5">
       <HeaderTitle title="PodCast" label="BH TV" />
-      {podCastLists.map((podCast) => (
-        <Video video={podCast} key={podCast.id} />
+      {podCastData.map((podCast) => (
+        <VideoComp video={podCast} key={podCast.id} />
       ))}
     </section>
   )

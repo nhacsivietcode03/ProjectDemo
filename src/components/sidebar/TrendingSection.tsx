@@ -1,16 +1,18 @@
 import HeaderTitle from '../common/HeaderSection'
-import getTrending from '@/data/sidebar/getTrending'
+import type { TrendingItem } from '@/data/sidebar/getSideBarData'
 import getTimeAgo from '@/utils/getTimeAgo'
 
-export default async function TrendingSection() {
-  const trendingArticles = await getTrending()
+type TrendingProps = {
+  trendingData: TrendingItem[]
+}
 
+export default function TrendingSection({ trendingData }: TrendingProps) {
   return (
     <section className="pb-5">
       <HeaderTitle title="Trending" />
 
       <div className="mt-2">
-        {trendingArticles.map((article, index) => (
+        {trendingData.map((article, index) => (
           <article
             key={article.id}
             className="flex min-h-20 items-center gap-3 border-b border-gray-200 py-2"

@@ -5,7 +5,7 @@ type VideoProp = {
   }
 }
 
-export default async function Video({ video }: VideoProp) {
+export default async function VideoComp({ video }: VideoProp) {
   return (
     <div className="mt-5 w-full">
       <iframe

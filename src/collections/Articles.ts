@@ -45,14 +45,13 @@ export const Articles: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
-      filterOptions: (options): Where => {
-        const selectedCollections = options.data?.category
-
-        if (!selectedCollections || selectedCollections.length === 0) {
+      filterOptions: ({ data }): Where => {
+        const seletedCollections = data?.category
+        if (!seletedCollections) {
           return { id: { equals: Foto_Category_ID } }
+        } else {
+          return { parent: { in: seletedCollections } }
         }
-
-        return { parent: { in: selectedCollections } }
       },
     },
 
@@ -77,6 +76,21 @@ export const Articles: CollectionConfig = {
       hasMany: true,
       admin: {
         condition: (data) => data?.subCategory !== Foto_Category_ID,
+      },
+      filterOptions: ({ id }) => {
+        const excludeFotoCondition = {
+          or: [
+            { subCategory: { not_equals: Foto_Category_ID } },
+            { subCategory: { exists: false } },
+            { subCategory: { equals: null } },
+          ],
+        }
+        if (id) {
+          return {
+            and: [{ id: { not_equals: id } }, excludeFotoCondition],
+          }
+        }
+        return excludeFotoCondition
       },
     },
     {

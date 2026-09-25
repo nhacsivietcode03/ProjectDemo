@@ -1,20 +1,20 @@
 import Image from 'next/image'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
-import getHeader from '@/data/header/getHeader'
 import SocialMediaIcon from '@/components/common/SocialMediaIcon'
 import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
 import AdSlot from '../common/Ads'
 import Logo from '../common/Logo'
+import getHeader from '@/data/header/getHeaderData'
 
 export default async function Header() {
-  // Lấy dữ liệu Header và Site Settings từ Payload
-  const headerData = await getHeader()
-  // Kiểm tra dữ liệu  site tittle có phải là Media hay ko hay là String
+  const { categoryData, headerGlobalData, navBarData } = await getHeader()
   const siteTitle =
-    headerData && typeof headerData.siteTitle === 'object' ? headerData.siteTitle : null
-  const carousels = headerData.caroselItems || []
+    headerGlobalData && typeof headerGlobalData.siteTitle === 'object'
+      ? headerGlobalData.siteTitle
+      : null
+  const carousels = headerGlobalData.caroselItems || []
 
   return (
     <header className="w-full">
@@ -57,7 +57,7 @@ export default async function Header() {
         </div>
       </div>
       <div className="container flex h-13 items-center justify-between">
-        <NavigationBar />
+        <NavigationBar category={categoryData} navBar={navBarData} />
         <div className="relative flex items-center">
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
           <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />

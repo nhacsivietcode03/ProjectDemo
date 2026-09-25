@@ -1,17 +1,19 @@
 import Link from 'next/link'
-import getCategories from '@/data/header/getCategory'
-import getNavbar from '@/data/header/getNavbar'
+import { Category, Nav } from '@/payload-types'
 
-export default async function NavigationBar() {
-  const categories = await getCategories()
-  const navbar = await getNavbar()
-  const categoryItems = categories.map((category) => ({
+type NavigationBarProps = {
+  category: Category[]
+  navBar: Nav
+}
+
+export default async function NavigationBar({ category, navBar }: NavigationBarProps) {
+  const categoryItems = category.map((category) => ({
     key: `category-${category.id}`,
     label: category.title || 'Category',
     href: `/${encodeURIComponent(category.title || category.id)}`,
     external: false,
   }))
-  const manualItems = (navbar.items || []).map((item, index) => ({
+  const manualItems = (navBar.items || []).map((item, index) => ({
     key: `${item.type}-${item.label || item.tag || item.url || index}`,
     label: item.label,
     href: item.type === 'tag' ? `/tag/${encodeURIComponent(item.tag || '')}` : item.url || '#',

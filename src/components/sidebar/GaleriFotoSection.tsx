@@ -1,24 +1,25 @@
 import Image from 'next/image'
-import getGaleriFoto from '@/data/sidebar/getGaleriFoto'
 import HeaderTitle from '../common/HeaderSection'
-import { Media } from '@/payload-types'
+import type { GaleriItem } from '@/data/sidebar/getSideBarData'
 
-export default async function GaleriFotoSection() {
-  // Lấy dữ liệu từ galerifoto
-  const articles = await getGaleriFoto()
-  const galleryImages = articles.flatMap((article) => article.galleryImages ?? [])
+type GaleriFotoProps = {
+  galeriData: GaleriItem[]
+}
 
+export default function GaleriFotoSection({ galeriData }: GaleriFotoProps) {
+  const galleryImages = galeriData.flatMap((galeri) => galeri.galleryImages ?? [])
   return (
     <section className="mt-3">
+      {/*Header Section*/}
       <HeaderTitle title="Galeri Foto" label="Galeri" />
+      {/*Render ảnh*/}
       <div className="grid grid-cols-4 gap-1 py-4">
-        {galleryImages.map((galleryImage, index) => {
-          const image =
-            galleryImage && typeof galleryImages === 'object' ? (galleryImage.image as Media) : null
-          if (!image?.url) return null
+        {galleryImages.map((galeri, index) => {
+          const galeriImage = galeri && typeof galeri.image === 'object' ? galeri.image : null
+          if (!galeriImage?.url) return null
           return (
-            <div key={galleryImage.id ?? `${image.id}-${index}`} className="relative aspect-4/3">
-              <Image src={image.url} alt={galleryImage.caption} fill className="object-cover" />
+            <div key={index} className="relative aspect-4/3">
+              <Image src={galeriImage.url} alt={galeriImage.alt} fill className="object-cover" />
             </div>
           )
         })}
