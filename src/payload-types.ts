@@ -222,7 +222,7 @@ export interface Article {
   slug?: string | null;
   title: string;
   category?: (string | Category)[] | null;
-  subCategory?: (string | null) | Category;
+  subCategory?: (string | Category)[] | null;
   excerpt?: string | null;
   content?: {
     root: {

@@ -24,7 +24,7 @@ const getGaleriFoto = (payload: Payload) => {
     depth: 1,
     limit: 4,
     where: {
-      'subCategory.slug': {
+      'category.slug': {
         equals: 'foto',
       },
     },
@@ -41,7 +41,7 @@ const getInfografik = (payload: Payload) => {
     depth: 1,
     limit: 1,
     where: {
-      'tags.slug': {
+      'category.slug': {
         equals: 'infografik',
       },
     },
