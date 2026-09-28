@@ -21,9 +21,9 @@ export default async function HomePage() {
           <AdSlot slot="300x250" width={300} height={250} />
           <Terkini terkiniData={terkiniData} />
           <TrendingSection trendingData={trendingData} />
-          <PodCastSection podCastData={videosData} />
+          {/* <PodCastSection podCastData={videosData} />
           <InfografikSection infografikData={infografikData} />
-          <GaleriFotoSection galeriData={galeriData} />
+          <GaleriFotoSection galeriData={galeriData} /> */}
         </div>
       </div>
     </div>

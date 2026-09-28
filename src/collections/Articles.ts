@@ -152,5 +152,21 @@ export const Articles: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    {
+      name: 'trending',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'hightlight',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 }
