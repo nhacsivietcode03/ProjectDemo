@@ -161,7 +161,7 @@ export const Articles: CollectionConfig = {
       },
     },
     {
-      name: 'hightlight',
+      name: 'highlight',
       type: 'checkbox',
       defaultValue: false,
       admin: {

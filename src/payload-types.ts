@@ -251,7 +251,7 @@ export interface Article {
   author?: (string | null) | User;
   tags?: (string | Tag)[] | null;
   trending?: boolean | null;
-  hightlight?: boolean | null;
+  highlight?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -443,7 +443,7 @@ export interface ArticlesSelect<T extends boolean = true> {
   author?: T;
   tags?: T;
   trending?: T;
-  hightlight?: T;
+  highlight?: T;
   updatedAt?: T;
   createdAt?: T;
 }
