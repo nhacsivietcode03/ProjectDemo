@@ -19,18 +19,17 @@ export default function SideArticles({ data }: { data: UtamaItem[] }) {
             href={`/berita/${article.slug || ''}`}
             className="group relative block overflow-hidden"
           >
-            {/* Ảnh nền */}
-            {image?.url && (
-              <Image
-                src={image.url}
-                alt={image.alt || article.title}
-                width={257}
-                height={150}
-                className="object-cover transition duration-300 group-hover:scale-105"
-                style={{ width: `${290}px`, height: `${150}px` }}
-              />
-            )}
-
+            <div className="relative aspect-video w-full">
+              {/* Ảnh nền */}
+              {image?.url && (
+                <Image
+                  src={image.url}
+                  alt={image.alt}
+                  fill
+                  className="object-cover transition duration-300 group-hover:scale-105"
+                />
+              )}
+            </div>
             {/* Gradient đen làm tối phần dưới để đọc chữ */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 

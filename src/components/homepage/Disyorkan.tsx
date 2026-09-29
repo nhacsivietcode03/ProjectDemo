@@ -19,7 +19,9 @@ export default async function Disyorkan({ disyorkanData }: DisyorkanProps) {
   return (
     <section className="mt-5">
       <HeaderTitle title="Disyorkan" label="Disyourkan" />
+
       <div className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-12">
+        {/* Ảnh */}
         <div className="col-span-6">
           <Link href={`/berita/${firstArticle.slug || ''}`} className="group block">
             <div className="relative aspect-video w-full overflow-hidden rounded-md bg-gray-200">
@@ -40,13 +42,14 @@ export default async function Disyorkan({ disyorkanData }: DisyorkanProps) {
 
             {/* Nội dung bên dưới ảnh */}
             <div className="mt-4 w-full">
-              <h2 className="line-clamp-3 text-xl leading-snug font-bold text-black transition-colors group-hover:text-red-600 sm:text-2xl">
+              <h2 className="line-clamp-3 text-xl leading-snug font-semibold text-black transition-colors group-hover:text-red-600 sm:text-2xl">
                 {firstArticle.title}
               </h2>
             </div>
           </Link>
         </div>
-        {/*Nội dung bên phải */}
+
+        {/*6 bài viết bên phải*/}
         <div className="col-span-6">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
             {listArticles.map((article) => {
@@ -58,22 +61,19 @@ export default async function Disyorkan({ disyorkanData }: DisyorkanProps) {
                 <Link
                   key={article.id}
                   href={`/berita/${article.slug || ''}`}
-                  className="group relative mb-8 block"
+                  className="group relative mb-5 block"
                 >
-                  {/* 1. Xóa style cứng, thêm w-full và aspect-[290/150] để cố định tỷ lệ khung hình */}
-                  <div className="relative aspect-[290/150] w-full overflow-hidden">
+                  <div className="relative aspect-video w-full overflow-hidden">
                     {image?.url && (
                       <Image
                         src={image.url}
                         alt={image.alt || article.title}
-                        // 2. Xóa width/height cứng, dùng fill để ảnh tự động lấp đầy khung tỷ lệ ở trên
                         fill
                         className="object-cover transition duration-300 group-hover:scale-105"
                       />
                     )}
                   </div>
 
-                  {/* 3. Sửa w-[290px] thành w-full để khối chữ cũng co giãn theo cột */}
                   <div className="w-full py-3">
                     <div className="mb-1 flex flex-wrap items-center gap-2 text-xs">
                       <p className="font-semibold text-red-600 uppercase">{subCategoryTitle}</p>

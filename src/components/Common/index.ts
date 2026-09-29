@@ -1,0 +1,5 @@
+export { default as AdSlot } from './Ads'
+export { default as HeaderTitle } from './HeaderSection'
+export { default as Logo } from './Logo'
+export { default as SocialMediaIcon } from './SocialMediaIcon'
+export { default as VideoComp } from './VideoComp'

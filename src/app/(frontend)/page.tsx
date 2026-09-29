@@ -17,7 +17,7 @@ export default async function HomePage() {
   return (
     <div className="container pt-5">
       {/* Utama */}
-      <div className="grid grid-cols-1 gap-2 lg:grid-cols-12">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
         {/* Phần nội dung chính */}
         <div className="lg:col-span-8">
           <Utama utamaData={utamaData} />

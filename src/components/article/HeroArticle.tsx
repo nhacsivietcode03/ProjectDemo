@@ -19,8 +19,7 @@ export default function HeroArticle({ data }: HeroArticleProps) {
   return (
     <article className="flex flex-col px-2">
       <Link href={`/berita/${article.slug || ''}`} className="group block">
-        {/* Ảnh lớn Hero: Chiều cao 284px khớp chuẩn với (Card 1: 138px + Gap: 8px + Card 2: 138px) */}
-        <div className="relative h-[350px] w-full overflow-hidden bg-gray-200">
+        <div className="relative aspect-video w-full overflow-hidden bg-gray-200">
           {image?.url ? (
             <Image
               src={image.url}
@@ -37,7 +36,7 @@ export default function HeroArticle({ data }: HeroArticleProps) {
         </div>
 
         {/* Nội dung bên dưới ảnh */}
-        <div className="mt-3">
+        <div className="mt-3 py-3">
           {/* SubCategory màu đỏ + Thời gian */}
           <div className="flex items-center gap-2">
             <span className="text-sm font-semibold text-red-600 capitalize">
