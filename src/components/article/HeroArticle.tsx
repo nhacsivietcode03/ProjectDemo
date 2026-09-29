@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { UtamaItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
 import getTimeAgo from '@/utils/getTimeAgo'
 
 type HeroArticleProps = {
-  data: UtamaItem[]
+  data: ArticleItem[]
 }
 
 export default function HeroArticle({ data }: HeroArticleProps) {

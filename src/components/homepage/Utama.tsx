@@ -1,12 +1,9 @@
-import type { UtamaItem } from '@/data/homepage/getMainHomePageData'
-import HeaderTitle from '../common/HeaderSection'
-import SideArticles from '../article/SideArticles'
-import HeroArticle from '../article/HeroArticle'
-import BulletArticleList from '../article/BulletArticleList'
-import Block3x3Articles from '../article/Block3x3Articles'
+import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
+import { SideArticles, HeroArticle, BulletArticleList, CommonArticle } from '../article'
+import { HeaderTitle } from '../common'
 
 type UtamaProps = {
-  utamaData: UtamaItem[]
+  utamaData: ArticleItem[]
 }
 
 export default async function Utama({ utamaData }: UtamaProps) {
@@ -28,7 +25,9 @@ export default async function Utama({ utamaData }: UtamaProps) {
           </div>
         </div>
       </div>
-      <Block3x3Articles data={block3x3Articles} />
+      <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <CommonArticle articlesData={block3x3Articles} />
+      </div>
     </section>
   )
 }

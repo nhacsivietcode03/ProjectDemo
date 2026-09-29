@@ -1,11 +1,11 @@
-import { DisyorKanItem } from '@/data/homepage/getMainHomePageData'
+import { ArticleItem } from '@/data/homepage/getMainHomePageData'
 import HeaderTitle from '../common/HeaderSection'
 import Link from 'next/link'
 import Image from 'next/image'
-import getTimeAgo from '@/utils/getTimeAgo'
+import { CommonArticle } from '../article'
 
 type DisyorkanProps = {
-  disyorkanData: DisyorKanItem[]
+  disyorkanData: ArticleItem[]
 }
 
 export default async function Disyorkan({ disyorkanData }: DisyorkanProps) {
@@ -52,41 +52,7 @@ export default async function Disyorkan({ disyorkanData }: DisyorkanProps) {
         {/*6 bài viết bên phải*/}
         <div className="col-span-6">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-            {listArticles.map((article) => {
-              const image = typeof article.Image === 'object' ? article.Image : null
-              const subCategory = article.subCategory?.[0]
-              const subCategoryTitle =
-                typeof subCategory === 'object' ? subCategory?.title : 'NASIONAL'
-              return (
-                <Link
-                  key={article.id}
-                  href={`/berita/${article.slug || ''}`}
-                  className="group relative mb-5 block"
-                >
-                  <div className="relative aspect-video w-full overflow-hidden">
-                    {image?.url && (
-                      <Image
-                        src={image.url}
-                        alt={image.alt || article.title}
-                        fill
-                        className="object-cover transition duration-300 group-hover:scale-105"
-                      />
-                    )}
-                  </div>
-
-                  <div className="w-full py-3">
-                    <div className="mb-1 flex flex-wrap items-center gap-2 text-xs">
-                      <p className="font-semibold text-red-600 uppercase">{subCategoryTitle}</p>
-                      <p className="text-gray-400">{getTimeAgo(article.createdAt)}</p>
-                    </div>
-
-                    <h3 className="line-clamp-2 text-sm font-semibold text-black transition-colors group-hover:text-red-600">
-                      {article.title}
-                    </h3>
-                  </div>
-                </Link>
-              )
-            })}
+            <CommonArticle articlesData={listArticles} />
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 export { default as ArticleListItem } from './ArticleListItem'
-export { default as Block3x3Articles } from './Block3x3Articles'
 export { default as BulletArticleList } from './BulletArticleList'
 export { default as HeroArticle } from './HeroArticle'
 export { default as SideArticles } from './SideArticles'
+export { default as CommonArticle } from './CommonArticles'

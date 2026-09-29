@@ -4,17 +4,14 @@ import { getPayload, Payload } from 'payload'
 import buildConfig from '@/payload.config'
 import type { Article } from '@/payload-types'
 
-export type UtamaItem = Pick<
+export type ArticleItem = Pick<
   Article,
   'id' | 'Image' | 'title' | 'createdAt' | 'slug' | 'excerpt' | 'category' | 'subCategory'
 >
-export type DisyorKanItem = Pick<
-  Article,
-  'id' | 'Image' | 'title' | 'createdAt' | 'slug' | 'category' | 'subCategory'
->
+
 export interface CombinedMainHomePageData {
-  utamaData: UtamaItem[]
-  disyorkanData: DisyorKanItem[]
+  utamaData: ArticleItem[]
+  disyorkanData: ArticleItem[]
 }
 
 const getUtama = (payload: Payload) => {
