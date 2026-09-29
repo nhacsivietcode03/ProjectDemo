@@ -7,7 +7,7 @@ import type { Article, Video } from '@/payload-types'
 export type GaleriItem = Pick<Article, 'id' | 'galleryImages'>
 export type InfografikItem = Pick<Article, 'id' | 'Image'>
 export type TerkiniItem = Pick<Article, 'id' | 'slug' | 'title' | 'Image' | 'createdAt'>
-export type TrendingItem = Pick<Article, 'id' | 'slug' | 'title' | 'createdAt'>
+export type TrendingItem = Pick<Article, 'id' | 'slug' | 'title' | 'createdAt' | 'Image'>
 export type PodcastItem = Pick<Video, 'id' | 'title' | 'youtubeId'>
 
 export interface CombinedSideBarData {
@@ -24,7 +24,7 @@ const getGaleriFoto = (payload: Payload) => {
     depth: 1,
     limit: 4,
     where: {
-      'subCategory.slug': {
+      'category.slug': {
         equals: 'foto',
       },
     },
@@ -41,7 +41,7 @@ const getInfografik = (payload: Payload) => {
     depth: 1,
     limit: 1,
     where: {
-      'tags.slug': {
+      'category.slug': {
         equals: 'infografik',
       },
     },
@@ -63,12 +63,12 @@ const getTerkini = (payload: Payload) => {
         {
           or: [
             {
-              'subCategory.slug': {
+              'category.slug': {
                 not_equals: 'foto',
               },
             },
             {
-              subCategory: {
+              category: {
                 equals: null,
               },
             },
@@ -77,12 +77,12 @@ const getTerkini = (payload: Payload) => {
         {
           or: [
             {
-              'tags.slug': {
+              'category.slug': {
                 not_equals: 'infografik',
               },
             },
             {
-              tags: {
+              category: {
                 equals: null,
               },
             },
@@ -104,14 +104,15 @@ const getTrending = (payload: Payload) => {
     collection: 'articles',
     limit: 5,
     where: {
-      'tags.slug': {
-        equals: 'trending',
+      trending: {
+        equals: true,
       },
     },
     select: {
       slug: true,
       title: true,
       createdAt: true,
+      Image: true,
     },
   })
 }

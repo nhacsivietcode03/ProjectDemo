@@ -1,0 +1,2 @@
+export { default as Utama } from './Utama'
+export { default as Disyorkan } from './Disyorkan'

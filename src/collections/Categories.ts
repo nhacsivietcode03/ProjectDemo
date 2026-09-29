@@ -1,5 +1,5 @@
 import { autoFormatSlug } from '@/hooks/autoHook'
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Where } from 'payload'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
@@ -34,8 +34,8 @@ export const Categories: CollectionConfig = {
         description:
           'Blank this if this is parent Category. Select parent Category if this is sub-cateogry',
       },
-      filterOptions: ({ id }) => {
-        return id ? { id: { not_equals: id } } : false
+      filterOptions: ({ id }): Where => {
+        return id ? { id: { not_equals: id } } : {}
       },
     },
   ],

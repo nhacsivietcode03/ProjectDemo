@@ -1,5 +1,4 @@
-import Logo from '../common/Logo'
-import SocialMediaIcon from '../common/SocialMediaIcon'
+import { Logo, SocialMediaIcon } from '../common'
 import getFooter from '@/data/footer/getFooterData'
 import Image from 'next/image'
 

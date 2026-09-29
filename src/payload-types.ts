@@ -222,7 +222,7 @@ export interface Article {
   slug?: string | null;
   title: string;
   category?: (string | Category)[] | null;
-  subCategory?: (string | null) | Category;
+  subCategory?: (string | Category)[] | null;
   excerpt?: string | null;
   content?: {
     root: {
@@ -250,6 +250,8 @@ export interface Article {
     | null;
   author?: (string | null) | User;
   tags?: (string | Tag)[] | null;
+  trending?: boolean | null;
+  highlight?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -440,6 +442,8 @@ export interface ArticlesSelect<T extends boolean = true> {
       };
   author?: T;
   tags?: T;
+  trending?: T;
+  highlight?: T;
   updatedAt?: T;
   createdAt?: T;
 }

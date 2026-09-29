@@ -14,10 +14,8 @@ const getchCategories = (payload: Payload) => {
   return payload.find({
     collection: 'categories',
     depth: 1,
+    limit: 7,
     sort: 'createdAt',
-    where: {
-      slug: { not_equals: 'galeri' },
-    },
   })
 }
 
