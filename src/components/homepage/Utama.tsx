@@ -14,7 +14,6 @@ export default async function Utama({ utamaData }: UtamaProps) {
   const sideArticles = utamaData.slice(1, 5)
   const belowHeroArticles = utamaData.slice(5, 8)
   const block3x3Articles = utamaData.slice(8, 17)
-
   return (
     <section>
       <HeaderTitle title="Utama" />

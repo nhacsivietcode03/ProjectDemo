@@ -24,10 +24,9 @@ export default function HeroArticle({ data }: HeroArticleProps) {
           {image?.url ? (
             <Image
               src={image.url}
-              alt={image.alt || article.title}
+              alt={image.alt}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 66vw"
               className="object-cover transition duration-300 group-hover:scale-105"
             />
           ) : (
@@ -48,7 +47,7 @@ export default function HeroArticle({ data }: HeroArticleProps) {
           </div>
 
           {/* Tiêu đề chính */}
-          <h2 className="mt-1 line-clamp-2 text-xl leading-snug font-bold text-black transition-colors group-hover:text-red-600 sm:text-2xl">
+          <h2 className="mt-1 line-clamp-2 text-xl leading-snug font-semibold text-black transition-colors group-hover:text-red-600 sm:text-2xl">
             {article.title}
           </h2>
 

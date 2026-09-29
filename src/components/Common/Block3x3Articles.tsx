@@ -17,29 +17,28 @@ export default function Block3x3Articles({ data }: { data: UtamaItem[] }) {
             <Link
               key={article.id}
               href={`/berita/${article.slug || ''}`}
-              className="group relative block overflow-hidden"
+              className="group relative block"
             >
-              {/* Ảnh nền */}
-              {image?.url && (
-                <Image
-                  src={image.url}
-                  alt={image.alt || article.title}
-                  width={257}
-                  height={150}
-                  className="overflow-hidden object-cover transition duration-300 group-hover:scale-105"
-                  style={{ width: `${290}px`, height: `${150}px` }}
-                />
-              )}
-
-              {/* Thông tin bài viết */}
-              <div className="inset-x-0 bottom-0 py-3">
-                <div className="mb-1 flex items-center gap-2 text-xs">
-                  {/* Subcategory màu đỏ */}
-                  <span className="font-semibold text-red-600 uppercase">{subCategoryTitle}</span>
-                  <span className="text-gray-400">{getTimeAgo(article.createdAt)}</span>
+              <div className="relative overflow-hidden" style={{ width: '290px', height: '150px' }}>
+                {image?.url && (
+                  <Image
+                    src={image.url}
+                    alt={image.alt || article.title}
+                    width={290}
+                    height={150}
+                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  />
+                )}
+              </div>
+              <div className="w-[290px] py-3">
+                <div className="mb-1 flex flex-wrap items-center gap-2 text-xs">
+                  <p className="font-semibold text-red-600 uppercase">{subCategoryTitle}</p>
+                  <p className="text-gray-400">{getTimeAgo(article.createdAt)}</p>
                 </div>
 
-                <h3 className="line-clamp-2 text-sm font-semibold text-black">{article.title}</h3>
+                <h3 className="line-clamp-2 text-sm font-semibold text-black hover:text-red-600">
+                  {article.title}
+                </h3>
               </div>
             </Link>
           )
