@@ -21,7 +21,7 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
           <Link key={article.id} href={articleUrl} className="group block">
             <div
               className={`relative w-full overflow-hidden bg-gray-200 ${
-                type === 'big' ? 'aspect-square' : 'aspect-video'
+                type === 'big' ? 'aspect-4/3' : 'aspect-video'
               }`}
             >
               {image?.url && (

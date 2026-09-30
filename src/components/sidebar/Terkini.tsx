@@ -8,7 +8,7 @@ type TerkiniProps = {
 
 export default function Terkini({ terkiniData }: TerkiniProps) {
   return (
-    <section className="mt-2 pb-5">
+    <section className="mt-2">
       <HeaderTitle title="Terkini" />
       <div>
         {terkiniData.map((article) => (

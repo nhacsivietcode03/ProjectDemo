@@ -6,14 +6,16 @@ import {
   Terkini,
   TrendingSection,
 } from '@/components/sidebar'
-import { Utama, Disyorkan } from '@/components/homepage'
+import { Utama, Disyorkan, Rencana, Sukan, Dunia } from '@/components/homepage'
 import getSideBarData from '@/data/sidebar/getSideBarData'
 import getMainHomePageData from '@/data/homepage/getMainHomePageData'
 
 export default async function HomePage() {
   const { galeriData, infografikData, terkiniData, trendingData, videosData } =
     await getSideBarData()
-  const { utamaData, disyorkanData } = await getMainHomePageData()
+  const { utamaData, disyorkanData, rencanaData, sukanData, duniaData } =
+    await getMainHomePageData()
+
   return (
     <div className="container pt-5">
       {/* Utama */}
@@ -31,6 +33,10 @@ export default async function HomePage() {
       </div>
       {/* Disyorkan */}
       <Disyorkan disyorkanData={disyorkanData} />
+      {/* Rencana */}
+      <Rencana rencanaData={rencanaData} />
+      <Sukan sukanData={sukanData} />
+      <Dunia duniaData={duniaData} />
     </div>
   )
 }

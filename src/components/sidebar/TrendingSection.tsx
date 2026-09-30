@@ -9,7 +9,7 @@ type TrendingProps = {
 
 export default function TrendingSection({ trendingData }: TrendingProps) {
   return (
-    <section className="pb-5">
+    <section>
       <HeaderTitle title="Trending" />
 
       <div className="mt-2">
@@ -18,7 +18,7 @@ export default function TrendingSection({ trendingData }: TrendingProps) {
           return (
             <article
               key={article.id}
-              className="min-h-20 items-center gap-3 border-b border-gray-200 py-4"
+              className="mb-3 min-h-20 items-center gap-3 border-b border-gray-200 pb-4"
             >
               <div className="grid grid-cols-12 gap-3">
                 <div className="col-span-3">

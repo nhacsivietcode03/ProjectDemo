@@ -12,6 +12,9 @@ export type ArticleItem = Pick<
 export interface CombinedMainHomePageData {
   utamaData: ArticleItem[]
   disyorkanData: ArticleItem[]
+  rencanaData: ArticleItem[]
+  sukanData: ArticleItem[]
+  duniaData: ArticleItem[]
 }
 
 const getUtama = (payload: Payload) => {
@@ -62,14 +65,88 @@ const getDisyorkan = (payload: Payload) => {
   })
 }
 
+const getRencana = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'rencana',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
+const getSukan = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'sukan',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
+const getDunia = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'dunia',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
 export default async function getMainHomePageData(): Promise<CombinedMainHomePageData> {
   const payload = await getPayload({ config: buildConfig })
-  const [UtamaResult, DisyorkanResult] = await Promise.all([
-    getUtama(payload),
-    getDisyorkan(payload),
-  ])
+  const [UtamaResult, DisyorkanResult, RencanaResult, SukanResult, DuniaResult] = await Promise.all(
+    [
+      getUtama(payload),
+      getDisyorkan(payload),
+      getRencana(payload),
+      getSukan(payload),
+      getDunia(payload),
+    ],
+  )
   return {
     utamaData: UtamaResult.docs,
     disyorkanData: DisyorkanResult.docs,
+    rencanaData: RencanaResult.docs,
+    sukanData: SukanResult.docs,
+    duniaData: DuniaResult.docs,
   }
 }

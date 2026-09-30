@@ -15,7 +15,7 @@ export default function Trending() {
 
   // Nếu là trang chủ, hiển thị phần tử này
   return (
-    <div className="mt-2 ml-2 flex items-center gap-4 text-xs">
+    <div className="mt-2 ml-2 flex items-center gap-4 text-base">
       <div className="font-bold text-red-600">Trending :</div>
       <div>
         <ul className="flex gap-4">

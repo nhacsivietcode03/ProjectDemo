@@ -25,6 +25,7 @@ export default function SideArticles({ data }: SideArticleProps) {
                   src={image.url}
                   alt={image.alt}
                   fill
+                  priority
                   className="object-cover transition duration-300 group-hover:scale-105"
                 />
               )}

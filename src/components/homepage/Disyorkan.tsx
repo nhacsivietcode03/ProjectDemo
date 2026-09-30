@@ -11,7 +11,7 @@ export default async function Disyorkan({ disyorkanData }: DisyorkanProps) {
   const listArticles = disyorkanData.slice(1, 8)
 
   return (
-    <section className="mt-5">
+    <section>
       <HeaderTitle title="Disyorkan" label="Disyourkan" />
 
       <div className="mt-5 grid grid-cols-1 gap-3 lg:grid-cols-12">
