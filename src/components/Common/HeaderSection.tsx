@@ -7,7 +7,7 @@ type HeaderTitleProps = {
 
 export default function HeaderTitle({ title, label }: HeaderTitleProps) {
   return (
-    <div className="my-5 flex items-center justify-between">
+    <div className="mt-2 mb-5 flex items-center justify-between">
       <h2 className="relative inline-block py-4 text-3xl font-semibold">
         {title}
         <span className="absolute bottom-2 left-0 h-1 w-12.5 rounded-full bg-red-600" />

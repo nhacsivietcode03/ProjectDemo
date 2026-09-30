@@ -14,7 +14,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
       {/* Tăng gap lên 4 cho thoáng giữa chữ và ảnh */}
       <div className="grid grid-cols-12 gap-4 border-b border-gray-300">
         <div className="col-span-9">
-          <div className="flex min-w-0 flex-1 flex-col gap-5">
+          <div className="flex min-w-0 flex-1 flex-col gap-3">
             <h3 className="line-clamp-3 text-base leading-[1.35] font-semibold text-black">
               {article.title}
             </h3>
