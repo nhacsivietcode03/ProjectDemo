@@ -11,6 +11,7 @@ export default async function Utama({ utamaData }: UtamaProps) {
   const sideArticles = utamaData.slice(1, 5)
   const belowHeroArticles = utamaData.slice(5, 8)
   const block3x3Articles = utamaData.slice(8, 17)
+  console.log(JSON.stringify(heroArticle, null, 2))
   return (
     <section>
       <HeaderTitle title="Utama" />
@@ -20,7 +21,7 @@ export default async function Utama({ utamaData }: UtamaProps) {
         </div>
         <div className="lg:col-span-8">
           <HeroArticle data={heroArticle} />
-          <div className="hidden lg:block">
+          <div className="hidden pt-4 lg:block">
             <BulletArticleList data={belowHeroArticles} />
           </div>
         </div>

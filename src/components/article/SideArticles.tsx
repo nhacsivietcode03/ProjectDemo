@@ -1,24 +1,23 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { UtamaItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
 import getTimeAgo from '@/utils/getTimeAgo'
+import formatArticle from '@/utils/formatArticles'
 
-export default function SideArticles({ data }: { data: UtamaItem[] }) {
+type SideArticleProps = {
+  data: ArticleItem[]
+}
+
+export default function SideArticles({ data }: SideArticleProps) {
   if (!data?.length) return null
 
   return (
     <div className="flex flex-col gap-5">
       {data.map((article) => {
-        const image = typeof article.Image === 'object' ? article.Image : null
-        const subCategory = article.subCategory?.[0]
-        const subCategoryTitle = typeof subCategory === 'object' ? subCategory?.title : 'NASIONAL'
+        const { image, subCategoryTitle, articleUrl } = formatArticle(article)
 
         return (
-          <Link
-            key={article.id}
-            href={`/berita/${article.slug || ''}`}
-            className="group relative block overflow-hidden"
-          >
+          <Link key={article.id} href={articleUrl} className="group relative block overflow-hidden">
             <div className="relative aspect-video w-full">
               {/* Ảnh nền */}
               {image?.url && (

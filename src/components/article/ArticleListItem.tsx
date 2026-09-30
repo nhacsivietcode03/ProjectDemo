@@ -11,7 +11,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
 
   return (
     <article>
-      <div className="grid grid-cols-12 gap-3 border-b border-gray-300 py-3">
+      <div className="grid grid-cols-12 gap-3 border-b border-gray-300 py-3 pb-3">
         <div className="col-span-9">
           <div className="flex min-w-0 flex-1 flex-col gap-1">
             <h3 className="line-clamp-3 text-sm leading-[1.35] font-semibold text-black">
