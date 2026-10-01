@@ -15,7 +15,7 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
   return (
     <>
       {articlesData.map((article) => {
-        const { image, subCategoryTitle, articleUrl } = formatArticle(article)
+        const { image, subCategoryTitle, articleUrl, categoryTitle } = formatArticle(article)
 
         return (
           <Link key={article.id} href={articleUrl} className="group block">
@@ -37,7 +37,9 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
             {/* Thông tin */}
             <div className="w-full py-3">
               <div className="mb-1 flex flex-wrap items-center gap-2 text-xs">
-                <p className="font-semibold text-red-600 uppercase">{subCategoryTitle}</p>
+                <p className="font-semibold text-red-600 uppercase">
+                  {subCategoryTitle ? subCategoryTitle : categoryTitle}
+                </p>
                 <p className="text-gray-400">{getTimeAgo(article.createdAt)}</p>
               </div>
 

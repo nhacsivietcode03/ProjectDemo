@@ -6,11 +6,14 @@ import {
   Terkini,
   TrendingSection,
 } from '@/components/sidebar'
-import { Utama, Disyorkan } from '@/components/homepage'
+import { Utama, Disyorkan, BHPLUS } from '@/components/homepage'
 import getSideBarData from '@/data/sidebar/getSideBarData'
 import getMainHomePageData from '@/data/homepage/getMainHomePageData'
-import Vertical5AriclesInColumn from '@/components/article/Vertical5AriclesInColumn'
-import { Horizontal6Articles, Vertical6Articles } from '@/components/article'
+import {
+  Horizontal6Articles,
+  Vertical6Articles,
+  VerticalAriclesInColumn,
+} from '@/components/article'
 
 export default async function HomePage() {
   const { galeriData, infografikData, terkiniData, trendingData, videosData } =
@@ -24,6 +27,8 @@ export default async function HomePage() {
     bisnesData,
     hiburanData,
     gayaHidupData,
+    siHatData,
+    bhplusData,
   } = await getMainHomePageData()
 
   return (
@@ -65,8 +70,10 @@ export default async function HomePage() {
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            <Vertical5AriclesInColumn data={gayaHidupData} />
+            <VerticalAriclesInColumn data={gayaHidupData} />{' '}
+            <VerticalAriclesInColumn data={siHatData} />
           </div>
+          <BHPLUS bhplusData={bhplusData} />
         </div>
         <div className="lg:col-span-4">
           <InfografikSection infografikData={infografikData} />

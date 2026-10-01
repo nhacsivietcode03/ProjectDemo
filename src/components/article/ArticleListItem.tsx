@@ -12,7 +12,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
   const { image, articleUrl } = formatArticle(article)
   return (
     <Link key={article.id} href={articleUrl} className="group block">
-      <article className="mb-3 pb-3">
+      <article className="mb-1 pb-3">
         {/* Tăng gap lên 4 cho thoáng giữa chữ và ảnh */}
         <div className="grid grid-cols-12 gap-4 border-b border-gray-300">
           <div className="col-span-9">
@@ -20,7 +20,9 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
               <h3 className="line-clamp-3 text-base leading-[1.35] font-semibold text-black group-hover:text-red-600">
                 {article.title}
               </h3>
-              <p className="text-xs leading-none text-gray-400">{getTimeAgo(article.createdAt)}</p>
+              <p className="pb-2 text-xs leading-none text-gray-400">
+                {getTimeAgo(article.createdAt)}
+              </p>
             </div>
           </div>
           <div className="col-span-3 pb-3">
