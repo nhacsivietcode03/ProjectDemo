@@ -2,11 +2,15 @@
 
 import { getPayload, Payload } from 'payload'
 import buildConfig from '@/payload.config'
-import type { Article } from '@/payload-types'
+import type { Article, Video } from '@/payload-types'
 
 export type ArticleItem = Pick<
   Article,
   'id' | 'Image' | 'title' | 'createdAt' | 'slug' | 'excerpt' | 'category' | 'subCategory'
+>
+export type VideoItem = Pick<
+  Video,
+  'id' | 'title' | 'createdAt' | 'category' | 'youtubeId' | 'youtubeUrl'
 >
 
 export interface CombinedMainHomePageData {
@@ -20,6 +24,7 @@ export interface CombinedMainHomePageData {
   gayaHidupData: ArticleItem[]
   siHatData: ArticleItem[]
   bhplusData: ArticleItem[]
+  bhtvData: VideoItem[]
 }
 
 const getUtama = (payload: Payload) => {
@@ -259,6 +264,28 @@ const getBHPLUS = (payload: Payload) => {
   })
 }
 
+const getBHTV = (payload: Payload) => {
+  return payload.find({
+    collection: 'video',
+    depth: 1,
+    limit: 7,
+    where: {
+      category: {
+        equals: 'bthv',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      title: true,
+      createdAt: true,
+      category: true,
+      youtubeUrl: true,
+      youtubeId: true,
+      id: true,
+    },
+  })
+}
+
 export default async function getMainHomePageData(): Promise<CombinedMainHomePageData> {
   const payload = await getPayload({ config: buildConfig })
   const [
@@ -272,6 +299,7 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     GayaHidupResult,
     SiHatResult,
     BHPLUSResult,
+    BHTVResult,
   ] = await Promise.all([
     getUtama(payload),
     getDisyorkan(payload),
@@ -283,6 +311,7 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     getGayaHidup(payload),
     getSihat(payload),
     getBHPLUS(payload),
+    getBHTV(payload),
   ])
   return {
     utamaData: UtamaResult.docs,
@@ -295,5 +324,6 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     gayaHidupData: GayaHidupResult.docs,
     siHatData: SiHatResult.docs,
     bhplusData: BHPLUSResult.docs,
+    bhtvData: BHTVResult.docs,
   }
 }

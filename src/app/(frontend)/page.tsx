@@ -6,7 +6,7 @@ import {
   Terkini,
   TrendingSection,
 } from '@/components/sidebar'
-import { Utama, Disyorkan, BHPLUS } from '@/components/homepage'
+import { Utama, Disyorkan, BHPLUS, BHTV } from '@/components/homepage'
 import getSideBarData from '@/data/sidebar/getSideBarData'
 import getMainHomePageData from '@/data/homepage/getMainHomePageData'
 import {
@@ -29,8 +29,9 @@ export default async function HomePage() {
     gayaHidupData,
     siHatData,
     bhplusData,
+    bhtvData,
   } = await getMainHomePageData()
-
+  console.log(bhtvData)
   return (
     <div className="container pt-5">
       {/* Utama */}
@@ -48,6 +49,8 @@ export default async function HomePage() {
       <Disyorkan disyorkanData={disyorkanData} />
       {/* Rencana */}
       <Horizontal6Articles data={rencanaData} />
+      {/* BHTV */}
+      <BHTV bhtvData={bhtvData} />
       {/* Sukan */}
       <Horizontal6Articles data={sukanData} />
       <div>
