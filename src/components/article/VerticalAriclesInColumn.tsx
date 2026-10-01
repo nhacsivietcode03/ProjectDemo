@@ -17,9 +17,7 @@ export default async function VerticalAriclesInColumn({
   const FirstArticles = data.slice(0, 1)
   const RestArtciels = data.slice(1)
 
-  const { categoryTitle } = FirstArticles[0]
-    ? formatArticle(FirstArticles[0])
-    : { categoryTitle: '' }
+  const { categoryTitle } = formatArticle(FirstArticles[0])
 
   return (
     <div>

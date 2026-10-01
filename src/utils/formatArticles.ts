@@ -4,8 +4,8 @@ export default function formatArticle(article: ArticleItem) {
   const image = typeof article.Image === 'object' ? article.Image : null
 
   const subCategory = article.subCategory?.[0]
-  const subCategorySlug = typeof subCategory === 'object' ? subCategory?.slug : 'NASIONAL'
-  const subCategoryTitle = typeof subCategory === 'object' ? subCategory?.title : 'NASIONAL'
+  const subCategorySlug = typeof subCategory === 'object' ? subCategory?.slug : null
+  const subCategoryTitle = typeof subCategory === 'object' ? subCategory?.title : null
 
   const mainCategory = article.category?.[0]
   const categorySlug = typeof mainCategory === 'object' ? mainCategory?.slug : null

@@ -1,5 +1,5 @@
 import type { InfografikItem } from '@/data/sidebar/getSideBarData'
-import HeaderTitle from '../common/HeaderSection'
+import HeaderTitle from '../common/HeaderTitle'
 import Image from 'next/image'
 
 type InfografikProps = {

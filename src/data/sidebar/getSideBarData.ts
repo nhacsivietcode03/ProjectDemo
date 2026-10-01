@@ -113,6 +113,8 @@ const getTrending = (payload: Payload) => {
       title: true,
       createdAt: true,
       Image: true,
+      category: true,
+      subCategory: true,
     },
   })
 }

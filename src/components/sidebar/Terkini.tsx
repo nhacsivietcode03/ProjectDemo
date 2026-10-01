@@ -1,6 +1,6 @@
 import ArticleListItem from '@/components/article/ArticleListItem'
 import type { TerkiniItem } from '@/data/sidebar/getSideBarData'
-import HeaderTitle from '../common/HeaderSection'
+import HeaderTitle from '../common/HeaderTitle'
 
 type TerkiniProps = {
   terkiniData: TerkiniItem[]

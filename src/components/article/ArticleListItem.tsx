@@ -17,7 +17,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
         <div className="grid grid-cols-12 gap-4 border-b border-gray-300">
           <div className="col-span-9">
             <div className="flex min-w-0 flex-1 flex-col gap-3">
-              <h3 className="line-clamp-3 text-base leading-[1.35] font-semibold text-black group-hover:text-red-600">
+              <h3 className="line-clamp-3 min-h-14.25 text-sm leading-[1.35] font-semibold transition-colors group-hover:text-red-600">
                 {article.title}
               </h3>
               <p className="pb-2 text-xs leading-none text-gray-400">
@@ -32,7 +32,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
                   src={image.url}
                   alt={image.alt}
                   fill
-                  className="object-cover group-hover:scale-105"
+                  className="object-cover transition duration-300 group-hover:scale-105"
                 />
               ) : (
                 <div className="flex h-full items-center justify-center text-[9px] text-gray-400">

@@ -43,7 +43,7 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
                 <p className="text-gray-400">{getTimeAgo(article.createdAt)}</p>
               </div>
 
-              <h3 className="line-clamp-2 text-sm font-semibold text-black transition-colors group-hover:text-red-600">
+              <h3 className="line-clamp-2 min-h-10.5 text-sm font-semibold text-black transition-colors group-hover:text-red-600">
                 {article.title}
               </h3>
             </div>
