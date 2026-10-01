@@ -8,18 +8,18 @@ type ComponentsProps = {
   data: ArticleItem[]
 }
 
-export default async function Verticle6Articles({ data }: ComponentsProps) {
+export default async function Vertical5AriclesInColumn({ data }: ComponentsProps) {
   if (!data) return null
-  const First2Articles = data.slice(0, 2)
-  const RestArtciels = data.slice(2)
-  const { categoryTitle } = formatArticle(First2Articles[0])
+  const FirstArticles = data.slice(0, 1)
+  const RestArtciels = data.slice(1)
+  const { categoryTitle } = formatArticle(FirstArticles[0])
   return (
     <div>
       <HeaderTitle title={categoryTitle || ''} label={categoryTitle} />
-      <div className="mt-5 grid grid-cols-1 gap-5 border-b border-gray-300 lg:grid-cols-2">
-        <CommonArticle articlesData={First2Articles} type="big" />
-      </div>
-      <div className="mt-5 grid grid-cols-1 gap-2 lg:grid-cols-2">
+      <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-1">
+        <div className="mb-2 border-b border-gray-200 pb-2">
+          <CommonArticle articlesData={FirstArticles} type="big" />
+        </div>
         {RestArtciels.map((article) => (
           <ArticleListItem key={article.id} article={article} />
         ))}

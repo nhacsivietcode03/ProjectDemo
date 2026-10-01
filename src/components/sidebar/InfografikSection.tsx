@@ -20,7 +20,7 @@ export default async function InfografikSection({ infografikData }: InfografikPr
           alt={imageInfografik.alt || ''}
           width={imageInfografik.width || 1}
           height={imageInfografik.height || 1}
-          className="h-auto w-full py-4"
+          className="h-auto w-full"
         />
       )}
     </section>

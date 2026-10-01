@@ -13,7 +13,7 @@ export default function GaleriFotoSection({ galeriData }: GaleriFotoProps) {
       {/*Header Section*/}
       <HeaderTitle title="Galeri Foto" label="Galeri" />
       {/*Render ảnh*/}
-      <div className="grid grid-cols-4 gap-1 py-4">
+      <div className="grid grid-cols-4 gap-1">
         {galleryImages.map((galeri, index) => {
           const galeriImage = galeri && typeof galeri.image === 'object' ? galeri.image : null
           if (!galeriImage?.url) return null

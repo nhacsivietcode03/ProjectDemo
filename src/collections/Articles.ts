@@ -16,11 +16,13 @@ export const Articles: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+  access: {
+    create: () => true,
+  },
   fields: [
     {
       name: 'slug',
       type: 'text',
-      unique: true,
       hooks: { beforeValidate: [autoFormatSlug] },
       admin: { position: 'sidebar', readOnly: true },
     },

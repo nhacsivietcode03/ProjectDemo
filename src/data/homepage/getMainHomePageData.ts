@@ -17,6 +17,7 @@ export interface CombinedMainHomePageData {
   duniaData: ArticleItem[]
   bisnesData: ArticleItem[]
   hiburanData: ArticleItem[]
+  gayaHidupData: ArticleItem[]
 }
 
 const getUtama = (payload: Payload) => {
@@ -190,6 +191,27 @@ const getHiburan = (payload: Payload) => {
     },
   })
 }
+const getGayaHidup = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 5,
+    where: {
+      'category.slug': {
+        equals: 'gaya-hidup',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
 
 export default async function getMainHomePageData(): Promise<CombinedMainHomePageData> {
   const payload = await getPayload({ config: buildConfig })
@@ -201,6 +223,7 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     DuniaResult,
     BisnesResult,
     HiburanResult,
+    GayaHidupResult,
   ] = await Promise.all([
     getUtama(payload),
     getDisyorkan(payload),
@@ -209,6 +232,7 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     getDunia(payload),
     getBisnes(payload),
     getHiburan(payload),
+    getGayaHidup(payload),
   ])
   return {
     utamaData: UtamaResult.docs,
@@ -218,5 +242,6 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     duniaData: DuniaResult.docs,
     bisnesData: BisnesResult.docs,
     hiburanData: HiburanResult.docs,
+    gayaHidupData: GayaHidupResult.docs,
   }
 }

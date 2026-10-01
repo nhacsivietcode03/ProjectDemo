@@ -1,6 +1,2 @@
 export { default as Utama } from './Utama'
 export { default as Disyorkan } from './Disyorkan'
-export { default as Rencana } from './Rencana'
-export { default as Sukan } from './Sukan'
-export { default as Dunia } from './Dunia'
-export { default as Bisnes } from './Bisnes'

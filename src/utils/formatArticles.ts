@@ -9,6 +9,7 @@ export default function formatArticle(article: ArticleItem) {
 
   const mainCategory = article.category?.[0]
   const categorySlug = typeof mainCategory === 'object' ? mainCategory?.slug : null
+  const categoryTitle = typeof mainCategory === 'object' ? mainCategory?.title : null
 
   const date = new Date(article.createdAt)
   const year = date.getFullYear()
@@ -25,6 +26,7 @@ export default function formatArticle(article: ArticleItem) {
     subCategory,
     subCategorySlug,
     subCategoryTitle,
+    categoryTitle,
     articleUrl,
   }
 }

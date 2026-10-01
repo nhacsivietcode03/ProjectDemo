@@ -6,6 +6,7 @@ type HeaderTitleProps = {
 }
 
 export default function HeaderTitle({ title, label }: HeaderTitleProps) {
+  const linkLabel = label?.replace(' ', '-').toLowerCase()
   return (
     <div className="mt-2 mb-5 flex items-center justify-between">
       <h2 className="relative inline-block py-4 text-3xl font-semibold">
@@ -15,7 +16,7 @@ export default function HeaderTitle({ title, label }: HeaderTitleProps) {
 
       {label ? (
         <Link
-          href={label}
+          href={linkLabel || ''}
           className="flex items-center gap-2 pt-2 text-sm font-medium text-black hover:text-red-600"
         >
           Lagi {label}

@@ -6,16 +6,25 @@ import {
   Terkini,
   TrendingSection,
 } from '@/components/sidebar'
-import { Utama, Disyorkan, Rencana, Sukan, Dunia, Bisnes } from '@/components/homepage'
+import { Utama, Disyorkan } from '@/components/homepage'
 import getSideBarData from '@/data/sidebar/getSideBarData'
 import getMainHomePageData from '@/data/homepage/getMainHomePageData'
-import Hiburan from '@/components/homepage/Hiburan'
+import Vertical5AriclesInColumn from '@/components/article/Vertical5AriclesInColumn'
+import { Horizontal6Articles, Vertical6Articles } from '@/components/article'
 
 export default async function HomePage() {
   const { galeriData, infografikData, terkiniData, trendingData, videosData } =
     await getSideBarData()
-  const { utamaData, disyorkanData, rencanaData, sukanData, duniaData, bisnesData, hiburanData } =
-    await getMainHomePageData()
+  const {
+    utamaData,
+    disyorkanData,
+    rencanaData,
+    sukanData,
+    duniaData,
+    bisnesData,
+    hiburanData,
+    gayaHidupData,
+  } = await getMainHomePageData()
 
   return (
     <div className="container pt-5">
@@ -33,14 +42,16 @@ export default async function HomePage() {
       {/* Disyorkan */}
       <Disyorkan disyorkanData={disyorkanData} />
       {/* Rencana */}
-      <Rencana rencanaData={rencanaData} />
+      <Horizontal6Articles data={rencanaData} />
       {/* Sukan */}
-      <Sukan sukanData={sukanData} />
+      <Horizontal6Articles data={sukanData} />
       <div>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
           <div className="lg:col-span-8">
-            <Bisnes bisnesData={bisnesData} />
-            <Hiburan hiburanData={hiburanData} />
+            {/* Bines */}
+            <Vertical6Articles data={bisnesData} />
+            {/* Hiburan */}
+            <Vertical6Articles data={hiburanData} />
           </div>
           <div className="lg:col-span-4">
             <div className="hidden lg:block">
@@ -50,12 +61,18 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-      <Dunia duniaData={duniaData} />
+      <Horizontal6Articles data={duniaData} />
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+        <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+            <Vertical5AriclesInColumn data={gayaHidupData} />
+          </div>
+        </div>
+        <div className="lg:col-span-4">
+          <InfografikSection infografikData={infografikData} />
+          <GaleriFotoSection galeriData={galeriData} />
+        </div>
+      </div>
     </div>
   )
-}
-{
-  /* 
-          <InfografikSection infografikData={infografikData} />
-          <GaleriFotoSection galeriData={galeriData} /> */
 }
