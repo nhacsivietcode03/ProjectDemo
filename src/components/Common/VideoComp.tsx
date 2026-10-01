@@ -1,13 +1,13 @@
+import { VideoItem } from '@/data/homepage/getMainHomePageData'
+
 type VideoProp = {
-  video: {
-    title: string
-    youtubeId: string
-  }
+  video: VideoItem
+  type?: 'podCast' | 'default'
 }
 
-export default async function VideoComp({ video }: VideoProp) {
+export default async function VideoComp({ video, type = 'default' }: VideoProp) {
   return (
-    <div className="mt-5 w-full">
+    <div className="group w-full">
       <iframe
         className="aspect-video w-full"
         src={`https://www.youtube.com/embed/${video.youtubeId}`}
@@ -16,7 +16,13 @@ export default async function VideoComp({ video }: VideoProp) {
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       ></iframe>
-      <p className="py-1 text-xl font-semibold">{video.title}</p>
+      <h2
+        className={`mt-3 line-clamp-2 leading-snug font-semibold text-black transition-colors group-hover:text-red-600 ${
+          type === 'podCast' ? 'text-base sm:text-lg' : 'text-lg sm:text-2xl'
+        }`}
+      >
+        {video.title}
+      </h2>
     </div>
   )
 }
