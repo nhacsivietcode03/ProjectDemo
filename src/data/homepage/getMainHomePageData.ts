@@ -12,6 +12,14 @@ export type ArticleItem = Pick<
 export interface CombinedMainHomePageData {
   utamaData: ArticleItem[]
   disyorkanData: ArticleItem[]
+  rencanaData: ArticleItem[]
+  sukanData: ArticleItem[]
+  duniaData: ArticleItem[]
+  bisnesData: ArticleItem[]
+  hiburanData: ArticleItem[]
+  gayaHidupData: ArticleItem[]
+  siHatData: ArticleItem[]
+  bhplusData: ArticleItem[]
 }
 
 const getUtama = (payload: Payload) => {
@@ -62,14 +70,230 @@ const getDisyorkan = (payload: Payload) => {
   })
 }
 
+const getRencana = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'rencana',
+      },
+      'subCategory.slug': {
+        equals: 'nasional',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
+const getSukan = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'sukan',
+      },
+      'subCategory.slug': {
+        equals: 'nasional',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
+const getDunia = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'dunia',
+      },
+      'subCategory.slug': {
+        equals: 'nasional',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
+const getBisnes = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'bisnes',
+      },
+      'subCategory.slug': {
+        equals: 'nasional',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+const getHiburan = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'category.slug': {
+        equals: 'hiburan',
+      },
+      'subCategory.slug': {
+        equals: 'nasional',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+const getGayaHidup = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 5,
+    where: {
+      'category.slug': {
+        equals: 'gaya-hidup',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
+const getSihat = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 5,
+    where: {
+      'category.slug': {
+        equals: 'sihat',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
+const getBHPLUS = (payload: Payload) => {
+  return payload.find({
+    collection: 'articles',
+    depth: 1,
+    limit: 6,
+    where: {
+      'tags.slug': {
+        equals: 'bhplus',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      Image: true,
+      title: true,
+      createdAt: true,
+      slug: true,
+      category: true,
+      subCategory: true,
+    },
+  })
+}
+
 export default async function getMainHomePageData(): Promise<CombinedMainHomePageData> {
   const payload = await getPayload({ config: buildConfig })
-  const [UtamaResult, DisyorkanResult] = await Promise.all([
+  const [
+    UtamaResult,
+    DisyorkanResult,
+    RencanaResult,
+    SukanResult,
+    DuniaResult,
+    BisnesResult,
+    HiburanResult,
+    GayaHidupResult,
+    SiHatResult,
+    BHPLUSResult,
+  ] = await Promise.all([
     getUtama(payload),
     getDisyorkan(payload),
+    getRencana(payload),
+    getSukan(payload),
+    getDunia(payload),
+    getBisnes(payload),
+    getHiburan(payload),
+    getGayaHidup(payload),
+    getSihat(payload),
+    getBHPLUS(payload),
   ])
   return {
     utamaData: UtamaResult.docs,
     disyorkanData: DisyorkanResult.docs,
+    rencanaData: RencanaResult.docs,
+    sukanData: SukanResult.docs,
+    duniaData: DuniaResult.docs,
+    bisnesData: BisnesResult.docs,
+    hiburanData: HiburanResult.docs,
+    gayaHidupData: GayaHidupResult.docs,
+    siHatData: SiHatResult.docs,
+    bhplusData: BHPLUSResult.docs,
   }
 }

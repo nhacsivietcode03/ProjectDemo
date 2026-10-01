@@ -1,24 +1,23 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { UtamaItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
 import getTimeAgo from '@/utils/getTimeAgo'
+import formatArticle from '@/utils/formatArticles'
 
-export default function SideArticles({ data }: { data: UtamaItem[] }) {
+type SideArticleProps = {
+  data: ArticleItem[]
+}
+
+export default function SideArticles({ data }: SideArticleProps) {
   if (!data?.length) return null
 
   return (
     <div className="flex flex-col gap-5">
       {data.map((article) => {
-        const image = typeof article.Image === 'object' ? article.Image : null
-        const subCategory = article.subCategory?.[0]
-        const subCategoryTitle = typeof subCategory === 'object' ? subCategory?.title : 'NASIONAL'
+        const { image, subCategoryTitle, articleUrl } = formatArticle(article)
 
         return (
-          <Link
-            key={article.id}
-            href={`/berita/${article.slug || ''}`}
-            className="group relative block overflow-hidden"
-          >
+          <Link key={article.id} href={articleUrl} className="group relative block overflow-hidden">
             <div className="relative aspect-video w-full">
               {/* Ảnh nền */}
               {image?.url && (
@@ -26,12 +25,13 @@ export default function SideArticles({ data }: { data: UtamaItem[] }) {
                   src={image.url}
                   alt={image.alt}
                   fill
+                  priority
                   className="object-cover transition duration-300 group-hover:scale-105"
                 />
               )}
             </div>
             {/* Gradient đen làm tối phần dưới để đọc chữ */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
 
             {/* Thông tin bài viết */}
             <div className="absolute inset-x-0 bottom-0 p-3">

@@ -2,9 +2,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
 import getTimeAgo from '@/utils/getTimeAgo'
+import formatArticle from '@/utils/formatArticles'
 
 type HeroArticleProps = {
-  data: ArticleItem[]
+  data: ArticleItem[] | ArticleItem
 }
 
 export default function HeroArticle({ data }: HeroArticleProps) {
@@ -12,13 +13,11 @@ export default function HeroArticle({ data }: HeroArticleProps) {
 
   if (!article) return null
 
-  const image = typeof article.Image === 'object' ? article.Image : null
+  const { image, subCategoryTitle, subCategory, articleUrl } = formatArticle(article)
 
-  const subCategory = article.subCategory?.[0]
-  const subCategoryTitle = typeof subCategory === 'object' ? subCategory?.title : 'NASIONAL'
   return (
-    <article className="flex flex-col px-2">
-      <Link href={`/berita/${article.slug || ''}`} className="group block">
+    <article className="flex flex-col">
+      <Link href={articleUrl} className="group block">
         <div className="relative aspect-video w-full overflow-hidden bg-gray-200">
           {image?.url ? (
             <Image
@@ -36,14 +35,16 @@ export default function HeroArticle({ data }: HeroArticleProps) {
         </div>
 
         {/* Nội dung bên dưới ảnh */}
-        <div className="mt-3 py-3">
+        <div className="mt-3 py-1">
           {/* SubCategory màu đỏ + Thời gian */}
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-red-600 capitalize">
-              {subCategoryTitle}
-            </span>
-            <span className="text-xs text-gray-400">{getTimeAgo(article.createdAt)}</span>
-          </div>
+          {subCategory && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-semibold text-red-600 capitalize">
+                {subCategoryTitle}
+              </span>
+              <span className="text-xs text-gray-400">{getTimeAgo(article.createdAt)}</span>
+            </div>
+          )}
 
           {/* Tiêu đề chính */}
           <h2 className="mt-1 line-clamp-2 text-xl leading-snug font-semibold text-black transition-colors group-hover:text-red-600 sm:text-2xl">

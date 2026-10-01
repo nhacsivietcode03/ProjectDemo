@@ -1,6 +1,6 @@
 import ArticleListItem from '@/components/article/ArticleListItem'
 import type { TerkiniItem } from '@/data/sidebar/getSideBarData'
-import HeaderTitle from '../common/HeaderSection'
+import HeaderTitle from '../common/HeaderTitle'
 
 type TerkiniProps = {
   terkiniData: TerkiniItem[]
@@ -8,7 +8,7 @@ type TerkiniProps = {
 
 export default function Terkini({ terkiniData }: TerkiniProps) {
   return (
-    <section className="mt-2 pb-5">
+    <section className="mt-2">
       <HeaderTitle title="Terkini" />
       <div>
         {terkiniData.map((article) => (

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import HeaderTitle from '../common/HeaderSection'
+import HeaderTitle from '../common/HeaderTitle'
 import type { GaleriItem } from '@/data/sidebar/getSideBarData'
 
 type GaleriFotoProps = {
@@ -9,11 +9,11 @@ type GaleriFotoProps = {
 export default function GaleriFotoSection({ galeriData }: GaleriFotoProps) {
   const galleryImages = galeriData.flatMap((galeri) => galeri.galleryImages ?? [])
   return (
-    <section className="mt-3">
+    <section className="my-3">
       {/*Header Section*/}
       <HeaderTitle title="Galeri Foto" label="Galeri" />
       {/*Render ảnh*/}
-      <div className="grid grid-cols-4 gap-1 py-4">
+      <div className="grid grid-cols-4 gap-1">
         {galleryImages.map((galeri, index) => {
           const galeriImage = galeri && typeof galeri.image === 'object' ? galeri.image : null
           if (!galeriImage?.url) return null

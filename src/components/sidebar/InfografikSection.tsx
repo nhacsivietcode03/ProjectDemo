@@ -1,5 +1,5 @@
 import type { InfografikItem } from '@/data/sidebar/getSideBarData'
-import HeaderTitle from '../common/HeaderSection'
+import HeaderTitle from '../common/HeaderTitle'
 import Image from 'next/image'
 
 type InfografikProps = {
@@ -20,7 +20,7 @@ export default async function InfografikSection({ infografikData }: InfografikPr
           alt={imageInfografik.alt || ''}
           width={imageInfografik.width || 1}
           height={imageInfografik.height || 1}
-          className="h-auto w-full py-4"
+          className="h-auto w-full"
         />
       )}
     </section>

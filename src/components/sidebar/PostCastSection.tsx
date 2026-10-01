@@ -1,5 +1,5 @@
 import type { PodcastItem } from '@/data/sidebar/getSideBarData'
-import HeaderTitle from '../common/HeaderSection'
+import HeaderTitle from '../common/HeaderTitle'
 import VideoComp from '../common/VideoComp'
 
 type PodcastProps = {
