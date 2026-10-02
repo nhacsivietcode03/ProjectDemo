@@ -266,6 +266,7 @@ export interface Video {
   category?: ('bthv' | 'podcast' | 'sukan' | 'borakhariini' | 'bhtanya' | 'faktabh')[] | null;
   youtubeUrl: string;
   youtubeId: string;
+  duration?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -457,6 +458,7 @@ export interface VideoSelect<T extends boolean = true> {
   category?: T;
   youtubeUrl?: T;
   youtubeId?: T;
+  duration?: T;
   updatedAt?: T;
   createdAt?: T;
 }

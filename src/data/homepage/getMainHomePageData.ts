@@ -12,7 +12,10 @@ export type VideoItem = Pick<
   Video,
   'id' | 'title' | 'createdAt' | 'category' | 'youtubeId' | 'youtubeUrl'
 >
-
+export type VideoShortItem = Pick<
+  Video,
+  'id' | 'title' | 'createdAt' | 'youtubeId' | 'youtubeUrl' | 'duration'
+>
 export interface CombinedMainHomePageData {
   utamaData: ArticleItem[]
   disyorkanData: ArticleItem[]
@@ -25,6 +28,7 @@ export interface CombinedMainHomePageData {
   siHatData: ArticleItem[]
   bhplusData: ArticleItem[]
   bhtvData: VideoItem[]
+  videoTerkiniData: VideoShortItem[]
 }
 
 const getUtama = (payload: Payload) => {
@@ -270,6 +274,9 @@ const getBHTV = (payload: Payload) => {
     depth: 1,
     limit: 7,
     where: {
+      type: {
+        equals: 'video',
+      },
       category: {
         equals: 'bthv',
       },
@@ -279,6 +286,28 @@ const getBHTV = (payload: Payload) => {
       title: true,
       createdAt: true,
       category: true,
+      youtubeUrl: true,
+      youtubeId: true,
+      id: true,
+    },
+  })
+}
+
+const getVideoTerkini = (payload: Payload) => {
+  return payload.find({
+    collection: 'video',
+    depth: 1,
+    limit: 10,
+    where: {
+      type: {
+        equals: 'short',
+      },
+    },
+    sort: '-createdAt',
+    select: {
+      title: true,
+      createdAt: true,
+      duration: true,
       youtubeUrl: true,
       youtubeId: true,
       id: true,
@@ -300,6 +329,7 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     SiHatResult,
     BHPLUSResult,
     BHTVResult,
+    VideoTerkiniResult,
   ] = await Promise.all([
     getUtama(payload),
     getDisyorkan(payload),
@@ -312,6 +342,7 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     getSihat(payload),
     getBHPLUS(payload),
     getBHTV(payload),
+    getVideoTerkini(payload),
   ])
   return {
     utamaData: UtamaResult.docs,
@@ -325,5 +356,6 @@ export default async function getMainHomePageData(): Promise<CombinedMainHomePag
     siHatData: SiHatResult.docs,
     bhplusData: BHPLUSResult.docs,
     bhtvData: BHTVResult.docs,
+    videoTerkiniData: VideoTerkiniResult.docs,
   }
 }

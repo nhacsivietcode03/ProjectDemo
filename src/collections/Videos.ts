@@ -74,5 +74,13 @@ export const Videos: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    {
+      name: 'duration',
+      type: 'text',
+      required: true,
+      admin: {
+        condition: (data) => data?.type === 'short',
+      },
+    },
   ],
 }
