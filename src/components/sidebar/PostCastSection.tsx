@@ -1,9 +1,9 @@
+import type { PodcastItem } from '@/data/sidebar/getSideBarData'
 import HeaderTitle from '../common/HeaderTitle'
 import VideoComp from '../common/VideoComp'
-import { Video } from '@/payload-types'
 
 type PodcastProps = {
-  podCastData: Video[]
+  podCastData: PodcastItem[]
 }
 
 export default function PodCastSection({ podCastData }: PodcastProps) {

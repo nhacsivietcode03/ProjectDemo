@@ -1,4 +1,4 @@
-;('use server')
+'use server'
 
 import { getPayload, Payload } from 'payload'
 import buildConfig from '@/payload.config'
@@ -297,7 +297,7 @@ const getVideoTerkini = (payload: Payload) => {
   return payload.find({
     collection: 'video',
     depth: 1,
-    limit: 7,
+    limit: 10,
     where: {
       type: {
         equals: 'short',
