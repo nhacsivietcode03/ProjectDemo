@@ -48,6 +48,7 @@ export default async function HomePage() {
       {/* Disyorkan */}
       <Disyorkan disyorkanData={disyorkanData} />
       {/* Rencana */}
+
       <Horizontal6Articles data={rencanaData} />
       {/* BHTV */}
       <BHTV bhtvData={bhtvData} />
