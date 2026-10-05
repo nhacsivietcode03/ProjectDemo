@@ -24,6 +24,7 @@ export default function LinkAdvertisement({ advertisement }: LinkAdvertisementPr
         </div>
         <a
           href={advertisement.link}
+          target="_blank"
           aria-label={image.alt || 'Mở quảng cáo'}
           className="inline-block max-w-full"
         >
