@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/getMainHomePageData'
 import Image from 'next/image'
 import getTimeAgo from '@/utils/getTimeAgo'
 import formatArticle from '@/utils/formatArticles'

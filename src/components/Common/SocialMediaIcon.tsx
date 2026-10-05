@@ -7,7 +7,7 @@ import {
   FaYoutube,
 } from 'react-icons/fa6'
 
-import getSiteSettings from '@/data/common/getSiteSettings'
+import getGlobalsData from '@/data/getGlobalsData'
 
 const socialPlatforms = [
   { platform: 'facebook', Icon: FaFacebook },
@@ -19,8 +19,8 @@ const socialPlatforms = [
 ] as const
 
 export default async function SocialMediaIcon() {
-  const siteSettingData = await getSiteSettings()
-  const socialMedias = siteSettingData.socialMediaLinks ?? []
+  const { siteSettingsData } = await getGlobalsData()
+  const socialMedias = siteSettingsData.socialMediaLinks ?? []
 
   return (
     <div className="flex items-center gap-3">

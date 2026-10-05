@@ -7,8 +7,8 @@ import {
   TrendingSection,
 } from '@/components/sidebar'
 import { Utama, Disyorkan, BHPLUS, BHTV, VideoTerkini } from '@/components/homepage'
-import getSideBarData from '@/data/sidebar/getSideBarData'
-import getMainHomePageData from '@/data/homepage/getMainHomePageData'
+import getSideBarData from '@/data/getSideBarData'
+import getMainHomePageData from '@/data/getMainHomePageData'
 import {
   Horizontal6Articles,
   Vertical6Articles,
@@ -32,7 +32,7 @@ export default async function HomePage() {
     bhtvData,
     videoTerkiniData,
   } = await getMainHomePageData()
-  console.log(bhtvData)
+
   return (
     <div className="container pt-5">
       {/* Utama */}

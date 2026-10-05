@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import type { VideoShortItem } from '@/data/homepage/getMainHomePageData'
+import type { VideoShortItem } from '@/data/getMainHomePageData'
 import { HeaderTitle, ShortVideo } from '../common'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 

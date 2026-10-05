@@ -1,4 +1,4 @@
-import type { InfografikItem } from '@/data/sidebar/getSideBarData'
+import type { InfografikItem } from '@/data/getSideBarData'
 import HeaderTitle from '../common/HeaderTitle'
 import Image from 'next/image'
 

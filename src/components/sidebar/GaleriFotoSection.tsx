@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import HeaderTitle from '../common/HeaderTitle'
-import type { GaleriItem } from '@/data/sidebar/getSideBarData'
+import type { GaleriItem } from '@/data/getSideBarData'
 
 type GaleriFotoProps = {
   galeriData: GaleriItem[]

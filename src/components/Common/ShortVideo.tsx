@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { VideoShortItem } from '@/data/homepage/getMainHomePageData'
+import type { VideoShortItem } from '@/data/getMainHomePageData'
 
 const getYoutubeThumbnail = (youtubeId: string) =>
   `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`

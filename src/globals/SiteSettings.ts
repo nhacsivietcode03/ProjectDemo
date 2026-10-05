@@ -37,13 +37,13 @@ export const SiteSettings: GlobalConfig = {
       ],
     },
     {
-      name: 'video',
+      name: 'videoAdvertisement',
       type: 'relationship',
       relationTo: 'video',
       hasMany: false,
     },
     {
-      name: 'linkadvertisement',
+      name: 'linkAdvertisement',
       type: 'group',
       fields: [
         {

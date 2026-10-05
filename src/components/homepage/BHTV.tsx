@@ -1,4 +1,4 @@
-import type { VideoItem } from '@/data/homepage/getMainHomePageData'
+import type { VideoItem } from '@/data/getMainHomePageData'
 import { HeaderTitle, VideoComp, VideoThumbnail } from '../common'
 
 type BHTVProps = {

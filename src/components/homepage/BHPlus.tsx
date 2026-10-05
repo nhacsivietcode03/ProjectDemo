@@ -1,4 +1,4 @@
-import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/getMainHomePageData'
 import { HeaderTitle } from '../common'
 import { VerticalAriclesInColumn } from '../article'
 

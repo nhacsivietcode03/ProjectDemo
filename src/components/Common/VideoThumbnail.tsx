@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { VideoItem } from '@/data/homepage/getMainHomePageData'
+import type { VideoItem } from '@/data/getMainHomePageData'
 import getTimeAgo from '@/utils/getTimeAgo'
 
 type VideoThumbnailProps = {
