@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { CloseButton } from '../common'
+import getYoutubeUrl from '@/utils/getYoutubeUrl'
 
 type VideoAdvertisementProps = {
   youtubeId: string
@@ -14,7 +15,7 @@ export default function VideoAdvertisement({ youtubeId }: VideoAdvertisementProp
 
   // Chỉ hiển thị trên homepage
   if (pathname !== '/' || !isVisible) return null
-
+  const youtubeUrl = getYoutubeUrl(youtubeId)
   return (
     <div className="fixed top-58 right-15 z-50 w-50 shadow-2xl">
       <div className="absolute -top-4 -right-4 z-10">
@@ -23,7 +24,7 @@ export default function VideoAdvertisement({ youtubeId }: VideoAdvertisementProp
       <div className="relative aspect-video overflow-hidden rounded-lg">
         <iframe
           title="Video advertisement"
-          src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=1&modestbranding=1`}
+          src={youtubeUrl}
           allow="autoplay; encrypted-media"
           allowFullScreen
           className="absolute inset-0 h-full w-full"
