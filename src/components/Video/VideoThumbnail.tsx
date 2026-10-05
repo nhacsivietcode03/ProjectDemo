@@ -2,13 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { VideoItem } from '@/data/getMainHomePageData'
 import getTimeAgo from '@/utils/getTimeAgo'
+import getThumnailYoutube from '@/utils/getThumnailYoutube'
 
 type VideoThumbnailProps = {
   video: VideoItem
 }
 
 export default function VideoThumbnail({ video }: VideoThumbnailProps) {
-  const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`
+  const thumbnailUrl = getThumnailYoutube(video.youtubeId)
   const videoCategory = video.category && video.category.length > 0 ? video.category[0] : 'Kes'
 
   return (
