@@ -1,5 +1,5 @@
 import type { FieldHook } from 'payload'
-import { formatSlug } from '@/utils/slugify'
+import { formatSlug } from '@/utils'
 
 export const autoFormatSlug: FieldHook = ({ value, data, operation, originalDoc }) => {
   const title = typeof data?.title === 'string' ? data.title : undefined

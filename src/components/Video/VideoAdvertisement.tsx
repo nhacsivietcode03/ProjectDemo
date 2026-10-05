@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { CloseButton } from '../common'
-import getYoutubeUrl from '@/utils/getYoutubeUrl'
+import { getYoutubeUrl } from '@/utils'
 
 type VideoAdvertisementProps = {
   youtubeId: string

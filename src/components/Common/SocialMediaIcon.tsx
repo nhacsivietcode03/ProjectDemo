@@ -7,7 +7,7 @@ import {
   FaYoutube,
 } from 'react-icons/fa6'
 
-import getGlobalsData from '@/data/getGlobalsData'
+import { getGlobalsData } from '@/data'
 
 const socialPlatforms = [
   { platform: 'facebook', Icon: FaFacebook },

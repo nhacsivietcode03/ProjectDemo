@@ -3,8 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { VideoShortItem } from '@/data/getMainHomePageData'
-import getThumnailYoutube from '@/utils/getThumnailYoutube'
-import getYoutubeUrl from '@/utils/getYoutubeUrl'
+import { getThumnailYoutube, getYoutubeUrl } from '@/utils'
 
 type ShortVideoProps = {
   video: VideoShortItem

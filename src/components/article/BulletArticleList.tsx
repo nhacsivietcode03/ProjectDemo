@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { ArticleItem } from '@/data/getMainHomePageData'
-import formatArticle from '@/utils/formatArticles'
+import { formatArticle } from '@/utils'
 
 type BulletArticleListProps = {
   data: ArticleItem[]

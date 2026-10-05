@@ -1,5 +1,5 @@
-import { VideoItem } from '@/data/getMainHomePageData'
-import getYoutubeUrl from '@/utils/getYoutubeUrl'
+import type { VideoItem } from '@/data/getMainHomePageData'
+import { getYoutubeUrl } from '@/utils'
 
 type VideoProp = {
   video: Pick<VideoItem, 'title' | 'youtubeId'>

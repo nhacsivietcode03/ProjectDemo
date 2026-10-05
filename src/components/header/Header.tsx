@@ -4,8 +4,7 @@ import { SocialMediaIcon, Logo, AdSlot, LinkAdvertisement } from '@/components/c
 import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
-import getHeader from '@/data/getHeaderData'
-import getGlobalsData from '@/data/getGlobalsData'
+import { getGlobalsData, getHeader } from '@/data'
 import { VideoAdvertisement } from '../Video'
 
 export default async function Header() {

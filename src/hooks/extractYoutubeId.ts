@@ -1,4 +1,4 @@
-import { getYoutubeId } from '@/utils/getYoutubeId'
+import { getYoutubeId } from '@/utils'
 import { CollectionBeforeValidateHook } from 'payload'
 
 export const extractYoutubeId: CollectionBeforeValidateHook = ({ data }) => {

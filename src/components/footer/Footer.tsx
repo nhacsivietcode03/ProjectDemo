@@ -1,5 +1,5 @@
 import { Logo, SocialMediaIcon } from '../common'
-import getFooter from '@/data/getFooterData'
+import { getFooter } from '@/data'
 import Image from 'next/image'
 
 export default async function Footer() {

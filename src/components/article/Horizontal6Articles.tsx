@@ -2,7 +2,7 @@ import type { ArticleItem } from '@/data/getMainHomePageData'
 import CommonArticle from './CommonArticles'
 import ArticleListItem from './ArticleListItem'
 import { HeaderTitle } from '../common'
-import formatArticle from '@/utils/formatArticles'
+import { formatArticle } from '@/utils'
 
 type ComponentsProps = {
   data: ArticleItem[]

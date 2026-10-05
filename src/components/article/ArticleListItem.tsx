@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import type { Article } from '@/payload-types'
-import getTimeAgo from '@/utils/getTimeAgo'
-import formatArticle from '@/utils/formatArticles'
+import { formatArticle, getTimeAgo } from '@/utils'
 import Link from 'next/link'
 
 type ArticleListItemProps = {
