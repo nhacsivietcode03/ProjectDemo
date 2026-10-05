@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { CloseButton } from '.'
+import { CloseButton } from '../common'
 
 type VideoAdvertisementProps = {
   youtubeId: string
@@ -16,7 +16,7 @@ export default function VideoAdvertisement({ youtubeId }: VideoAdvertisementProp
   if (pathname !== '/' || !isVisible) return null
 
   return (
-    <div className="fixed top-58 right-25 z-50 w-50 shadow-2xl">
+    <div className="fixed top-58 right-15 z-50 w-50 shadow-2xl">
       <div className="absolute -top-4 -right-4 z-10">
         <CloseButton onClick={() => setIsVisible(false)} />
       </div>

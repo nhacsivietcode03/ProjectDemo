@@ -1,16 +1,17 @@
 import Image from 'next/image'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
-import { SocialMediaIcon, Logo, AdSlot, VideoAdvertisement } from '@/components/common'
+import { SocialMediaIcon, Logo, AdSlot, LinkAdvertisement } from '@/components/common'
 import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
 import getHeader from '@/data/getHeaderData'
 import getGlobalsData from '@/data/getGlobalsData'
+import { VideoAdvertisement } from '../Video'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
   const { siteSettingsData } = await getGlobalsData()
-
+  console.log(siteSettingsData)
   const siteTitle =
     headerGlobalData && typeof headerGlobalData.siteTitle === 'object'
       ? headerGlobalData.siteTitle
@@ -21,6 +22,7 @@ export default async function Header() {
     siteSettingsData.videoAdvertisement && typeof siteSettingsData.videoAdvertisement === 'object'
       ? siteSettingsData.videoAdvertisement
       : null
+  const linkAdvertisement = siteSettingsData.linkAdvertisement ?? null
 
   return (
     <header className="w-full">
@@ -77,8 +79,8 @@ export default async function Header() {
         <AdSlot slot="970x90" width={970} height={90} />
       </div>
 
-      {/* Video quảng cáo - chỉ hiện trên homepage */}
       {videoAd && <VideoAdvertisement youtubeId={videoAd.youtubeId} />}
+      {linkAdvertisement && <LinkAdvertisement advertisement={linkAdvertisement} />}
     </header>
   )
 }

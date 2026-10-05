@@ -1,6 +1,6 @@
 import type { PodcastItem } from '@/data/getSideBarData'
 import HeaderTitle from '../common/HeaderTitle'
-import VideoComp from '../common/VideoComp'
+import VideoComp from '../Video/VideoComp'
 
 type PodcastProps = {
   podCastData: PodcastItem[]

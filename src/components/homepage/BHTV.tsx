@@ -1,5 +1,6 @@
 import type { VideoItem } from '@/data/getMainHomePageData'
-import { HeaderTitle, VideoComp, VideoThumbnail } from '../common'
+import { HeaderTitle } from '../common'
+import { VideoComp, VideoThumbnail } from '../Video'
 
 type BHTVProps = {
   bhtvData: VideoItem[]
