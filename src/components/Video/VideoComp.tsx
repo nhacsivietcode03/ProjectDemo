@@ -1,7 +1,7 @@
-import { VideoItem } from '@/data/homepage/getMainHomePageData'
+import { VideoItem } from '@/data/getMainHomePageData'
 
 type VideoProp = {
-  video: VideoItem
+  video: Pick<VideoItem, 'title' | 'youtubeId'>
   type?: 'podCast' | 'default'
 }
 

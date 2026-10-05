@@ -6,8 +6,11 @@ import type { Article, Video } from '@/payload-types'
 
 export type GaleriItem = Pick<Article, 'id' | 'galleryImages'>
 export type InfografikItem = Pick<Article, 'id' | 'Image'>
-export type TerkiniItem = Pick<Article, 'id' | 'slug' | 'title' | 'Image' | 'createdAt'>
-export type TrendingItem = Pick<Article, 'id' | 'slug' | 'title' | 'createdAt' | 'Image'>
+export type TerkiniItem = Pick<
+  Article,
+  'id' | 'Image' | 'title' | 'createdAt' | 'slug' | 'category' | 'subCategory'
+>
+export type TrendingItem = TerkiniItem
 export type PodcastItem = Pick<Video, 'id' | 'title' | 'youtubeId'>
 
 export interface CombinedSideBarData {
@@ -91,10 +94,12 @@ const getTerkini = (payload: Payload) => {
       ],
     },
     select: {
-      title: true,
       Image: true,
+      title: true,
       createdAt: true,
       slug: true,
+      category: true,
+      subCategory: true,
     },
   })
 }
@@ -109,10 +114,10 @@ const getTrending = (payload: Payload) => {
       },
     },
     select: {
-      slug: true,
+      Image: true,
       title: true,
       createdAt: true,
-      Image: true,
+      slug: true,
       category: true,
       subCategory: true,
     },

@@ -1,4 +1,4 @@
-import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/getMainHomePageData'
 import CommonArticle from './CommonArticles'
 import ArticleListItem from './ArticleListItem'
 import { HeaderTitle } from '../common'

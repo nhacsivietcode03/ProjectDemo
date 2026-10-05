@@ -572,6 +572,11 @@ export interface SiteSetting {
         id?: string | null;
       }[]
     | null;
+  videoAdvertisement?: (string | null) | Video;
+  linkAdvertisement?: {
+    link?: string | null;
+    image?: (string | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -664,6 +669,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         platform?: T;
         url?: T;
         id?: T;
+      };
+  videoAdvertisement?: T;
+  linkAdvertisement?:
+    | T
+    | {
+        link?: T;
+        image?: T;
       };
   updatedAt?: T;
   createdAt?: T;

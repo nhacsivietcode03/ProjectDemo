@@ -1,16 +1,15 @@
 import Image from 'next/image'
-import getAds from '@/data/common/getAds'
+import getGlobalsData from '@/data/getGlobalsData'
 
 type AdSlotProps = {
-  slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300' | 'mgid_native'
+  slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300'
   width: number
   height: number
 }
 
 export default async function AdSlot({ slot, width, height }: AdSlotProps) {
-  const banners = await getAds()
-  const banner = banners?.find((banner) => banner.slot === slot)
-
+  const { adData } = await getGlobalsData()
+  const banner = adData.banners?.find((banner) => banner.slot === slot)
   if (!banner || typeof banner.image !== 'object' || !banner.image.url) return null
 
   return (

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/getMainHomePageData'
 import formatArticle from '@/utils/formatArticles'
 
 type BulletArticleListProps = {

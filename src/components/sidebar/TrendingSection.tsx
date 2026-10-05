@@ -1,5 +1,5 @@
 import HeaderTitle from '../common/HeaderTitle'
-import type { TrendingItem } from '@/data/sidebar/getSideBarData'
+import type { TrendingItem } from '@/data/getSideBarData'
 import formatArticle from '@/utils/formatArticles'
 import getTimeAgo from '@/utils/getTimeAgo'
 import Image from 'next/image'

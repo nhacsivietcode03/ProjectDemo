@@ -1,4 +1,4 @@
-import type { ArticleItem } from '@/data/homepage/getMainHomePageData'
+import type { ArticleItem } from '@/data/getMainHomePageData'
 
 export default function formatArticle(article: ArticleItem) {
   const image = typeof article.Image === 'object' ? article.Image : null

@@ -1,6 +1,6 @@
-import type { PodcastItem } from '@/data/sidebar/getSideBarData'
+import type { PodcastItem } from '@/data/getSideBarData'
 import HeaderTitle from '../common/HeaderTitle'
-import VideoComp from '../common/VideoComp'
+import VideoComp from '../Video/VideoComp'
 
 type PodcastProps = {
   podCastData: PodcastItem[]
@@ -12,7 +12,7 @@ export default function PodCastSection({ podCastData }: PodcastProps) {
       <HeaderTitle title="PodCast" label="BH TV" />
       <div className="flex flex-col gap-8">
         {podCastData.map((podCast) => (
-          <VideoComp video={podCast as any} type="podCast" key={podCast.id} />
+          <VideoComp video={podCast} type="podCast" key={podCast.id} />
         ))}
       </div>
     </section>

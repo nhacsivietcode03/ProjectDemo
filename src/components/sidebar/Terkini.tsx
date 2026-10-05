@@ -1,5 +1,5 @@
 import ArticleListItem from '@/components/article/ArticleListItem'
-import type { TerkiniItem } from '@/data/sidebar/getSideBarData'
+import type { TerkiniItem } from '@/data/getSideBarData'
 import HeaderTitle from '../common/HeaderTitle'
 
 type TerkiniProps = {

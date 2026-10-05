@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { VideoShortItem } from '@/data/homepage/getMainHomePageData'
+import type { VideoShortItem } from '@/data/getMainHomePageData'
 
 const getYoutubeThumbnail = (youtubeId: string) =>
   `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
@@ -35,7 +35,7 @@ export default function ShortVideo({ video }: ShortVideoProps) {
         <iframe
           src={getYoutubeIframeUrl(video.youtubeId)}
           allow="autoplay; encrypted-media"
-          className="pointer-events-none absolute inset-0 h-full w-full scale-110 sm:scale-150"
+          className="pointer-events-none absolute inset-0 h-full w-full"
         />
       )}
 
