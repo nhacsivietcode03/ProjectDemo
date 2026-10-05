@@ -56,6 +56,7 @@ export default function VideoTerkini({ videoTerkiniData }: VideoTerkiniProps) {
       <div className="relative mt-5">
         {/* Nút lùi */}
         <button
+          type="button"
           onClick={scrollLeft}
           aria-label="Video trước"
           className="absolute top-1/2 -left-5 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md hover:bg-gray-50 focus:outline-none"
@@ -67,7 +68,7 @@ export default function VideoTerkini({ videoTerkiniData }: VideoTerkiniProps) {
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto py-2 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto py-2"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {extendedVideos.map((video, idx) => (
@@ -77,6 +78,7 @@ export default function VideoTerkini({ videoTerkiniData }: VideoTerkiniProps) {
 
         {/* Nút tiến */}
         <button
+          type="button"
           onClick={scrollRight}
           aria-label="Video tiếp theo"
           className="absolute top-1/2 -right-5 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md hover:bg-gray-50 focus:outline-none"

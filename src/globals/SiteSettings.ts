@@ -36,5 +36,22 @@ export const SiteSettings: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'video',
+      type: 'relationship',
+      relationTo: 'video',
+      hasMany: false,
+    },
+    {
+      name: 'linkadvertisement',
+      type: 'group',
+      fields: [
+        {
+          name: 'link',
+          type: 'text',
+        },
+        { name: 'image', type: 'upload', relationTo: 'media' },
+      ],
+    },
   ],
 }
