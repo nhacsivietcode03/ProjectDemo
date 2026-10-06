@@ -27,7 +27,7 @@ export default async function Header() {
     <header className="w-full">
       <div className="container flex justify-between border-b border-gray-200">
         {/*Left Top bar*/}
-        <div className="flex w-1/2 min-w-0 items-center gap-3 p-2">
+        <div className="flex min-w-0 items-center gap-3 p-2">
           {/*logo*/}
           <Logo />
           {siteTitle?.url && (
@@ -36,8 +36,6 @@ export default async function Header() {
               alt={siteTitle.alt || ''}
               width={siteTitle.width || 360}
               height={siteTitle.height || 50}
-              sizes="(max-width: 640px) 50vw, 360px"
-              className="h-auto max-w-full min-w-0 flex-1 object-contain"
             />
           )}
         </div>

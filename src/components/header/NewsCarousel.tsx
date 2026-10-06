@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import type { Header } from '@/payload-types'
 import Image from 'next/image'
 
@@ -14,6 +14,32 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
   const [itemsPerView, setItemsPerView] = useState(4)
   const [isHovered, setIsHovered] = useState(false)
 
+  // THÊM MỚI 1: Trạng thái quản lý việc bật/tắt animation
+  const [isTransitioning, setIsTransitioning] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth
+      let newItemsPerView = 4
+
+      if (width < 1024) {
+        newItemsPerView = 1.2
+      } else {
+        newItemsPerView = 4
+      }
+
+      setItemsPerView(newItemsPerView)
+
+      setCurrentIndex((prev) =>
+        Math.min(prev, Math.max(0, Math.ceil(carousel.length * 2 - newItemsPerView))),
+      )
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [carousel.length])
+
   if (!carousel || carousel.length === 0) return null
 
   const displayItems =
@@ -21,24 +47,51 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
       ? [...carousel, ...carousel, ...carousel, ...carousel]
       : [...carousel, ...carousel]
 
-  const maxIndex = displayItems.length - itemsPerView
+  // Dùng Math.ceil để làm tròn lên, tránh lỗi index số thập phân khi dùng 1.2
+  const maxIndex = Math.ceil(displayItems.length - itemsPerView)
 
+  // THÊM MỚI 2: Sửa lại logic Next để dịch chuyển tức thời (không animation) khi chạm đáy
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0))
+    if (currentIndex >= maxIndex) {
+      // 1. Tắt animation
+      setIsTransitioning(false)
+      // 2. Nhảy cóc về vị trí 0 ngay lập tức
+      setCurrentIndex(0)
+
+      // 3. Đợi 50ms để DOM cập nhật trạng thái không animation, sau đó bật lại và tiến lên slide 1
+      setTimeout(() => {
+        setIsTransitioning(true)
+        setCurrentIndex(1)
+      }, 50)
+    } else {
+      setIsTransitioning(true)
+      setCurrentIndex((prev) => prev + 1)
+    }
   }
 
+  // THÊM MỚI 3: Sửa lại logic Prev tương tự
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev >= 0 ? prev - 1 : maxIndex))
+    if (currentIndex <= 0) {
+      setIsTransitioning(false)
+      setCurrentIndex(maxIndex)
+
+      setTimeout(() => {
+        setIsTransitioning(true)
+        setCurrentIndex(maxIndex - 1)
+      }, 50)
+    } else {
+      setIsTransitioning(true)
+      setCurrentIndex((prev) => prev - 1)
+    }
   }
 
-  // Tự động chạy carousel sau mỗi 4 giây (tạm dừn  g khi hover chuột vào)
   useEffect(() => {
     if (isHovered) return
     const timer = setInterval(() => {
       handleNext()
     }, 4000)
     return () => clearInterval(timer)
-  }, [isHovered, maxIndex])
+  }, [isHovered, maxIndex, currentIndex]) // Cập nhật dependency
 
   return (
     <div
@@ -47,24 +100,22 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative container mx-auto overflow-hidden px-1">
-        {/* Lớp phủ gradient mờ 2 đầu tạo hiệu ứng tràn tin tức */}
-        <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-18 w-18 bg-gradient-to-r from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent" />
-        <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-18 w-18 bg-gradient-to-l from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent" />
+        <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-18 w-10 bg-gradient-to-r from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent sm:w-18" />
+        <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-18 w-10 bg-gradient-to-l from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent sm:w-18" />
 
-        {/* Nút Previous - Nổi đè lên trên ở mép trái */}
         <button
           onClick={handlePrev}
           type="button"
-          className="absolute top-1/2 left-0.5 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white"
+          className="absolute top-1/2 left-1 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white sm:left-0.5"
           aria-label="Previous slide"
         >
           &lt;
         </button>
 
-        {/* Khung chứa các slide tin tức */}
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-hidden px-5 sm:px-0">
           <div
-            className="flex transition-transform duration-500 ease-in-out"
+            // THÊM MỚI 4: Chỉ áp dụng class transition khi biến isTransitioning = true
+            className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
             style={{
               transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
             }}
@@ -77,17 +128,16 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
                 <div
                   key={`${item.id}-${index}`}
                   style={{ width: `${100 / itemsPerView}%` }}
-                  className="shrink-0 px-2 sm:px-2.5"
+                  className="shrink-0 px-1 sm:px-2.5"
                 >
                   <div className="group flex h-full cursor-pointer items-start gap-3 border-r border-gray-300 pr-2 sm:pr-3">
-                    {/* Ảnh thumbnail bo góc to hơn */}
-                    <div className="relative h-17 w-22 shrink-0 rounded-md bg-gray-200 sm:h-16 sm:w-24">
+                    <div className="relative ml-2 h-17 w-26 shrink-0 rounded-md bg-gray-200 sm:h-16 sm:w-24">
                       {imageUrl ? (
                         <Image
                           src={imageUrl}
                           alt={item.title || 'news image'}
                           fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center text-xs text-gray-400">
@@ -96,9 +146,8 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
                       )}
                     </div>
 
-                    {/* Tiêu đề & Nội dung */}
-                    <div>
-                      <p className="text-xs font-semibold text-[#d81b60]">{item.title}</p>
+                    <div className="flex-1 overflow-hidden">
+                      <p className="truncate text-xs font-semibold text-[#d81b60]">{item.title}</p>
                       <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60]">
                         {item.content}
                       </p>
@@ -110,11 +159,10 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
           </div>
         </div>
 
-        {/* Nút Next - Nổi đè lên trên ở mép phải */}
         <button
           onClick={handleNext}
           type="button"
-          className="absolute top-1/2 right-0.5 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white"
+          className="absolute top-1/2 right-1 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white sm:right-0.5"
           aria-label="Next slide"
         >
           &gt;
