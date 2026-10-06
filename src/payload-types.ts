@@ -548,7 +548,7 @@ export interface Ad {
   id: string;
   banners?:
     | {
-        slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300';
+        slot: '970x90' | '320x100' | '300x250' | '300x600' | '400x200' | '300x300';
         image: string | Media;
         id?: string | null;
       }[]

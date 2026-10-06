@@ -1,6 +1,6 @@
 import type { ArticleItem } from '@/data/getMainHomePageData'
 import { SideArticles, HeroArticle, BulletArticleList, CommonArticle } from '../article'
-import { HeaderTitle } from '../common'
+import { AdSlot, HeaderTitle } from '../common'
 
 type UtamaProps = {
   utamaData: ArticleItem[]
@@ -20,6 +20,7 @@ export default async function Utama({ utamaData }: UtamaProps) {
         </div>
         <div className="lg:col-span-8">
           <HeroArticle data={heroArticle} />
+          <AdSlot slot="320x100" width={320} height={100} className="lg:hidden" />
           <div className="hidden pt-4 lg:block">
             <BulletArticleList data={belowHeroArticles} />
           </div>

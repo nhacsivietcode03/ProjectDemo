@@ -45,6 +45,7 @@ export default async function HomePage() {
           <TrendingSection trendingData={trendingData} />
         </div>
       </div>
+      <AdSlot slot="300x250" width={300} height={250} className="lg:hidden" />
       {/* Disyorkan */}
       <Disyorkan disyorkanData={disyorkanData} />
       {/* VideoTerkini */}
