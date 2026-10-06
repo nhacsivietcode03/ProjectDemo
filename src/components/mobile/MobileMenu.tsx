@@ -36,7 +36,7 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
 
       {/* Ngăn kéo Menu (Drawer) trượt từ phải vào */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-[85%] max-w-sm bg-[#f8f9fa] shadow-2xl transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 bottom-0 z-80 w-[85%] max-w-sm bg-[#f8f9fa] shadow-2xl transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } overflow-y-auto`}
       >
