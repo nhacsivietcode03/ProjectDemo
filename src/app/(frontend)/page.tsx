@@ -7,8 +7,7 @@ import {
   TrendingSection,
 } from '@/components/sidebar'
 import { Utama, Disyorkan, BHPLUS, BHTV, VideoTerkini } from '@/components/homepage'
-import getSideBarData from '@/data/getSideBarData'
-import getMainHomePageData from '@/data/getMainHomePageData'
+import { getMainHomePageData, getSideBarData } from '@/data'
 import {
   Horizontal6Articles,
   Vertical6Articles,

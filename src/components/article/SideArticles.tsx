@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ArticleItem } from '@/data/getMainHomePageData'
-import getTimeAgo from '@/utils/getTimeAgo'
-import formatArticle from '@/utils/formatArticles'
+import { formatArticle } from '@/utils'
+import ArticleTime from './ArticleTime'
 
 type SideArticleProps = {
   data: ArticleItem[]
@@ -36,9 +36,8 @@ export default function SideArticles({ data }: SideArticleProps) {
             {/* Thông tin bài viết */}
             <div className="absolute inset-x-0 bottom-0 p-3">
               <div className="mb-1 flex items-center gap-2 text-xs">
-                {/* Subcategory màu đỏ */}
                 <span className="font-semibold text-red-600 uppercase">{subCategoryTitle}</span>
-                <span className="text-gray-300">{getTimeAgo(article.createdAt)}</span>
+                <ArticleTime date={article.createdAt} className="text-gray-300" />
               </div>
 
               <h3 className="line-clamp-2 text-xs font-semibold text-white group-hover:text-red-400">

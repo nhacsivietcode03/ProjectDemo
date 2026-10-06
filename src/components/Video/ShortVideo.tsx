@@ -3,18 +3,15 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { VideoShortItem } from '@/data/getMainHomePageData'
-
-const getYoutubeThumbnail = (youtubeId: string) =>
-  `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
-
-const getYoutubeIframeUrl = (youtubeId: string) =>
-  `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${youtubeId}`
+import { getThumnailYoutube, getYoutubeUrl } from '@/utils'
 
 type ShortVideoProps = {
   video: VideoShortItem
 }
 
 export default function ShortVideo({ video }: ShortVideoProps) {
+  const thumbnailUrl = getThumnailYoutube(video.youtubeId)
+  const youtueUrl = getYoutubeUrl(video.youtubeId)
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -26,14 +23,14 @@ export default function ShortVideo({ video }: ShortVideoProps) {
       {/* Media Layer */}
       {!isHovered ? (
         <Image
-          src={getYoutubeThumbnail(video.youtubeId)}
+          src={thumbnailUrl}
           alt={video.title}
           fill
           className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
         />
       ) : (
         <iframe
-          src={getYoutubeIframeUrl(video.youtubeId)}
+          src={youtueUrl}
           allow="autoplay; encrypted-media"
           className="pointer-events-none absolute inset-0 h-full w-full"
         />

@@ -1,4 +1,5 @@
-import { VideoItem } from '@/data/getMainHomePageData'
+import type { VideoItem } from '@/data/getMainHomePageData'
+import { getYoutubeUrl } from '@/utils'
 
 type VideoProp = {
   video: Pick<VideoItem, 'title' | 'youtubeId'>
@@ -6,11 +7,12 @@ type VideoProp = {
 }
 
 export default async function VideoComp({ video, type = 'default' }: VideoProp) {
+  const youtubeUrl = getYoutubeUrl(video.youtubeId)
   return (
     <div className="group w-full">
       <iframe
         className="aspect-video w-full"
-        src={`https://www.youtube.com/embed/${video.youtubeId}`}
+        src={youtubeUrl}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"

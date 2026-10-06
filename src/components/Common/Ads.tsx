@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import getGlobalsData from '@/data/getGlobalsData'
+import { getGlobalsData } from '@/data'
 
 type AdSlotProps = {
   slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300'

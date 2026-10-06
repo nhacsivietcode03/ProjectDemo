@@ -1,4 +1,4 @@
-import getGlobalsData from '@/data/getGlobalsData'
+import { getGlobalsData } from '@/data'
 import Image from 'next/image'
 
 export default async function Logo() {
