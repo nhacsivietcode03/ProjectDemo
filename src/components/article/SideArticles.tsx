@@ -35,7 +35,6 @@ export default function SideArticles({ data }: SideArticleProps) {
             {/* Thông tin bài viết */}
             <div className="absolute inset-x-0 bottom-0 p-3">
               <div className="mb-1 flex items-center gap-2 text-xs">
-                {/* Subcategory màu đỏ */}
                 <span className="font-semibold text-red-600 uppercase">{subCategoryTitle}</span>
                 <span className="text-gray-300">{getTimeAgo(article.createdAt)}</span>
               </div>
