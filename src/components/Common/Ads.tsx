@@ -18,8 +18,10 @@ export default async function AdSlot({ slot, width, height }: AdSlotProps) {
       alt={banner.image.alt ?? ''}
       width={width}
       height={height}
-      className="mx-auto block max-w-full object-cover"
-      style={{ width: `${width}px`, height: `${height}px` }}
+      className={`mx-auto my-2 block max-w-full object-cover ${
+        slot === '970x90' ? 'h-[100px] w-full lg:h-[90px] lg:w-[970px]' : ''
+      }`}
+      style={slot === '970x90' ? undefined : { width: `${width}px`, height: `${height}px` }}
     />
   )
 }
