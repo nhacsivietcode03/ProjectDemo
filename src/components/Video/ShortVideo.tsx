@@ -11,12 +11,11 @@ type ShortVideoProps = {
 
 export default function ShortVideo({ video }: ShortVideoProps) {
   const thumbnailUrl = getThumnailYoutube(video.youtubeId)
-  const youtueUrl = getYoutubeUrl(video.youtubeId)
   const [isHovered, setIsHovered] = useState(false)
 
   return (
     <div
-      className="group relative block aspect-9/16 w-105 shrink-0 snap-start overflow-hidden rounded-md bg-gray-900 lg:w-54"
+      className="group relative block aspect-9/16 w-70 shrink-0 snap-start overflow-hidden rounded-md bg-gray-900 lg:w-54"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -30,7 +29,7 @@ export default function ShortVideo({ video }: ShortVideoProps) {
         />
       ) : (
         <iframe
-          src={youtueUrl}
+          src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${video.youtubeId}`}
           allow="autoplay; encrypted-media"
           className="pointer-events-none absolute inset-0 h-full w-full"
         />

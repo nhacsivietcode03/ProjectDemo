@@ -6,25 +6,27 @@ type NavigationBarProps = {
   navBar: Nav
 }
 
-export default async function NavigationBar({ category, navBar }: NavigationBarProps) {
-  const categoryItems = category.map((category) => ({
-    key: `category-${category.id}`,
-    label: category.title || 'Category',
-    href: `/${encodeURIComponent(category.title || category.id)}`,
-    external: false,
-  }))
-  const manualItems = (navBar.items || []).map((item, index) => ({
-    key: `${item.type}-${item.label || item.tag || item.url || index}`,
-    label: item.label,
-    href: item.type === 'tag' ? `/tag/${encodeURIComponent(item.tag || '')}` : item.url || '#',
-    external: item.type === 'external',
-  }))
-  const navigationItems = [...categoryItems, ...manualItems]
-
+export default function NavigationBar({ category, navBar }: NavigationBarProps) {
   return (
     <nav className="flex w-220 items-center justify-between font-semibold">
-      {navigationItems.map(({ key, label, href, external }) =>
-        external ? (
+      {category.map((item) => (
+        <Link
+          className="transition hover:text-red-600"
+          href={`${item.title.trim().replace(' ', '-').toLowerCase()}`}
+          key={item.id}
+        >
+          {item.title}
+        </Link>
+      ))}
+
+      {navBar.items?.map((item, index) => {
+        const key = `${item.type}-${item.label || index}`
+        const href =
+          item.type === 'tag'
+            ? `/tag/${item.tag?.replace(' ', '-').toLowerCase()}`
+            : item.url || '#'
+
+        return item.type === 'external' ? (
           <a
             className="transition hover:text-red-600"
             href={href}
@@ -32,14 +34,14 @@ export default async function NavigationBar({ category, navBar }: NavigationBarP
             rel="noreferrer"
             target="_blank"
           >
-            {label}
+            {item.label}
           </a>
         ) : (
           <Link className="transition hover:text-red-600" href={href} key={key}>
-            {label}
+            {item.label}
           </Link>
-        ),
-      )}
+        )
+      })}
     </nav>
   )
 }
