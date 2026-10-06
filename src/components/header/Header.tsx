@@ -63,14 +63,14 @@ export default async function Header() {
           </div>
         </div>
       </div>
-      <div className="container flex h-13 items-center justify-between">
+      <div className="container hidden h-13 items-center justify-between lg:flex">
         <NavigationBar category={categoryData} navBar={navBarData} />
         <div className="relative flex items-center">
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
           <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />
         </div>
       </div>
-      <div className="mt-3">
+      <div>
         <NewsCarousel carousel={carousels} />
       </div>
       <Trending />

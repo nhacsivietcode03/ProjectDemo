@@ -42,7 +42,7 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
 
   return (
     <div
-      className="relative mt-2 w-full border-y border-gray-200 bg-[#f5f5f5] py-2 shadow-xs"
+      className="relative w-full border-y border-gray-200 bg-[#f5f5f5] py-2 shadow-xs"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

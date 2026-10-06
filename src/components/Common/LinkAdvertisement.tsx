@@ -17,7 +17,7 @@ export default function LinkAdvertisement({ advertisement }: LinkAdvertisementPr
   if (!isVisible || !advertisement.link || !image?.url) return null
 
   return (
-    <div className="fixed top-98 right-15 z-40">
+    <div className="fixed top-95 right-15 z-40">
       <div className="relative w-fit max-w-[calc(100vw-2rem)]">
         <div className="absolute -top-3 -right-3 z-50">
           <CloseButton onClick={() => setIsVisible(false)} />
