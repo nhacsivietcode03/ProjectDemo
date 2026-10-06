@@ -1,4 +1,5 @@
 export { default as ArticleListItem } from './ArticleListItem'
+export { default as ArticleTime } from './ArticleTime'
 export { default as BulletArticleList } from './BulletArticleList'
 export { default as HeroArticle } from './HeroArticle'
 export { default as SideArticles } from './SideArticles'

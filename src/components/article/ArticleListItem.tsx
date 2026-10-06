@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import type { Article } from '@/payload-types'
-import { formatArticle, getTimeAgo } from '@/utils'
+import { formatArticle } from '@/utils'
 import Link from 'next/link'
+import ArticleTime from './ArticleTime'
 
 type ArticleListItemProps = {
   article: Pick<Article, 'id' | 'title' | 'Image' | 'createdAt'>
@@ -19,9 +20,10 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
               <h3 className="line-clamp-3 min-h-14.25 text-sm leading-[1.35] font-semibold transition-colors group-hover:text-red-600">
                 {article.title}
               </h3>
-              <p className="pb-2 text-xs leading-none text-gray-400">
-                {getTimeAgo(article.createdAt)}
-              </p>
+              <ArticleTime
+                date={article.createdAt}
+                className="block pb-2 text-xs leading-none text-gray-400"
+              />
             </div>
           </div>
           <div className="col-span-3 pb-3">
@@ -34,7 +36,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
                   className="object-cover transition duration-300 group-hover:scale-105"
                 />
               ) : (
-                <div className="flex h-full items-center justify-center text-[9px] text-gray-400">
+                <div className="flex h-full items-center justify-center text-[9px] text-gray-500">
                   No image
                 </div>
               )}

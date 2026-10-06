@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ArticleItem } from '@/data/getMainHomePageData'
-import { formatArticle, getTimeAgo } from '@/utils'
+import { formatArticle } from '@/utils'
+import ArticleTime from './ArticleTime'
 
 type HeroArticleProps = {
   data: ArticleItem[] | ArticleItem
@@ -41,7 +42,7 @@ export default function HeroArticle({ data }: HeroArticleProps) {
               <span className="text-sm font-semibold text-red-600 capitalize">
                 {subCategoryTitle}
               </span>
-              <span className="text-xs text-gray-400">{getTimeAgo(article.createdAt)}</span>
+              <ArticleTime date={article.createdAt} className="text-xs text-gray-500" />
             </div>
           )}
 

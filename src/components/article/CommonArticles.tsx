@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import type { ArticleItem } from '@/data/getMainHomePageData'
 import Image from 'next/image'
-import { formatArticle, getTimeAgo } from '@/utils'
+import { formatArticle } from '@/utils'
+import ArticleTime from './ArticleTime'
 
 type ArticleProps = {
   articlesData: ArticleItem[]
@@ -39,7 +40,7 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
                 <p className="font-semibold text-red-600 uppercase">
                   {subCategoryTitle || categoryTitle}
                 </p>
-                <p className="text-gray-400">{getTimeAgo(article.createdAt)}</p>
+                <ArticleTime date={article.createdAt} className="text-gray-500" />
               </div>
 
               <h3 className="line-clamp-2 min-h-10.5 text-sm font-semibold text-black transition-colors group-hover:text-red-600">
