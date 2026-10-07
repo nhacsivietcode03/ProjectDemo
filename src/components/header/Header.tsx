@@ -31,17 +31,17 @@ export default async function Header() {
         data-mobile-header
         className="container flex justify-between border-b border-gray-200 dark:border-gray-700 dark:bg-[#444444] dark:text-white"
       >
-        {/* Left Top bar: Giữ nguyên cho cả Mobile và Desktop */}
-        <div className="flex min-w-0 items-center gap-3 p-2">
+        <div className="flex min-w-0 flex-1 items-center gap-3 p-2">
           <Logo />
-          {/* Thêm hidden sm:block để ẩn text logo ở màn hình quá nhỏ tránh vỡ layout */}
+
           {siteTitle?.url && (
             <Image
               src={siteTitle.url}
               alt={siteTitle.alt || ''}
               width={siteTitle.width || 360}
               height={siteTitle.height || 50}
-              className="hidden sm:block"
+              className="h-auto min-w-0 max-w-full object-contain"
+              style={{ width: 'min(360px, 45vw)' }}
             />
           )}
         </div>

@@ -30,6 +30,20 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (!isOpen) return
+
+    const bodyOverflow = document.body.style.overflow
+    const documentOverflow = document.documentElement.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = bodyOverflow
+      document.documentElement.style.overflow = documentOverflow
+    }
+  }, [isOpen])
+
   const toggleMenu = () => {
     if (!isOpen) {
       const header = menuRootRef.current?.closest<HTMLElement>('[data-mobile-header]')
@@ -62,7 +76,7 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
       <div
         className={`fixed right-0 bottom-0 z-70 w-[85%] max-w-sm bg-[#f8f9fa] shadow-2xl transition-transform duration-300 ease-in-out dark:bg-gray-800 dark:text-white ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } overflow-y-auto`}
+        } touch-pan-y overflow-y-auto overscroll-contain`}
         style={{ top: headerHeight }}
       >
         <div className="flex flex-col p-4">
