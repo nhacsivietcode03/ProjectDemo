@@ -60,7 +60,7 @@ export default function VideoTerkini({ videoTerkiniData }: VideoTerkiniProps) {
           type="button"
           onClick={scrollLeft}
           aria-label="Video trước"
-          className="absolute top-1/2 -left-5 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md hover:bg-gray-50 focus:outline-none"
+          className="absolute top-1/2 -left-5 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md hover:bg-gray-50 focus:outline-none dark:border-gray-600 dark:bg-gray-800"
         >
           <MdChevronLeft size={24} className="text-red-600" />
         </button>
@@ -82,7 +82,7 @@ export default function VideoTerkini({ videoTerkiniData }: VideoTerkiniProps) {
           type="button"
           onClick={scrollRight}
           aria-label="Video tiếp theo"
-          className="absolute top-1/2 -right-5 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md hover:bg-gray-50 focus:outline-none"
+          className="absolute top-1/2 -right-5 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md hover:bg-gray-50 focus:outline-none dark:border-gray-600 dark:bg-gray-800"
         >
           <MdChevronRight size={24} className="text-red-600" />
         </button>

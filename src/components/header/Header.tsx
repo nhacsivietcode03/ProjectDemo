@@ -27,7 +27,10 @@ export default async function Header() {
 
   return (
     <header className="w-full">
-      <div className="container flex justify-between border-b border-gray-200">
+      <div
+        data-mobile-header
+        className="container flex justify-between border-b border-gray-200 dark:border-gray-700 dark:bg-[#444444] dark:text-white"
+      >
         {/* Left Top bar: Giữ nguyên cho cả Mobile và Desktop */}
         <div className="flex min-w-0 items-center gap-3 p-2">
           <Logo />
@@ -84,7 +87,7 @@ export default async function Header() {
         <NavigationBar category={categoryData} navBar={navBarData} />
         <div className="relative flex items-center">
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
-          <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />
+          <FaMagnifyingGlass className="absolute right-3 cursor-pointer" size={16} />
         </div>
       </div>
 

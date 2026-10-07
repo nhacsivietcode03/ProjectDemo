@@ -14,10 +14,10 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
     <Link key={article.id} href={articleUrl} className="group block">
       <article className="mb-1 pb-3">
         {/* Tăng gap lên 4 cho thoáng giữa chữ và ảnh */}
-        <div className="grid grid-cols-12 gap-4 border-b border-gray-300">
+        <div className="grid grid-cols-12 gap-4 border-b border-gray-300 dark:border-gray-700">
           <div className="col-span-9">
             <div className="flex min-w-0 flex-1 flex-col gap-3">
-              <h3 className="line-clamp-3 min-h-14.25 text-sm leading-[1.35] font-semibold transition-colors group-hover:text-red-600">
+              <h3 className="line-clamp-3 min-h-14.25 text-sm leading-[1.35] font-semibold transition-colors group-hover:text-red-600 dark:text-white">
                 {article.title}
               </h3>
               <ArticleTime
@@ -27,7 +27,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
             </div>
           </div>
           <div className="col-span-3 pb-3">
-            <div className="relative aspect-4/3 w-full shrink-0 overflow-hidden bg-gray-200">
+            <div className="relative aspect-4/3 w-full shrink-0 overflow-hidden bg-gray-200 dark:bg-gray-700">
               {image?.url ? (
                 <Image
                   src={image.url}

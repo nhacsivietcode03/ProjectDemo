@@ -32,7 +32,7 @@ export default function VideoThumbnail({ video }: VideoThumbnailProps) {
           <p className="text-gray-400">{getTimeAgo(video.createdAt)}</p>
         </div>
 
-        <h3 className="line-clamp-2 min-h-10.5 text-sm font-semibold text-black transition-colors group-hover:text-red-600">
+        <h3 className="line-clamp-2 min-h-10.5 text-sm font-semibold text-black transition-colors group-hover:text-red-600 dark:text-white">
           {video.title}
         </h3>
       </div>

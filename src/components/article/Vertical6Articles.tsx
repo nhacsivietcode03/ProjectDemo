@@ -16,7 +16,7 @@ export default async function Verticle6Articles({ data }: ComponentsProps) {
   return (
     <div>
       <HeaderTitle title={categoryTitle || ''} label={categoryTitle} />
-      <div className="mt-5 grid grid-cols-1 gap-5 border-b border-gray-300 lg:grid-cols-2">
+      <div className="mt-5 grid grid-cols-1 gap-5 border-b border-gray-300 dark:border-gray-700 lg:grid-cols-2">
         <CommonArticle articlesData={First2Articles} type="big" />
       </div>
       <div className="mt-5 grid grid-cols-1 gap-2 lg:grid-cols-2">

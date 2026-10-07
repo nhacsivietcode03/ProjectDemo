@@ -20,12 +20,12 @@ export default function TrendingSection({ trendingData }: TrendingProps) {
           return (
             <article
               key={article.id}
-              className="mb-3 min-h-20 items-center gap-3 border-b border-gray-200 pb-4"
+              className="mb-3 min-h-20 items-center gap-3 border-b border-gray-200 pb-4 dark:border-gray-700"
             >
               <Link key={article.id} href={articleUrl} className="group block">
                 <div className="grid grid-cols-12 gap-3">
                   <div className="col-span-3">
-                    <div className="relative aspect-4/3 shrink-0 overflow-hidden bg-gray-200">
+                    <div className="relative aspect-4/3 shrink-0 overflow-hidden bg-gray-200 dark:bg-gray-700">
                       {image?.url ? (
                         <Image
                           src={image.url}
@@ -42,7 +42,7 @@ export default function TrendingSection({ trendingData }: TrendingProps) {
                   </div>
                   <div className="col-span-9">
                     <div className="min-w-0 flex-1">
-                      <h3 className="line-clamp-2 text-sm leading-[1.35] font-semibold text-black group-hover:text-red-600">
+                      <h3 className="line-clamp-2 text-sm leading-[1.35] font-semibold text-black group-hover:text-red-600 dark:text-white">
                         {article.title}
                       </h3>
                       <p className="mt-1 py-2 text-xs leading-none text-gray-400">

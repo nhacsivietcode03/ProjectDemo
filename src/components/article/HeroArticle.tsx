@@ -19,7 +19,7 @@ export default function HeroArticle({ data }: HeroArticleProps) {
     <article className="-mx-8 flex flex-col lg:mx-0 lg:w-full">
       <Link href={articleUrl} className="group relative block w-full overflow-hidden">
         {/* Khung ảnh */}
-        <div className="relative aspect-4/3 w-full overflow-hidden bg-gray-200 lg:aspect-video">
+        <div className="relative aspect-4/3 w-full overflow-hidden bg-gray-200 dark:bg-gray-700 lg:aspect-video">
           {image?.url ? (
             <Image
               src={image.url}
@@ -48,19 +48,19 @@ export default function HeroArticle({ data }: HeroArticleProps) {
               </span>
               <ArticleTime
                 date={article.createdAt}
-                className="text-xs text-gray-300 lg:text-gray-500"
+                className="text-xs text-gray-300 lg:text-gray-500 lg:dark:text-gray-400"
               />
             </div>
           )}
 
           {/* Tiêu đề chính */}
-          <h2 className="mt-1 line-clamp-3 text-lg leading-snug font-bold text-white transition-colors group-hover:text-[#e1161e] sm:text-xl lg:line-clamp-2 lg:text-2xl lg:text-black">
+          <h2 className="mt-1 line-clamp-3 text-lg leading-snug font-bold text-white transition-colors group-hover:text-[#e1161e] sm:text-xl lg:line-clamp-2 lg:text-2xl lg:text-black lg:dark:text-white">
             {article.title}
           </h2>
 
           {/* Đoạn tóm tắt */}
           {article.excerpt && (
-            <p className="mt-2 line-clamp-2 hidden text-sm leading-relaxed text-gray-700 lg:block">
+            <p className="mt-2 line-clamp-2 hidden text-sm leading-relaxed text-gray-700 dark:text-gray-300 lg:block">
               {article.excerpt}
             </p>
           )}

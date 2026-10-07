@@ -95,13 +95,13 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
 
   return (
     <div
-      className="relative w-full border-y border-gray-200 bg-[#f5f5f5] py-2 shadow-xs"
+      className="relative w-full border-y border-gray-200 bg-[#f5f5f5] py-2 shadow-xs dark:border-gray-700 dark:bg-[#444444] dark:text-white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative container mx-auto overflow-hidden px-1">
-        <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-18 w-10 bg-gradient-to-r from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent sm:w-18" />
-        <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-18 w-10 bg-gradient-to-l from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent sm:w-18" />
+        <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-18 w-10 bg-gradient-to-r from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent sm:w-18 dark:from-[#444444] dark:via-[#444444]/95" />
+        <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-18 w-10 bg-gradient-to-l from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent sm:w-18 dark:from-[#444444] dark:via-[#444444]/95" />
 
         <button
           onClick={handlePrev}
@@ -148,7 +148,7 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
 
                     <div className="flex-1 overflow-hidden">
                       <p className="truncate text-xs font-semibold text-[#d81b60]">{item.title}</p>
-                      <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60]">
+                      <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60] dark:text-white">
                         {item.content}
                       </p>
                     </div>
