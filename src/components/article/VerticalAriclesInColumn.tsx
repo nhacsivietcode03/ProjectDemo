@@ -24,7 +24,7 @@ export default async function VerticalAriclesInColumn({
       {showHeader && <HeaderTitle title={categoryTitle || ''} label={categoryTitle} />}
 
       <div className={`grid grid-cols-1 gap-3 lg:grid-cols-1 ${showHeader ? 'mt-5' : 'mt-0'}`}>
-        <div className="mb-2 border-b border-gray-200 pb-2">
+        <div className="mb-2 border-b border-gray-200 pb-2 dark:border-gray-700">
           <CommonArticle articlesData={FirstArticles} type="big" />
         </div>
 

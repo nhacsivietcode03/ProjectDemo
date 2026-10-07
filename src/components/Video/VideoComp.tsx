@@ -19,7 +19,7 @@ export default async function VideoComp({ video, type = 'default' }: VideoProp) 
         allowFullScreen
       ></iframe>
       <h2
-        className={`mt-3 line-clamp-2 leading-snug font-semibold text-black transition-colors group-hover:text-red-600 ${
+        className={`mt-3 line-clamp-2 leading-snug font-semibold text-black transition-colors group-hover:text-red-600 dark:text-white ${
           type === 'podCast' ? 'text-base sm:text-lg' : 'text-lg sm:text-2xl'
         }`}
       >

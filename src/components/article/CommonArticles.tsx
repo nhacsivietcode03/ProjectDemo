@@ -20,7 +20,7 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
         return (
           <Link key={article.id} href={articleUrl} className="group block">
             <div
-              className={`relative w-full overflow-hidden bg-gray-200 ${
+              className={`relative w-full overflow-hidden bg-gray-200 dark:bg-gray-700 ${
                 type === 'big' ? 'aspect-4/3' : 'aspect-video'
               }`}
             >
@@ -40,10 +40,10 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
                 <p className="font-semibold text-red-600 uppercase">
                   {subCategoryTitle || categoryTitle}
                 </p>
-                <ArticleTime date={article.createdAt} className="text-gray-500" />
+                <ArticleTime date={article.createdAt} className="text-gray-500 dark:text-gray-400" />
               </div>
 
-              <h3 className="line-clamp-2 min-h-10.5 text-sm font-semibold text-black transition-colors group-hover:text-red-600">
+              <h3 className="line-clamp-2 min-h-10.5 text-sm font-semibold text-black transition-colors group-hover:text-red-600 dark:text-white">
                 {article.title}
               </h3>
             </div>

@@ -1,74 +1,107 @@
 'use client'
 
-import { useState, ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { FaBars, FaRegUser, FaChevronLeft, FaPlus } from 'react-icons/fa6'
+import { FaBars, FaRegUser, FaPlus } from 'react-icons/fa6'
 import { Category, Nav } from '@/payload-types'
+import ThemeSwitcher from '../common/ThemeSwitcher'
 
 type MobileMenuProps = {
   category: Category[]
   navBar: Nav
-  socialMediaNode: ReactNode // Nhận SocialMediaIcon (Server Component) truyền vào từ Header
+  socialMediaNode: ReactNode
 }
 
 export default function MobileMenu({ category, navBar, socialMediaNode }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [headerHeight, setHeaderHeight] = useState(0)
+  const menuRootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const header = menuRootRef.current?.closest<HTMLElement>('[data-mobile-header]')
+    if (!header) return
+
+    const updateHeaderHeight = () => setHeaderHeight(header.getBoundingClientRect().height)
+
+    updateHeaderHeight()
+    const observer = new ResizeObserver(updateHeaderHeight)
+    observer.observe(header)
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const bodyOverflow = document.body.style.overflow
+    const documentOverflow = document.documentElement.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = bodyOverflow
+      document.documentElement.style.overflow = documentOverflow
+    }
+  }, [isOpen])
+
+  const toggleMenu = () => {
+    if (!isOpen) {
+      const header = menuRootRef.current?.closest<HTMLElement>('[data-mobile-header]')
+      if (header) setHeaderHeight(header.getBoundingClientRect().height)
+    }
+    setIsOpen((open) => !open)
+  }
 
   return (
-    <div className="flex items-center gap-4 lg:hidden">
+    <div ref={menuRootRef} className="flex items-center gap-4 lg:hidden">
       {/* Nút User */}
-      <button aria-label="User Profile" className="text-[#E1161E]">
+      <button aria-label="User Profile" className="text-[#E1161E] dark:text-white">
         <FaRegUser className="text-lg" />
       </button>
 
-      {/* Nút Hamburger mở Menu */}
-      <button onClick={() => setIsOpen(true)} aria-label="Mở menu">
+      <button onClick={toggleMenu} aria-label="Toggle menu">
         <FaBars className="text-xl" />
       </button>
 
       {/* Overlay nền đen mờ khi mở menu */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 transition-opacity"
+          className="fixed inset-x-0 bottom-0 z-40"
+          style={{ top: headerHeight }}
           onClick={() => setIsOpen(false)}
         />
       )}
 
       {/* Ngăn kéo Menu (Drawer) trượt từ phải vào */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-80 w-[85%] max-w-sm bg-[#f8f9fa] shadow-2xl transition-transform duration-300 ease-in-out ${
+        className={`fixed right-0 bottom-0 z-70 w-[85%] max-w-sm bg-[#f8f9fa] shadow-2xl transition-transform duration-300 ease-in-out dark:bg-gray-800 dark:text-white ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } overflow-y-auto`}
+        } touch-pan-y overflow-y-auto overscroll-contain`}
+        style={{ top: headerHeight }}
       >
         <div className="flex flex-col p-4">
-          {/* Header của Drawer: Nút Đóng, Social Icons, Theme */}
+          {/* Header của Drawer: Khối Social và Theme */}
           <div className="mb-6 flex justify-end">
-            {/* Khối Social và Theme */}
             <div className="flex flex-col items-end gap-3">
               {socialMediaNode}
-              <select className="flex w-24 cursor-pointer justify-end rounded border border-gray-300 bg-white px-2 py-1 text-xs outline-none hover:border-gray-400">
-                <option>Light</option>
-                <option>Dark</option>
-              </select>
+              <ThemeSwitcher />
             </div>
           </div>
 
           {/* Danh sách Liên kết (Links) */}
-          <nav className="flex flex-col bg-white">
-            {/* 1. Category Items (Có dấu + bên trái) */}
+          <nav className="flex flex-col bg-white dark:bg-gray-800">
             {category.map((item) => (
               <Link
                 href={`/${item.title.trim().replace(' ', '-').toLowerCase()}`}
                 key={`cat-${item.id}`}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-between border-b border-gray-200 px-4 py-3.5 text-sm font-semibold text-gray-900 transition-colors hover:text-[#d81b60]"
+                className="flex items-center justify-between border-b border-gray-200 px-4 py-3.5 text-sm font-semibold text-gray-900 transition-colors hover:text-[#d81b60] dark:border-gray-700 dark:text-white"
               >
-                <FaPlus className="text-gray-700" size={14} />
+                <FaPlus className="text-gray-700 dark:text-gray-300" size={14} />
                 <span>{item.title}</span>
               </Link>
             ))}
 
-            {/* 2. NavBar Items (Các mục tĩnh, tuỳ chọn hiển thị dấu + hoặc không) */}
             {navBar.items?.map((item, index) => {
               const key = `nav-${item.type}-${item.label || index}`
               const href =
@@ -76,20 +109,18 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
                   ? `/tag/${item.tag?.replace(' ', '-').toLowerCase()}`
                   : item.url || '#'
 
-              // Giả định các mục nav phụ (như #Marilokal) không có dấu + theo thiết kế
               return (
                 <div
                   key={key}
-                  className="flex items-center justify-between border-b border-gray-200 px-4 py-3.5"
+                  className="flex items-center justify-between border-b border-gray-200 px-4 py-3.5 dark:border-gray-700"
                 >
-                  <div className="w-4"></div>{' '}
-                  {/* Khoảng trống để đẩy text sang phải nếu không có dấu + */}
+                  <div className="w-4"></div>
                   {item.type === 'external' ? (
                     <a
                       href={href}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-sm font-semibold text-gray-900 hover:text-[#d81b60]"
+                      className="text-sm font-semibold text-gray-900 hover:text-[#d81b60] dark:text-white"
                     >
                       {item.label}
                     </a>
@@ -97,7 +128,7 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
                     <Link
                       href={href}
                       onClick={() => setIsOpen(false)}
-                      className="text-sm font-semibold text-gray-900 hover:text-[#d81b60]"
+                      className="text-sm font-semibold text-gray-900 hover:text-[#d81b60] dark:text-white"
                     >
                       {item.label}
                     </Link>

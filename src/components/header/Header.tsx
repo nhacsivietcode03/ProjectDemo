@@ -7,6 +7,7 @@ import Trending from './Trending'
 import MobileMenu from '../mobile/MobileMenu' // <--- Import Component mới
 import { getGlobalsData, getHeader } from '@/data'
 import { VideoAdvertisement } from '../Video'
+import ThemeSwitcher from '../common/ThemeSwitcher'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
@@ -26,18 +27,21 @@ export default async function Header() {
 
   return (
     <header className="w-full">
-      <div className="container flex justify-between border-b border-gray-200">
-        {/* Left Top bar: Giữ nguyên cho cả Mobile và Desktop */}
-        <div className="flex min-w-0 items-center gap-3 p-2">
+      <div
+        data-mobile-header
+        className="container flex justify-between border-b border-gray-200 dark:border-gray-700 dark:bg-[#444444] dark:text-white"
+      >
+        <div className="flex min-w-0 flex-1 items-center gap-3 p-2">
           <Logo />
-          {/* Thêm hidden sm:block để ẩn text logo ở màn hình quá nhỏ tránh vỡ layout */}
+
           {siteTitle?.url && (
             <Image
               src={siteTitle.url}
               alt={siteTitle.alt || ''}
               width={siteTitle.width || 360}
               height={siteTitle.height || 50}
-              className="hidden sm:block"
+              className="h-auto min-w-0 max-w-full object-contain"
+              style={{ width: 'min(360px, 45vw)' }}
             />
           )}
         </div>
@@ -64,10 +68,7 @@ export default async function Header() {
             <div className="mr-6 flex items-center gap-2">
               <SocialMediaIcon />
             </div>
-            <select className="text-gray-850 flex w-24 cursor-pointer justify-end rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-xs outline-none hover:border-gray-400">
-              <option>Light</option>
-              <option>Dark</option>
-            </select>
+            <ThemeSwitcher />
           </div>
         </div>
 
@@ -86,7 +87,7 @@ export default async function Header() {
         <NavigationBar category={categoryData} navBar={navBarData} />
         <div className="relative flex items-center">
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
-          <FaMagnifyingGlass className="absolute right-3 cursor-pointer text-gray-600" size={16} />
+          <FaMagnifyingGlass className="absolute right-3 cursor-pointer" size={16} />
         </div>
       </div>
 
