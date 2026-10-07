@@ -4,6 +4,7 @@ import { useState, ReactNode } from 'react'
 import Link from 'next/link'
 import { FaBars, FaRegUser, FaChevronLeft, FaPlus } from 'react-icons/fa6'
 import { Category, Nav } from '@/payload-types'
+import ThemeSwitcher from '../common/ThemeSwitcher'
 
 type MobileMenuProps = {
   category: Category[]
@@ -46,10 +47,7 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
             {/* Khối Social và Theme */}
             <div className="flex flex-col items-end gap-3">
               {socialMediaNode}
-              <select className="flex w-24 cursor-pointer justify-end rounded border border-gray-300 bg-white px-2 py-1 text-xs outline-none hover:border-gray-400">
-                <option>Light</option>
-                <option>Dark</option>
-              </select>
+              <ThemeSwitcher />
             </div>
           </div>
 

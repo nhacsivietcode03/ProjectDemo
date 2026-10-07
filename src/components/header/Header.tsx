@@ -7,6 +7,7 @@ import Trending from './Trending'
 import MobileMenu from '../mobile/MobileMenu' // <--- Import Component mới
 import { getGlobalsData, getHeader } from '@/data'
 import { VideoAdvertisement } from '../Video'
+import ThemeSwitcher from '../common/ThemeSwitcher'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
@@ -64,10 +65,7 @@ export default async function Header() {
             <div className="mr-6 flex items-center gap-2">
               <SocialMediaIcon />
             </div>
-            <select className="text-gray-850 flex w-24 cursor-pointer justify-end rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-xs outline-none hover:border-gray-400">
-              <option>Light</option>
-              <option>Dark</option>
-            </select>
+            <ThemeSwitcher />
           </div>
         </div>
 
