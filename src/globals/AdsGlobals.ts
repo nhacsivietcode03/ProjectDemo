@@ -16,6 +16,7 @@ export const Ads: GlobalConfig = {
           required: true,
           options: [
             { label: '970 x 90 (Header banner)', value: '970x90' },
+            { label: '320 x 100 ', value: '320x100' },
             { label: '300 x 250 (sidebar)', value: '300x250' },
             { label: '300 x 600 (sidebar)', value: '300x600' },
             { label: '400 x 200', value: '400x200' },

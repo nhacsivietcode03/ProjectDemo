@@ -16,9 +16,10 @@ export default function HeroArticle({ data }: HeroArticleProps) {
   const { image, subCategoryTitle, subCategory, articleUrl } = formatArticle(article)
 
   return (
-    <article className="flex flex-col">
-      <Link href={articleUrl} className="group block">
-        <div className="relative aspect-video w-full overflow-hidden bg-gray-200">
+    <article className="-mx-8 flex flex-col lg:mx-0 lg:w-full">
+      <Link href={articleUrl} className="group relative block w-full overflow-hidden">
+        {/* Khung ảnh */}
+        <div className="relative aspect-4/3 w-full overflow-hidden bg-gray-200 lg:aspect-video">
           {image?.url ? (
             <Image
               src={image.url}
@@ -32,28 +33,34 @@ export default function HeroArticle({ data }: HeroArticleProps) {
               No image
             </div>
           )}
+
+          {/* Lớp phủ gradient đen (Chỉ hiện ở Mobile) */}
+          <div className="absolute inset-0 z-10 bg-linear-to-t from-black/90 via-black/40 to-transparent lg:hidden" />
         </div>
 
-        {/* Nội dung bên dưới ảnh */}
-        <div className="mt-3 py-1">
-          {/* SubCategory màu đỏ + Thời gian */}
+        {/* Nội dung đè lên ảnh (Mobile) */}
+        <div className="absolute bottom-0 left-0 z-20 w-full px-5 py-4 lg:relative lg:mt-3 lg:px-0 lg:py-1">
+          {/* SubCategory + Thời gian */}
           {subCategory && (
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-red-600 capitalize">
+              <span className="text-xs font-bold text-[#e1161e] uppercase sm:text-sm">
                 {subCategoryTitle}
               </span>
-              <ArticleTime date={article.createdAt} className="text-xs text-gray-500" />
+              <ArticleTime
+                date={article.createdAt}
+                className="text-xs text-gray-300 lg:text-gray-500"
+              />
             </div>
           )}
 
           {/* Tiêu đề chính */}
-          <h2 className="mt-1 line-clamp-2 text-xl leading-snug font-semibold text-black transition-colors group-hover:text-red-600 sm:text-2xl">
+          <h2 className="mt-1 line-clamp-3 text-lg leading-snug font-bold text-white transition-colors group-hover:text-[#e1161e] sm:text-xl lg:line-clamp-2 lg:text-2xl lg:text-black">
             {article.title}
           </h2>
 
-          {/* Đoạn tóm tắt excerpt */}
+          {/* Đoạn tóm tắt */}
           {article.excerpt && (
-            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-gray-700">
+            <p className="mt-2 line-clamp-2 hidden text-sm leading-relaxed text-gray-700 lg:block">
               {article.excerpt}
             </p>
           )}

@@ -96,7 +96,8 @@ export default async function Header() {
       <Trending />
 
       <div className="container mt-4 w-full">
-        <AdSlot slot="970x90" width={970} height={100} />
+        <AdSlot slot="970x90" width={970} height={90} className="hidden lg:block" />
+        <AdSlot slot="320x100" width={320} height={100} className="lg:hidden" />
       </div>
 
       {videoAd && <VideoAdvertisement youtubeId={videoAd.youtubeId} />}
