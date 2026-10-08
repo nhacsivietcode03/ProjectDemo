@@ -7,11 +7,7 @@ import {
   FaYoutube,
 } from 'react-icons/fa6'
 
-<<<<<<< HEAD
 import getSiteSettingsData from '@/data/getSiteSettingsData'
-=======
-import { getSiteSettingsData } from '@/data'
->>>>>>> 16d5e321efd76234b76e271dcd30c534b09f00ca
 
 const socialPlatforms = [
   { platform: 'facebook', Icon: FaFacebook },

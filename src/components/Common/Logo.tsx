@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import getSiteSettingsData from '@/data/getSiteSettingsData'
-=======
-import { getSiteSettingsData } from '@/data'
->>>>>>> 16d5e321efd76234b76e271dcd30c534b09f00ca
 import Image from 'next/image'
 
 export default async function Logo() {

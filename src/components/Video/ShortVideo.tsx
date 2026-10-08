@@ -31,6 +31,7 @@ export default function ShortVideo({ video }: ShortVideoProps) {
         <iframe
           src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${video.youtubeId}`}
           allow="autoplay; encrypted-media"
+          loading="lazy"
           className="pointer-events-none absolute inset-0 h-full w-full"
         />
       )}

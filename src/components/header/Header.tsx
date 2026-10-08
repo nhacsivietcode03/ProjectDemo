@@ -5,12 +5,8 @@ import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
 import MobileMenu from '../mobile/MobileMenu' // <--- Import Component mới
-<<<<<<< HEAD
 import { getHeader } from '@/data'
 import getSiteSettingsData from '@/data/getSiteSettingsData'
-=======
-import { getHeader, getSiteSettingsData } from '@/data'
->>>>>>> 16d5e321efd76234b76e271dcd30c534b09f00ca
 import { VideoAdvertisement } from '../Video'
 import ThemeSwitcher from '../common/ThemeSwitcher'
 
