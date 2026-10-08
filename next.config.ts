@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'img.youtube.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'xxxx.public.blob.vercel-storage.com',
+        pathname: '/**',
+      },
     ],
   },
   webpack: (webpackConfig) => {
