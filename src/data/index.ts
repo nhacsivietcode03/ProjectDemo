@@ -1,5 +1,6 @@
 export { default as getFooter } from './getFooterData'
-export { default as getGlobalsData } from './getGlobalsData'
 export { default as getHeader } from './getHeaderData'
 export { default as getMainHomePageData } from './getMainHomePageData'
 export { default as getSideBarData } from './getSideBarData'
+export { default as getAdData } from './getAdData'
+export { default as getSiteSettingsData } from './getSiteSettingsData'

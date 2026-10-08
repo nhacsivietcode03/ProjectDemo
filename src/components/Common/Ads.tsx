@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getGlobalsData } from '@/data'
+import getAdData from '@/data/getAdData'
 
 type AdSlotProps = {
   slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300' | '320x100'
@@ -9,7 +9,7 @@ type AdSlotProps = {
 }
 
 export default async function AdSlot({ slot, width, height, className = '' }: AdSlotProps) {
-  const { adData } = await getGlobalsData()
+  const adData = await getAdData()
   const banner = adData.banners?.find((banner) => banner.slot === slot)
 
   if (!banner || typeof banner.image !== 'object' || !banner.image.url) return null

@@ -5,13 +5,14 @@ import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
 import MobileMenu from '../mobile/MobileMenu' // <--- Import Component mới
-import { getGlobalsData, getHeader } from '@/data'
+import { getHeader } from '@/data'
+import getSiteSettingsData from '@/data/getSiteSettingsData'
 import { VideoAdvertisement } from '../Video'
 import ThemeSwitcher from '../common/ThemeSwitcher'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
-  const { siteSettingsData } = await getGlobalsData()
+  const siteSettingsData = await getSiteSettingsData()
 
   const siteTitle =
     headerGlobalData?.siteTitle && typeof headerGlobalData.siteTitle === 'object'
