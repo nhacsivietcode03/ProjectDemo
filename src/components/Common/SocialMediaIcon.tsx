@@ -7,7 +7,7 @@ import {
   FaYoutube,
 } from 'react-icons/fa6'
 
-import { getGlobalsData } from '@/data'
+import getSiteSettingsData from '@/data/getSiteSettingsData'
 
 const socialPlatforms = [
   { platform: 'facebook', Icon: FaFacebook },
@@ -19,7 +19,7 @@ const socialPlatforms = [
 ] as const
 
 export default async function SocialMediaIcon() {
-  const { siteSettingsData } = await getGlobalsData()
+  const siteSettingsData = await getSiteSettingsData()
   const socialMedias = siteSettingsData.socialMediaLinks ?? []
 
   return (

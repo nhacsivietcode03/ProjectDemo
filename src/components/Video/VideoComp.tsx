@@ -17,6 +17,7 @@ export default async function VideoComp({ video, type = 'default' }: VideoProp) 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
+        loading="lazy"
       ></iframe>
       <h2
         className={`mt-3 line-clamp-2 leading-snug font-semibold text-black transition-colors group-hover:text-red-600 dark:text-white ${

@@ -15,8 +15,11 @@ import {
 } from '@/components/article'
 
 export default async function HomePage() {
-  const { galeriData, infografikData, terkiniData, trendingData, videosData } =
-    await getSideBarData()
+  const [sideBarData, mainHomePageData] = await Promise.all([
+    getSideBarData(),
+    getMainHomePageData(),
+  ])
+  const { galeriData, infografikData, terkiniData, trendingData, videosData } = sideBarData
   const {
     utamaData,
     disyorkanData,
@@ -30,7 +33,7 @@ export default async function HomePage() {
     bhplusData,
     bhtvData,
     videoTerkiniData,
-  } = await getMainHomePageData()
+  } = mainHomePageData
 
   return (
     <div className="container pt-5">

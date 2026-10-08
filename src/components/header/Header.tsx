@@ -5,13 +5,14 @@ import NavigationBar from './NavigationBar'
 import NewsCarousel from './NewsCarousel'
 import Trending from './Trending'
 import MobileMenu from '../mobile/MobileMenu' // <--- Import Component mới
-import { getGlobalsData, getHeader } from '@/data'
+import { getHeader } from '@/data'
+import getSiteSettingsData from '@/data/getSiteSettingsData'
 import { VideoAdvertisement } from '../Video'
 import ThemeSwitcher from '../common/ThemeSwitcher'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
-  const { siteSettingsData } = await getGlobalsData()
+  const siteSettingsData = await getSiteSettingsData()
 
   const siteTitle =
     headerGlobalData?.siteTitle && typeof headerGlobalData.siteTitle === 'object'
@@ -40,7 +41,7 @@ export default async function Header() {
               alt={siteTitle.alt || ''}
               width={siteTitle.width || 360}
               height={siteTitle.height || 50}
-              className="h-auto min-w-0 max-w-full object-contain"
+              className="h-auto max-w-full min-w-0 object-contain"
               style={{ width: 'min(360px, 45vw)' }}
             />
           )}

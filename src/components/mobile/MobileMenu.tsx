@@ -20,7 +20,6 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
   useEffect(() => {
     const header = menuRootRef.current?.closest<HTMLElement>('[data-mobile-header]')
     if (!header) return
-
     const updateHeaderHeight = () => setHeaderHeight(header.getBoundingClientRect().height)
 
     updateHeaderHeight()

@@ -27,6 +27,7 @@ export default function VideoAdvertisement({ youtubeId }: VideoAdvertisementProp
           src={youtubeUrl}
           allow="autoplay; encrypted-media"
           allowFullScreen
+          loading="lazy"
           className="absolute inset-0 h-full w-full"
         />
       </div>

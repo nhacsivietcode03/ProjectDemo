@@ -9,29 +9,27 @@ type CarouselProps = {
   carousel: Carousels
 }
 
+const getLastValidIndex = (itemCount: number, itemsPerView: number) => {
+  const trackCopyCount = itemCount <= itemsPerView ? 3 : 2
+  return Math.max(0, Math.ceil(itemCount * trackCopyCount - itemsPerView))
+}
+
 export default function NewsCarousel({ carousel }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [itemsPerView, setItemsPerView] = useState(4)
   const [isHovered, setIsHovered] = useState(false)
-
-  // THÊM MỚI 1: Trạng thái quản lý việc bật/tắt animation
   const [isTransitioning, setIsTransitioning] = useState(true)
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth
-      let newItemsPerView = 4
-
-      if (width < 1024) {
-        newItemsPerView = 1.2
-      } else {
-        newItemsPerView = 4
-      }
+      // Màn hình nhỏ hiện hé một phần tin kế tiếp để gợi ý rằng danh sách có thể trượt.
+      const newItemsPerView = width < 1024 ? 1.2 : 4
 
       setItemsPerView(newItemsPerView)
-
-      setCurrentIndex((prev) =>
-        Math.min(prev, Math.max(0, Math.ceil(carousel.length * 2 - newItemsPerView))),
+      // Giữ vị trí hiện tại trong giới hạn hợp lệ khi kích thước màn hình thay đổi.
+      setCurrentIndex((previousIndex) =>
+        Math.min(previousIndex, getLastValidIndex(carousel.length, newItemsPerView)),
       )
     }
 
@@ -42,23 +40,20 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
 
   if (!carousel || carousel.length === 0) return null
 
-  const displayItems =
-    carousel.length <= itemsPerView
-      ? [...carousel, ...carousel, ...carousel, ...carousel]
-      : [...carousel, ...carousel]
+  // Lặp danh sách để có khoảng đệm trước khi carousel nhảy tức thì về đầu.
+  const trackCopyCount = carousel.length <= itemsPerView ? 3 : 2
+  const displayItems = Array.from({ length: trackCopyCount }, () => carousel).flat()
+  const lastValidIndex = getLastValidIndex(carousel.length, itemsPerView)
 
-  // Dùng Math.ceil để làm tròn lên, tránh lỗi index số thập phân khi dùng 1.2
-  const maxIndex = Math.ceil(displayItems.length - itemsPerView)
-
-  // THÊM MỚI 2: Sửa lại logic Next để dịch chuyển tức thời (không animation) khi chạm đáy
   const handleNext = () => {
-    if (currentIndex >= maxIndex) {
-      // 1. Tắt animation
+    // Một tin duy nhất không có vị trí kế tiếp để chuyển đến.
+    if (carousel.length < 2) return
+
+    if (currentIndex >= lastValidIndex) {
+      // Tắt animation khi nhảy về bản sao đầu tiên, rồi bật lại để trượt sang tin kế.
       setIsTransitioning(false)
-      // 2. Nhảy cóc về vị trí 0 ngay lập tức
       setCurrentIndex(0)
 
-      // 3. Đợi 50ms để DOM cập nhật trạng thái không animation, sau đó bật lại và tiến lên slide 1
       setTimeout(() => {
         setIsTransitioning(true)
         setCurrentIndex(1)
@@ -69,15 +64,17 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
     }
   }
 
-  // THÊM MỚI 3: Sửa lại logic Prev tương tự
   const handlePrev = () => {
+    if (carousel.length < 2) return
+
     if (currentIndex <= 0) {
+      // Nhảy không animation về cuối danh sách lặp, rồi bật animation để trượt lùi.
       setIsTransitioning(false)
-      setCurrentIndex(maxIndex)
+      setCurrentIndex(lastValidIndex)
 
       setTimeout(() => {
         setIsTransitioning(true)
-        setCurrentIndex(maxIndex - 1)
+        setCurrentIndex(lastValidIndex - 1)
       }, 50)
     } else {
       setIsTransitioning(true)
@@ -86,12 +83,13 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
   }
 
   useEffect(() => {
-    if (isHovered) return
+    if (isHovered || carousel.length < 2) return
+
     const timer = setInterval(() => {
       handleNext()
     }, 4000)
     return () => clearInterval(timer)
-  }, [isHovered, maxIndex, currentIndex]) // Cập nhật dependency
+  }, [carousel.length, isHovered, lastValidIndex, currentIndex])
 
   return (
     <div
@@ -114,7 +112,7 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
 
         <div className="w-full overflow-hidden px-5 sm:px-0">
           <div
-            // THÊM MỚI 4: Chỉ áp dụng class transition khi biến isTransitioning = true
+            // Tắt transition trong lúc nhảy vòng để người xem không thấy cú nhảy.
             className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
             style={{
               transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
@@ -145,7 +143,6 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
                         </div>
                       )}
                     </div>
-
                     <div className="flex-1 overflow-hidden">
                       <p className="truncate text-xs font-semibold text-[#d81b60]">{item.title}</p>
                       <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60] dark:text-white">
