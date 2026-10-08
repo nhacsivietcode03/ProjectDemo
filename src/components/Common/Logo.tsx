@@ -1,8 +1,8 @@
-import { getGlobalsData } from '@/data'
+import { getSiteSettingsData } from '@/data'
 import Image from 'next/image'
 
 export default async function Logo() {
-  const { siteSettingsData } = await getGlobalsData()
+  const siteSettingsData = await getSiteSettingsData()
   const logo =
     siteSettingsData && typeof siteSettingsData.logo === 'object' ? siteSettingsData.logo : null
 
