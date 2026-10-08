@@ -10,11 +10,6 @@ import { collections } from './collections'
 import { globals } from './globals'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-const blobToken = process.env.BLOB_READ_WRITE_TOKEN
-
-if (process.env.VERCEL && !blobToken) {
-  throw new Error('BLOB_READ_WRITE_TOKEN is required when deploying to Vercel.')
-}
 
 export default buildConfig({
   admin: {
