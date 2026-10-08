@@ -1,5 +1,9 @@
 import Image from 'next/image'
+<<<<<<< HEAD
 import getAdData from '@/data/getAdData'
+=======
+import { getAdData } from '@/data'
+>>>>>>> 16d5e321efd76234b76e271dcd30c534b09f00ca
 
 type AdSlotProps = {
   slot: '970x90' | '300x250' | '300x600' | '400x200' | '300x300' | '320x100'
