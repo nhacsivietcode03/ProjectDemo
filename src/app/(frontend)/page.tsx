@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import AdSlot from '@/components/common/Ads'
 import {
   GaleriFotoSection,
