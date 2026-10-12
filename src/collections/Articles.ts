@@ -1,8 +1,8 @@
 import type { CollectionConfig, Where } from 'payload'
 import { autoFormatSlug } from '@/hooks/autoHook'
 
-const Foto_Category_ID = '6ab648a5a4758a106f362fe7'
-const Infografik_Category_ID = '6ab64095783c95d72547b196'
+const Foto_Category_ID = '6abc73ef83faa2af854f5e7a'
+const Infografik_Category_ID = '6abc73c683faa2af854f5e49'
 
 const isFotoCategorySelected = (data: any) => {
   if (!data?.category || !Array.isArray(data.category)) return false
