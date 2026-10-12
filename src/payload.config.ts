@@ -5,12 +5,18 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
-
 import { Users } from './collections/Users'
 import { collections } from './collections'
 import { globals } from './globals'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const blobToken = process.env.BLOB_READ_WRITE_TOKEN
+
+if (!blobToken) {
+  throw new Error(
+    'BLOB_READ_WRITE_TOKEN is required on Vercel. Connect a Vercel Blob store and redeploy.',
+  )
+}
 
 export default buildConfig({
   admin: {
@@ -32,10 +38,12 @@ export default buildConfig({
   sharp,
   plugins: [
     vercelBlobStorage({
+      enabled: true, // Optional, defaults to true
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      clientUploads: true,
+      token: blobToken,
     }),
   ],
 })
