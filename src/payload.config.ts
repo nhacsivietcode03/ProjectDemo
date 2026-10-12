@@ -12,8 +12,10 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 const blobToken = process.env.BLOB_READ_WRITE_TOKEN
 
-if (process.env.VERCEL && !blobToken) {
-  throw new Error('BLOB_READ_WRITE_TOKEN is required when deploying to Vercel.')
+if (!blobToken) {
+  throw new Error(
+    'BLOB_READ_WRITE_TOKEN is required on Vercel. Connect a Vercel Blob store and redeploy.',
+  )
 }
 
 export default buildConfig({
@@ -37,12 +39,11 @@ export default buildConfig({
   plugins: [
     vercelBlobStorage({
       enabled: true, // Optional, defaults to true
-      // Specify which collections should use Vercel Blob
       collections: {
         media: true,
       },
-      // Token provided by Vercel once Blob storage is added to your Vercel project
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      clientUploads: true,
+      token: blobToken,
     }),
   ],
 })
