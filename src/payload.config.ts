@@ -34,6 +34,15 @@ export default buildConfig({
   },
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
+    connectOptions:
+      process.env.VERCEL === '1'
+        ? {
+            maxPoolSize: 5,
+            minPoolSize: 0,
+            maxIdleTimeMS: 15_000,
+            serverSelectionTimeoutMS: 5_000,
+          }
+        : undefined,
   }),
   sharp,
   plugins: [
