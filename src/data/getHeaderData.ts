@@ -1,8 +1,8 @@
 'use server'
 
-import { getPayload, Payload } from 'payload'
-import buildConfig from '@/payload.config'
+import { Payload } from 'payload'
 import { Category, Header, Nav } from '@/payload-types'
+import { getPayloadClient } from '@/utils/getPayloadClient'
 
 export interface CombinedHeaderData {
   categoryData: Category[]
@@ -33,7 +33,7 @@ const getchNavBar = (payload: Payload) => {
 }
 
 export default async function getHeader(): Promise<CombinedHeaderData> {
-  const payload = await getPayload({ config: buildConfig })
+  const payload = await getPayloadClient()
 
   const [categoryData, headerGlobalData, navBarData] = await Promise.all([
     getchCategories(payload),

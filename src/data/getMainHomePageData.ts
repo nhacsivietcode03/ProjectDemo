@@ -1,8 +1,8 @@
 'use server'
 
-import { getPayload, Payload } from 'payload'
-import buildConfig from '@/payload.config'
+import { Payload } from 'payload'
 import type { Article, Video } from '@/payload-types'
+import { getPayloadClient } from '@/utils/getPayloadClient'
 
 export type ArticleItem = Pick<
   Article,
@@ -316,7 +316,7 @@ const getVideoTerkini = (payload: Payload) => {
 }
 
 export default async function getMainHomePageData(): Promise<CombinedMainHomePageData> {
-  const payload = await getPayload({ config: buildConfig })
+  const payload = await getPayloadClient()
   const [
     UtamaResult,
     DisyorkanResult,

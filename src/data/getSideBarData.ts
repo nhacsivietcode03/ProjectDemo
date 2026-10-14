@@ -1,8 +1,8 @@
 'use server'
 
-import { getPayload, Payload } from 'payload'
-import buildConfig from '@/payload.config'
+import { Payload } from 'payload'
 import type { Article, Video } from '@/payload-types'
+import { getPayloadClient } from '@/utils/getPayloadClient'
 
 export type GaleriItem = Pick<Article, 'id' | 'galleryImages'>
 export type InfografikItem = Pick<Article, 'id' | 'Image'>
@@ -146,7 +146,7 @@ const getVideos = (payload: Payload) => {
 }
 
 export default async function getSideBarData(): Promise<CombinedSideBarData> {
-  const payload = await getPayload({ config: buildConfig })
+  const payload = await getPayloadClient()
   const [galeriResult, infografikResult, terkiniResult, trendingResult, videosResult] =
     await Promise.all([
       getGaleriFoto(payload),

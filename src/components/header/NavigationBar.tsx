@@ -14,6 +14,7 @@ export default function NavigationBar({ category, navBar }: NavigationBarProps) 
           className="transition hover:text-red-600"
           href={`${item.title.trim().replace(' ', '-').toLowerCase()}`}
           key={item.id}
+          prefetch={false}
         >
           {item.title}
         </Link>
