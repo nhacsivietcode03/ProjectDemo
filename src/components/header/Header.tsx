@@ -9,6 +9,7 @@ import { getHeader } from '@/data'
 import getSiteSettingsData from '@/data/getSiteSettingsData'
 import { VideoAdvertisement } from '../Video'
 import { ThemeSwitcher, MalaysiaTime } from '../common'
+import { Suspense } from 'react'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
@@ -49,7 +50,9 @@ export default async function Header() {
 
         {/* Right top bar - DESKTOP ONLY: Ẩn hoàn toàn trên Mobile */}
         <div className="hidden lg:block">
-          <MalaysiaTime />
+          <Suspense fallback={'...'}>
+            <MalaysiaTime />
+          </Suspense>
           <div className="flex gap-3 pt-2">
             <div className="mr-6 flex items-center gap-2">
               <SocialMediaIcon />
