@@ -1,12 +1,15 @@
 'use server'
 
 import { cache } from 'react'
-import { getPayload } from 'payload'
-import buildConfig from '@/payload.config'
 import type { Ad } from '@/payload-types'
+import { getPayloadClient } from '@/utils/getPayloadClient'
+import { cacheLife } from 'next/cache'
 
 const getAdData = cache(async (): Promise<Ad> => {
-  const payload = await getPayload({ config: buildConfig })
+  'use cache'
+  cacheLife('default')
+
+  const payload = await getPayloadClient()
 
   return payload.findGlobal({
     slug: 'ads',

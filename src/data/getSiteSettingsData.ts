@@ -1,12 +1,15 @@
 'use server'
 
 import { cache } from 'react'
-import { getPayload } from 'payload'
-import buildConfig from '@/payload.config'
 import type { SiteSetting } from '@/payload-types'
+import { getPayloadClient } from '@/utils/getPayloadClient'
+import { cacheLife } from 'next/cache'
 
 const getSiteSettingsData = cache(async (): Promise<SiteSetting> => {
-  const payload = await getPayload({ config: buildConfig })
+  'use cache'
+  cacheLife('default')
+
+  const payload = await getPayloadClient()
 
   return payload.findGlobal({
     slug: 'site-settings',

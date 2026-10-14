@@ -17,9 +17,13 @@ export default function HeroArticle({ data }: HeroArticleProps) {
 
   return (
     <article className="-mx-8 flex flex-col lg:mx-0 lg:w-full">
-      <Link href={articleUrl} className="group relative block w-full overflow-hidden">
+      <Link
+        href={articleUrl}
+        className="group relative block w-full overflow-hidden"
+        prefetch={false}
+      >
         {/* Khung ảnh */}
-        <div className="relative aspect-4/3 w-full overflow-hidden bg-gray-200 dark:bg-gray-700 lg:aspect-video">
+        <div className="relative aspect-4/3 w-full overflow-hidden bg-gray-200 lg:aspect-video dark:bg-gray-700">
           {image?.url ? (
             <Image
               src={image.url}
@@ -60,7 +64,7 @@ export default function HeroArticle({ data }: HeroArticleProps) {
 
           {/* Đoạn tóm tắt */}
           {article.excerpt && (
-            <p className="mt-2 line-clamp-2 hidden text-sm leading-relaxed text-gray-700 dark:text-gray-300 lg:block">
+            <p className="mt-2 line-clamp-2 hidden text-sm leading-relaxed text-gray-700 lg:block dark:text-gray-300">
               {article.excerpt}
             </p>
           )}

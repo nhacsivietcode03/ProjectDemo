@@ -17,7 +17,12 @@ export default function SideArticles({ data }: SideArticleProps) {
         const { image, subCategoryTitle, articleUrl } = formatArticle(article)
 
         return (
-          <Link key={article.id} href={articleUrl} className="group relative block overflow-hidden">
+          <Link
+            key={article.id}
+            href={articleUrl}
+            className="group relative block overflow-hidden"
+            prefetch={false}
+          >
             <div className="relative aspect-video w-full">
               {/* Ảnh nền */}
               {image?.url && (

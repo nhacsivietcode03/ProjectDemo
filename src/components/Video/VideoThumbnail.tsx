@@ -17,6 +17,7 @@ export default function VideoThumbnail({ video }: VideoThumbnailProps) {
       target="_blank"
       rel="noopener noreferrer"
       className="group block gap-2"
+      prefetch={false}
     >
       <div className="relative aspect-video w-full overflow-hidden">
         <Image
