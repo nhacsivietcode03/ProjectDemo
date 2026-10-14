@@ -8,7 +8,8 @@ import MobileMenu from '../mobile/MobileMenu' // <--- Import Component mới
 import { getHeader } from '@/data'
 import getSiteSettingsData from '@/data/getSiteSettingsData'
 import { VideoAdvertisement } from '../Video'
-import ThemeSwitcher from '../common/ThemeSwitcher'
+import { ThemeSwitcher, MalaysiaTime } from '../common'
+import { Suspense } from 'react'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
@@ -49,22 +50,9 @@ export default async function Header() {
 
         {/* Right top bar - DESKTOP ONLY: Ẩn hoàn toàn trên Mobile */}
         <div className="hidden lg:block">
-          <p className="p-2 text-right text-sm">
-            {new Intl.DateTimeFormat('ms-MY', {
-              weekday: 'long',
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: true,
-              timeZone: 'Asia/Kuala_Lumpur',
-            })
-              .format(new Date())
-              .replace(' pada ', ', ')
-              .replace(' PG', ' am')
-              .replace(' PTG', ' pm')}
-          </p>
+          <Suspense fallback={'...'}>
+            <MalaysiaTime />
+          </Suspense>
           <div className="flex gap-3 pt-2">
             <div className="mr-6 flex items-center gap-2">
               <SocialMediaIcon />

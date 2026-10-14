@@ -1,8 +1,9 @@
 import HeaderTitle from '../common/HeaderTitle'
 import type { TrendingItem } from '@/data/getSideBarData'
-import { formatArticle, getTimeAgo } from '@/utils'
+import { formatArticle } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import ArticleTime from '@/components/article/ArticleTime'
 
 type TrendingProps = {
   trendingData: TrendingItem[]
@@ -45,9 +46,10 @@ export default function TrendingSection({ trendingData }: TrendingProps) {
                       <h3 className="line-clamp-2 text-sm leading-[1.35] font-semibold text-black group-hover:text-red-600 dark:text-white">
                         {article.title}
                       </h3>
-                      <p className="mt-1 py-2 text-xs leading-none text-gray-400">
-                        {getTimeAgo(article.createdAt)}
-                      </p>
+                      <ArticleTime
+                        date={article.createdAt}
+                        className="mt-1 py-2 text-xs leading-none text-gray-400"
+                      />
                     </div>
                   </div>
                 </div>
