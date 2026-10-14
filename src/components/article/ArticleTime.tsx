@@ -1,4 +1,5 @@
 import { getTimeAgo } from '@/utils'
+import { Suspense } from 'react'
 
 type ArticleTimeProps = {
   date: string

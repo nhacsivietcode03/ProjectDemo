@@ -1,3 +1,5 @@
+'use client'
+
 export default function getTimeAgo(createdAt: string) {
   const createdDate = new Date(createdAt)
   const minutesPassed = Math.max(0, Math.floor((Date.now() - createdDate.getTime()) / 60000))
