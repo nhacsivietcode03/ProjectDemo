@@ -23,6 +23,7 @@ export default function BulletArticleList({ data }: BulletArticleListProps) {
             <Link
               href={articleUrl}
               className="line-clamp-2 text-sm leading-snug font-medium text-black transition-colors hover:text-red-600 dark:text-white"
+              prefetch={false}
             >
               {article.title}
             </Link>

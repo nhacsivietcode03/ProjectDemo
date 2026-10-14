@@ -59,7 +59,12 @@ export default function ShortVideo({ video }: ShortVideoProps) {
       </div>
 
       {/* Clickable Link Overlay */}
-      <Link href={video.youtubeUrl} target="_blank" className="absolute inset-0 z-20" />
+      <Link
+        href={video.youtubeUrl}
+        target="_blank"
+        className="absolute inset-0 z-20"
+        prefetch={false}
+      />
     </div>
   )
 }
