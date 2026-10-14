@@ -3,6 +3,7 @@
 import { Payload } from 'payload'
 import type { Article, Video } from '@/payload-types'
 import { getPayloadClient } from '@/utils/getPayloadClient'
+import { cacheLife } from 'next/cache'
 
 export type GaleriItem = Pick<Article, 'id' | 'galleryImages'>
 export type InfografikItem = Pick<Article, 'id' | 'Image'>
@@ -146,6 +147,9 @@ const getVideos = (payload: Payload) => {
 }
 
 export default async function getSideBarData(): Promise<CombinedSideBarData> {
+  'use cache'
+  cacheLife('default')
+
   const payload = await getPayloadClient()
   const [galeriResult, infografikResult, terkiniResult, trendingResult, videosResult] =
     await Promise.all([

@@ -3,6 +3,7 @@
 import { Payload } from 'payload'
 import type { Article, Video } from '@/payload-types'
 import { getPayloadClient } from '@/utils/getPayloadClient'
+import { cacheLife } from 'next/cache'
 
 export type ArticleItem = Pick<
   Article,
@@ -316,6 +317,9 @@ const getVideoTerkini = (payload: Payload) => {
 }
 
 export default async function getMainHomePageData(): Promise<CombinedMainHomePageData> {
+  'use cache'
+  cacheLife('default')
+
   const payload = await getPayloadClient()
   const [
     UtamaResult,
