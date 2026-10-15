@@ -6,6 +6,7 @@ export const Media: CollectionConfig = {
     read: () => true,
     create: () => true,
   },
+  hooks: {},
   fields: [
     {
       name: 'alt',

@@ -6,6 +6,7 @@ export const Categories: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+  hooks: {},
   fields: [
     {
       name: 'title',

@@ -1,5 +1,7 @@
 import type { CollectionConfig, Where } from 'payload'
 import { autoFormatSlug } from '@/hooks/autoHook'
+import { revalidateAfterChange } from '@/hooks/revalidateAfterChange'
+import { revalidateAfterDelete } from '@/hooks/revalidateAfterDelete'
 
 const Foto_Category_ID = '6abc73ef83faa2af854f5e7a'
 const Infografik_Category_ID = '6abc73c683faa2af854f5e49'
@@ -18,6 +20,10 @@ export const Articles: CollectionConfig = {
   },
   access: {
     create: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateAfterChange(['articles'])],
+    afterDelete: [revalidateAfterDelete(['articles'])],
   },
   fields: [
     {
