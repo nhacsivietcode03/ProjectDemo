@@ -37,7 +37,7 @@ export default buildConfig({
     connectOptions:
       process.env.VERCEL === '1'
         ? {
-            maxPoolSize: 5,
+            maxPoolSize: 2,
             minPoolSize: 0,
             maxIdleTimeMS: 15_000,
             serverSelectionTimeoutMS: 5_000,
