@@ -1,5 +1,5 @@
 import { revalidateTag } from 'next/cache'
-import type { CollectionAfterDeleteHook } from 'payload'
+import type { CollectionAfterDeleteHook, GlobalAfterChangeHook } from 'payload'
 
 export const revalidateAfterDelete = (tags: string[]): CollectionAfterDeleteHook => {
   return ({ doc, req: { payload } }) => {

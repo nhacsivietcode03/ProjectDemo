@@ -1,4 +1,6 @@
 import { extractYoutubeId } from '@/hooks/extractYoutubeId'
+import { revalidateAfterChange } from '@/hooks/revalidateAfterChange'
+import { revalidateAfterDelete } from '@/hooks/revalidateAfterDelete'
 import type { CollectionConfig, Validate } from 'payload'
 
 export const Videos: CollectionConfig = {
@@ -8,6 +10,8 @@ export const Videos: CollectionConfig = {
   },
   hooks: {
     beforeValidate: [extractYoutubeId],
+    afterChange: [revalidateAfterChange(['video'])],
+    afterDelete: [revalidateAfterDelete(['video'])],
   },
   fields: [
     {

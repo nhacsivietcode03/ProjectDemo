@@ -1,7 +1,11 @@
+import { revalidateAfterChangeGlobal } from '@/hooks/revalidateAfterChange'
 import { GlobalConfig } from 'payload'
 
 export const Header: GlobalConfig = {
   slug: 'header',
+  hooks: {
+    afterChange: [revalidateAfterChangeGlobal(['header'])],
+  },
   fields: [
     {
       name: 'siteTitle',

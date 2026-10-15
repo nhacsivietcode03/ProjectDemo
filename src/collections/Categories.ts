@@ -1,4 +1,6 @@
+import { revalidateAfterChange } from './../hooks/revalidateAfterChange'
 import { autoFormatSlug } from '@/hooks/autoHook'
+import { revalidateAfterDelete } from '@/hooks/revalidateAfterDelete'
 import type { CollectionConfig, Where } from 'payload'
 
 export const Categories: CollectionConfig = {
@@ -6,7 +8,10 @@ export const Categories: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
-  hooks: {},
+  hooks: {
+    afterChange: [revalidateAfterChange(['header'])],
+    afterDelete: [revalidateAfterDelete(['header'])],
+  },
   fields: [
     {
       name: 'title',

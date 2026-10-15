@@ -1,9 +1,13 @@
+import { revalidateAfterChangeGlobal } from '@/hooks/revalidateAfterChange'
 import { GlobalConfig } from 'payload'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   admin: {
     description: 'Thông tin chung của site — dùng chung cho Header và Footer',
+  },
+  hooks: {
+    afterChange: [revalidateAfterChangeGlobal(['site-settings'])],
   },
   fields: [
     {
