@@ -1,7 +1,11 @@
+import { revalidateAfterChangeGlobal } from '@/hooks/revalidateAfterChange'
 import { GlobalConfig } from 'payload'
 
 export const nav: GlobalConfig = {
   slug: 'nav',
+  hooks: {
+    afterChange: [revalidateAfterChangeGlobal(['nav'])],
+  },
   fields: [
     {
       name: 'items',

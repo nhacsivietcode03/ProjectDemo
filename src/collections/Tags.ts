@@ -6,6 +6,7 @@ export const Tags: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+  hooks: {},
   fields: [
     {
       name: 'title',

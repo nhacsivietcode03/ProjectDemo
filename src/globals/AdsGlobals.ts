@@ -1,9 +1,13 @@
+import { revalidateAfterChangeGlobal } from '@/hooks/revalidateAfterChange'
 import { GlobalConfig } from 'payload'
 
 export const Ads: GlobalConfig = {
   slug: 'ads',
   admin: {
     description: 'Quản lý toàn bộ banner quảng cáo tĩnh của site',
+  },
+  hooks: {
+    afterChange: [revalidateAfterChangeGlobal(['ads'])],
   },
   fields: [
     {

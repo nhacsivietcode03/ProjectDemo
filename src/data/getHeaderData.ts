@@ -3,7 +3,7 @@
 import { Payload } from 'payload'
 import { Category, Header, Nav } from '@/payload-types'
 import { getPayloadClient } from '@/utils/getPayloadClient'
-import { cacheLife } from 'next/cache'
+import { cacheLife, cacheTag } from 'next/cache'
 
 export interface CombinedHeaderData {
   categoryData: Category[]
@@ -36,6 +36,7 @@ const getchNavBar = (payload: Payload) => {
 export default async function getHeader(): Promise<CombinedHeaderData> {
   'use cache'
   cacheLife('default')
+  cacheTag('header')
 
   const payload = await getPayloadClient()
 

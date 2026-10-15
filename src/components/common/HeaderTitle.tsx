@@ -18,6 +18,7 @@ export default function HeaderTitle({ title, label }: HeaderTitleProps) {
         <Link
           href={linkLabel || ''}
           className="flex items-center gap-2 pt-2 text-sm font-medium text-black hover:text-red-600 dark:text-white"
+          prefetch={false}
         >
           Lagi {label}
           <span aria-hidden="true" className="pb-2 text-3xl leading-none text-red-600">

@@ -1,7 +1,11 @@
+import { revalidateAfterChangeGlobal } from '@/hooks/revalidateAfterChange'
 import { GlobalConfig } from 'payload'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
+  hooks: {
+    afterChange: [revalidateAfterChangeGlobal(['footer'])],
+  },
   fields: [
     {
       name: 'AppStore',
