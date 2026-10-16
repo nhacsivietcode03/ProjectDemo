@@ -11,7 +11,7 @@ type ArticleListItemProps = {
 export default function ArticleListItem({ article }: ArticleListItemProps) {
   const { image, articleUrl } = formatArticle(article)
   return (
-    <Link key={article.id} href={articleUrl} className="group block" prefetch={false}>
+    <Link key={article.id} href={articleUrl} className="group block">
       <article className="mb-1 pb-3">
         {/* Tăng gap lên 4 cho thoáng giữa chữ và ảnh */}
         <div className="grid grid-cols-12 gap-4 border-b border-gray-300 dark:border-gray-700">
