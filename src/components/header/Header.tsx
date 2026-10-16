@@ -83,14 +83,20 @@ export default async function Header() {
       <div>
         <NewsCarousel carousel={carousels} />
       </div>
-      <Trending />
+      <Suspense fallback={null}>
+        <Trending />
+      </Suspense>
 
       <div className="container mt-4 w-full">
         <AdSlot slot="970x90" width={970} height={90} className="hidden lg:block" />
         <AdSlot slot="320x100" width={320} height={100} className="lg:hidden" />
       </div>
 
-      {videoAd && <VideoAdvertisement youtubeId={videoAd.youtubeId} />}
+      {videoAd && (
+        <Suspense fallback={null}>
+          <VideoAdvertisement youtubeId={videoAd.youtubeId} />
+        </Suspense>
+      )}
       {linkAdvertisement && <LinkAdvertisement advertisement={linkAdvertisement} />}
     </header>
   )

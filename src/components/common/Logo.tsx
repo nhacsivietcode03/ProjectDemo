@@ -1,5 +1,6 @@
 import getSiteSettingsData from '@/data/getSiteSettingsData'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Logo() {
   const siteSettingsData = await getSiteSettingsData()
@@ -9,13 +10,15 @@ export default async function Logo() {
   if (!logo?.url) return null
 
   return (
-    <Image
-      src={logo.url}
-      alt={logo.alt || ''}
-      width={logo.width || 80}
-      height={logo.height || 50}
-      className="h-auto shrink-0 object-contain"
-      style={{ width: 'clamp(48px, 8vw, 80px)' }}
-    />
+    <Link href={'/'}>
+      <Image
+        src={logo.url}
+        alt={logo.alt || ''}
+        width={logo.width || 80}
+        height={logo.height || 50}
+        className="h-auto shrink-0 object-contain"
+        style={{ width: 'clamp(48px, 8vw, 80px)' }}
+      />
+    </Link>
   )
 }
