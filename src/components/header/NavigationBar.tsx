@@ -10,7 +10,7 @@ export default function NavigationBar({ category, navBar }: NavigationBarProps) 
   return (
     <nav className="flex w-220 items-center justify-between font-semibold dark:text-white">
       {category.map((item) => (
-        <Link className="transition hover:text-red-600" href={`${item.slug}`} key={item.id}>
+        <Link className="transition hover:text-red-600" href={`/${item.slug}`} key={item.id}>
           {item.title}
         </Link>
       ))}

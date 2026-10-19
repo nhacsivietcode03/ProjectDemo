@@ -1,14 +1,18 @@
 import { Suspense } from 'react'
 
-export async function generateStaticParams() {
-  return [{ category: 'rencana' }, { category: 'berita' }, { category: 'hiburan' }]
-}
+type CategoryPageProps = PageProps<'/[category]'>
 
-type CategoryPageProps = {
-  params: Promise<{ category: string }>
-}
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
+async function CategoryContent({ params }: { params: CategoryPageProps['params'] }) {
   const { category } = await params
   return <div>{category}</div>
+}
+
+export default function CategoryPage({ params }: CategoryPageProps) {
+  return (
+    <div>
+      <Suspense fallback={<div>... helo</div>}>
+        <CategoryContent params={params} />
+      </Suspense>
+    </div>
+  )
 }
