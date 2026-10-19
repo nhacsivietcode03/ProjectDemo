@@ -38,10 +38,23 @@ export const Categories: CollectionConfig = {
       label: 'Parent Category',
       admin: {
         description:
-          'Blank this if this is parent Category. Select parent Category if this is sub-cateogry',
+          'Blank this if this is parent Category. Select parent Category if this is sub-category',
       },
       filterOptions: ({ id }): Where => {
-        return id ? { id: { not_equals: id } } : {}
+        // Nếu đang edit một category đã có ID
+        if (id) {
+          return {
+            and: [
+              { id: { not_equals: id } }, // 1. Không được chọn chính nó
+              { parent: { exists: false } }, // 2. Chỉ hiển thị các Danh mục gốc (không có cha)
+            ],
+          }
+        }
+
+        // Nếu đang tạo mới một category hoàn toàn
+        return {
+          parent: { exists: false },
+        }
       },
     },
   ],

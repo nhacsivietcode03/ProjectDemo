@@ -10,7 +10,7 @@ async function CategoryContent({ params }: { params: CategoryPageProps['params']
 export default function CategoryPage({ params }: CategoryPageProps) {
   return (
     <div>
-      <Suspense fallback={<div>... helo</div>}>
+      <Suspense fallback={''}>
         <CategoryContent params={params} />
       </Suspense>
     </div>
