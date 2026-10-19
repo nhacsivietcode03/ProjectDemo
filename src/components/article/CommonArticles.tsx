@@ -18,7 +18,7 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
         const { image, subCategoryTitle, articleUrl, categoryTitle } = formatArticle(article)
 
         return (
-          <Link key={article.id} href={articleUrl} className="group block" prefetch={false}>
+          <Link key={article.id} href={articleUrl} className="group block">
             <div
               className={`relative w-full overflow-hidden bg-gray-200 dark:bg-gray-700 ${
                 type === 'big' ? 'aspect-4/3' : 'aspect-video'
