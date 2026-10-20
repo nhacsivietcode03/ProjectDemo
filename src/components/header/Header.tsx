@@ -82,7 +82,7 @@ export default async function Header() {
           <FaMagnifyingGlass className="absolute right-3 cursor-pointer" size={16} />
         </div>
       </div>
-      <div className="container w-full bg-[#D31145]">
+      <div className="hidden w-full bg-[#D31145] px-3 lg:block">
         <Suspense>
           <SubNavigationBar categoryData={categoryData} />
         </Suspense>
