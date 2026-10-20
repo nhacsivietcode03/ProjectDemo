@@ -193,7 +193,7 @@ export interface Category {
    */
   slug?: string | null;
   /**
-   * Blank this if this is parent Category. Select parent Category if this is sub-cateogry
+   * Blank this if this is parent Category. Select parent Category if this is sub-category
    */
   parent?: (string | Category)[] | null;
   updatedAt: string;

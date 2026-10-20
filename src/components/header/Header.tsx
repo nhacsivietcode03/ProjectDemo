@@ -10,6 +10,7 @@ import getSiteSettingsData from '@/data/getSiteSettingsData'
 import { VideoAdvertisement } from '../Video'
 import { ThemeSwitcher, MalaysiaTime } from '../common'
 import { Suspense } from 'react'
+import SubNavigationBar from './SubNavigationBar'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
@@ -73,11 +74,18 @@ export default async function Header() {
 
       {/* Thanh Menu Ngang - DESKTOP ONLY */}
       <div className="container hidden h-13 items-center justify-between lg:flex">
-        <NavigationBar category={categoryData} navBar={navBarData} />
+        <Suspense fallback="">
+          <NavigationBar category={categoryData} navBar={navBarData} />
+        </Suspense>
         <div className="relative flex items-center">
           <input placeholder="Cari kata kunci" className="w-60 rounded border bg-gray-100 p-0.5" />
           <FaMagnifyingGlass className="absolute right-3 cursor-pointer" size={16} />
         </div>
+      </div>
+      <div className="hidden w-full bg-[#D31145] px-3 lg:block">
+        <Suspense>
+          <SubNavigationBar categoryData={categoryData} />
+        </Suspense>
       </div>
 
       <div>

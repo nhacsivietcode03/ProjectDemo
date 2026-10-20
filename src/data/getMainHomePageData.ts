@@ -90,7 +90,7 @@ const getRencana = (payload: Payload) => {
         equals: 'rencana',
       },
       'subCategory.slug': {
-        equals: 'nasional',
+        equals: 'kolumnis',
       },
     },
     sort: '-createdAt',
@@ -115,7 +115,7 @@ const getSukan = (payload: Payload) => {
         equals: 'sukan',
       },
       'subCategory.slug': {
-        equals: 'nasional',
+        equals: 'bola',
       },
     },
     sort: '-createdAt',
@@ -140,7 +140,7 @@ const getDunia = (payload: Payload) => {
         equals: 'dunia',
       },
       'subCategory.slug': {
-        equals: 'nasional',
+        equals: 'asean',
       },
     },
     sort: '-createdAt',
@@ -165,7 +165,7 @@ const getBisnes = (payload: Payload) => {
         equals: 'bisnes',
       },
       'subCategory.slug': {
-        equals: 'nasional',
+        equals: 'usahawan',
       },
     },
     sort: '-createdAt',
@@ -189,7 +189,7 @@ const getHiburan = (payload: Payload) => {
         equals: 'hiburan',
       },
       'subCategory.slug': {
-        equals: 'nasional',
+        equals: 'hartanah',
       },
     },
     sort: '-createdAt',
