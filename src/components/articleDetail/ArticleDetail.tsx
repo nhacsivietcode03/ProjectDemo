@@ -3,12 +3,15 @@ import { notFound } from 'next/navigation'
 import Author from './Author'
 import Image from 'next/image'
 import DisyourkanAI from './DisyourkanAI'
+import { getMainHomePageData } from '@/data'
+import DisyourkanCarousel from './DisyourkanCarousel'
 
 type ArticleDetailProps = {
   params: Promise<{ slug: string[] }>
 }
 
 export default async function ArticleDetail({ params }: ArticleDetailProps) {
+  const { disyorkanData } = await getMainHomePageData()
   const { slug } = await params
   const articleId = slug.at(-2)
   if (!articleId) {
@@ -33,6 +36,7 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
         )}
       </div>
       <DisyourkanAI relatedArticles={article.relatedArticles} />
+      <DisyourkanCarousel data={disyorkanData} />
     </div>
   )
 }
