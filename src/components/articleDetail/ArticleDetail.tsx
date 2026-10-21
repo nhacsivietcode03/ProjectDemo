@@ -2,6 +2,7 @@ import getArticleDetail from '@/data/getArticleDetail'
 import { notFound } from 'next/navigation'
 import Author from './Author'
 import Image from 'next/image'
+import DisyourkanAI from './DisyourkanAI'
 
 type ArticleDetailProps = {
   params: Promise<{ slug: string[] }>
@@ -32,6 +33,7 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
           <Image src={articleImage.url} alt={articleImage.alt} fill className="object-cover" />
         )}
       </div>
+      <DisyourkanAI relatedArticles={article.relatedArticles} />
     </div>
   )
 }

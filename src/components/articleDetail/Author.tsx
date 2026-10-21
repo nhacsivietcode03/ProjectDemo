@@ -20,7 +20,7 @@ const socialPlatforms = {
 export default async function Author({ authorData, articleDate }: AuthorProps) {
   const authorId = authorData.id
   if (!authorId) {
-    return
+    return null
   }
 
   const author = await getAuthorData(authorId)
@@ -30,7 +30,7 @@ export default async function Author({ authorData, articleDate }: AuthorProps) {
   return (
     <div className="my-4 flex flex-wrap items-center justify-between gap-4 dark:border-gray-700">
       <div className="flex min-w-0 items-center gap-3">
-        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md border border-gray-300 dark:border-gray-600">
+        <div className="relative h-15 w-15 shrink-0 overflow-hidden rounded-md border border-gray-300 dark:border-gray-600">
           {avatar?.url ? (
             <Image src={avatar.url} alt={avatar.alt || author.name} fill className="object-cover" />
           ) : (

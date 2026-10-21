@@ -1,5 +1,5 @@
 import { BeritaBerkaitan } from '@/components/article'
-import { ArticleDetail } from '@/components/articleDetail'
+import ArticleDetail from '@/components/articleDetail/ArticleDetail'
 import { AdSlot } from '@/components/common'
 import { VideoTerkini } from '@/components/homepage'
 import {

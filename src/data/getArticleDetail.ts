@@ -22,6 +22,7 @@ export default async function getArticleDetail(id: string) {
       title: true,
       content: true,
       author: true,
+      relatedArticles: true,
     },
   })
 
