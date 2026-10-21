@@ -32,10 +32,10 @@ export default function DisyourkanCarousel({ data }: DisyourkanCarouselProps) {
   }
 
   return (
-    <section className="my-8 overflow-hidden rounded-md bg-gray-100 px-5 py-6 dark:bg-gray-800">
+    <section className="my-5 overflow-hidden rounded-md bg-gray-100 px-5 py-6 dark:bg-gray-800">
       <h2 className="mb-4 text-2xl font-semibold text-black dark:text-white">DISYORKAN</h2>
       <div className="relative">
-        <div className="pr-10 sm:pr-12">
+        <div className="pr-10">
           <div
             ref={scrollRef}
             className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth"
@@ -44,7 +44,7 @@ export default function DisyourkanCarousel({ data }: DisyourkanCarouselProps) {
             {data.map((article) => (
               <div
                 key={article.id}
-                className="w-full shrink-0 snap-start sm:w-[calc(50%-0.625rem)]"
+                className="w-[calc(100%-2rem)] shrink-0 snap-start sm:w-[calc(50%-0.625rem)]"
               >
                 <ArticleListItem article={article} />
               </div>

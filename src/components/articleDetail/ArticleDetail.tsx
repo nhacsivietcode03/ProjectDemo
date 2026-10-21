@@ -3,21 +3,26 @@ import { notFound } from 'next/navigation'
 import Author from './Author'
 import Image from 'next/image'
 import DisyourkanAI from './DisyourkanAI'
-import { getMainHomePageData } from '@/data'
 import DisyourkanCarousel from './DisyourkanCarousel'
+import { RichText } from '@payloadcms/richtext-lexical/react'
+import { AdSlot } from '@/components/common'
+import { getMainHomePageData } from '@/data'
+import type { JSXConvertersFunction } from '@payloadcms/richtext-lexical/react'
 
 type ArticleDetailProps = {
   params: Promise<{ slug: string[] }>
 }
 
 export default async function ArticleDetail({ params }: ArticleDetailProps) {
-  const { disyorkanData } = await getMainHomePageData()
   const { slug } = await params
   const articleId = slug.at(-2)
   if (!articleId) {
     notFound()
   }
-  const article = await getArticleDetail(articleId)
+  const [{ disyorkanData }, article] = await Promise.all([
+    getMainHomePageData(),
+    getArticleDetail(articleId),
+  ])
   const articleImage = article && typeof article.Image === 'object' ? article.Image : null
   return (
     <div>
@@ -36,7 +41,24 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
         )}
       </div>
       <DisyourkanAI relatedArticles={article.relatedArticles} />
-      <DisyourkanCarousel data={disyorkanData} />
+      <article className="prose prose-lg dark:prose-invert max-w-none dark:text-white">
+        <RichText
+          data={article.content}
+          converters={
+            (({ defaultConverters }) => ({
+              ...defaultConverters,
+              blocks: {
+                disyorkan_block: () => <DisyourkanCarousel data={disyorkanData} />,
+                ad_400x200_block: () => (
+                  <div className="my-8 flex w-full justify-center">
+                    <AdSlot slot="400x200" width={400} height={200} />
+                  </div>
+                ),
+              },
+            })) satisfies JSXConvertersFunction
+          }
+        />
+      </article>
     </div>
   )
 }
