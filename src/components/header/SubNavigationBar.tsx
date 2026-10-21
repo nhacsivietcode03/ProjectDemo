@@ -47,7 +47,6 @@ export default function SubNavigationBar({ categoryData }: SubNavigationBarProps
   }
 
   return (
-    // Note: Thêm `relative` và bỏ bớt `py-3` để thanh underline ôm khít chân menu
     <div className="relative flex w-220 items-center font-semibold text-white dark:text-white">
       {subCategoryList.map((subCategory) => {
         // Tạo đường dẫn chuẩn cho danh mục con

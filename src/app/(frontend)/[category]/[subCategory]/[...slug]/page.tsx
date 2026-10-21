@@ -1,4 +1,5 @@
 import { BeritaBerkaitan } from '@/components/article'
+import { ArticleDetail } from '@/components/articleDetail'
 import { AdSlot } from '@/components/common'
 import { VideoTerkini } from '@/components/homepage'
 import {
@@ -9,8 +10,11 @@ import {
   TrendingSection,
 } from '@/components/sidebar'
 import { getMainHomePageData, getSideBarData } from '@/data'
+import { Suspense } from 'react'
 
-export default async function ArticleDetailPage() {
+type ArticleDetailPageProps = PageProps<'/[category]/[subCategory]/[...slug]'>
+
+export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
   const [sideBarData, mainHomePageData] = await Promise.all([
     getSideBarData(),
     getMainHomePageData(),
@@ -21,6 +25,9 @@ export default async function ArticleDetailPage() {
     <div className="container pt-5">
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-8">
+          <Suspense>
+            <ArticleDetail params={params} />
+          </Suspense>
           <VideoTerkini videoTerkiniData={videoTerkiniData} />
           <BeritaBerkaitan beritaBerkaitanData={utamaData} />
         </div>

@@ -1,12 +1,12 @@
 'use server'
 
 import { getPayloadClient } from '@/utils/getPayloadClient'
-import { cacheLife } from 'next/cache'
+import { cacheLife, cacheTag } from 'next/cache'
 
 export default async function getSubCategoryData(parentId: string) {
   'use cache'
   cacheLife('default')
-
+  cacheTag('category')
   const payload = await getPayloadClient()
   const subCategoryList = await payload.find({
     collection: 'categories',

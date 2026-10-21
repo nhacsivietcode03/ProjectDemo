@@ -162,6 +162,14 @@ export interface Media {
  */
 export interface User {
   id: string;
+  avatar: string | Media;
+  socialMediaLinks?:
+    | {
+        platform: 'facebook' | 'whatsapp' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -248,7 +256,7 @@ export interface Article {
         id?: string | null;
       }[]
     | null;
-  author?: (string | null) | User;
+  author: string | User;
   tags?: (string | Tag)[] | null;
   trending?: boolean | null;
   highlight?: boolean | null;
@@ -383,6 +391,14 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  avatar?: T;
+  socialMediaLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;

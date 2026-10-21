@@ -9,8 +9,8 @@ export const Categories: CollectionConfig = {
     useAsTitle: 'title',
   },
   hooks: {
-    afterChange: [revalidateAfterChange(['header'])],
-    afterDelete: [revalidateAfterDelete(['header'])],
+    afterChange: [revalidateAfterChange(['header', 'category'])],
+    afterDelete: [revalidateAfterDelete(['header', 'category'])],
   },
   fields: [
     {
