@@ -16,7 +16,6 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
   }
   const article = await getArticleDetail(articleId)
   const articleImage = article && typeof article.Image === 'object' ? article.Image : null
-  console.log(articleImage)
   return (
     <div>
       <div className="text-3xl font-semibold dark:text-white">{article.title}</div>
