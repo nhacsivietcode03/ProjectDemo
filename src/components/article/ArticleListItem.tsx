@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import type { Article } from '@/payload-types'
+import type { ArticleItem } from '@/data/getMainHomePageData'
 import { formatArticle } from '@/utils'
 import Link from 'next/link'
 import ArticleTime from './ArticleTime'
 
 type ArticleListItemProps = {
-  article: Pick<Article, 'id' | 'title' | 'Image' | 'createdAt'>
+  article: ArticleItem
 }
 
 export default function ArticleListItem({ article }: ArticleListItemProps) {

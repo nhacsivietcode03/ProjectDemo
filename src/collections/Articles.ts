@@ -2,6 +2,9 @@ import type { CollectionConfig, Where } from 'payload'
 import { autoFormatSlug } from '@/hooks/autoHook'
 import { revalidateAfterChange } from '@/hooks/revalidateAfterChange'
 import { revalidateAfterDelete } from '@/hooks/revalidateAfterDelete'
+import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { Ad400x200Block } from '@/blocks/Ad400X200Block'
+import { DisyorkanBlock } from '@/blocks/DisyorkanBlock'
 
 const Foto_Category_ID = '6abc73ef83faa2af854f5e7a'
 const Infografik_Category_ID = '6abc73c683faa2af854f5e49'
@@ -87,6 +90,15 @@ export const Articles: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          FixedToolbarFeature(),
+          BlocksFeature({
+            blocks: [Ad400x200Block, DisyorkanBlock],
+          }),
+        ],
+      }),
       admin: {
         condition: (data) => !isFotoCategorySelected(data),
       },
@@ -148,6 +160,7 @@ export const Articles: CollectionConfig = {
       name: 'author',
       type: 'relationship',
       relationTo: 'users',
+      required: true,
     },
     {
       name: 'tags',
