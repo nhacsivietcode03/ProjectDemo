@@ -19,7 +19,9 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
   return (
     <div>
       <div className="text-3xl font-semibold dark:text-white">{article.title}</div>
-      <Author authorData={article.author} />
+      {typeof article.author === 'object' && (
+        <Author authorData={article.author} articleDate={article.createdAt} />
+      )}
       {article.excerpt && (
         <p className="my-5 rounded-md border-l-3 border-gray-700 bg-gray-100 px-3 py-2 text-base leading-snug text-gray-800 italic dark:bg-gray-700 dark:text-gray-100">
           {article.excerpt}

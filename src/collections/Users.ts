@@ -8,6 +8,11 @@ export const Users: CollectionConfig = {
   auth: true,
   fields: [
     {
+      name: 'name',
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'avatar',
       type: 'upload',
       relationTo: 'media',

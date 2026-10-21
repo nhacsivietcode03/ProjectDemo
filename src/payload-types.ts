@@ -162,6 +162,7 @@ export interface Media {
  */
 export interface User {
   id: string;
+  name: string;
   avatar: string | Media;
   socialMediaLinks?:
     | {
@@ -391,6 +392,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
   avatar?: T;
   socialMediaLinks?:
     | T
