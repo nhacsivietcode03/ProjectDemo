@@ -6,12 +6,5 @@ export const DisyorkanBlock: Block = {
     singular: 'Khối Gợi Ý Bài Viết (Disyorkan)',
     plural: 'Các Khối Gợi Ý',
   },
-  fields: [
-    {
-      name: 'title',
-      type: 'text',
-      label: 'Tiêu đề khối',
-      defaultValue: 'DISYORKAN',
-    },
-  ],
+  fields: [],
 }

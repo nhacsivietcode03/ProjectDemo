@@ -44,7 +44,7 @@ export default function DisyourkanCarousel({ data }: DisyourkanCarouselProps) {
             {data.map((article) => (
               <div
                 key={article.id}
-                className="w-[calc(100%-2rem)] shrink-0 snap-start sm:w-[calc(50%-0.625rem)]"
+                className="w-[calc(100%-2rem)] shrink-0 snap-start lg:w-[calc(50%-0.625rem)]"
               >
                 <ArticleListItem article={article} />
               </div>
