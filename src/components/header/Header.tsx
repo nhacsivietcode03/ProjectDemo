@@ -11,6 +11,7 @@ import { VideoAdvertisement } from '../Video'
 import { ThemeSwitcher, MalaysiaTime } from '../common'
 import { Suspense } from 'react'
 import SubNavigationBar from './SubNavigationBar'
+import HeaderAd from './HeaderAd'
 
 export default async function Header() {
   const { categoryData, headerGlobalData, navBarData } = await getHeader()
@@ -94,18 +95,20 @@ export default async function Header() {
       <Suspense fallback={null}>
         <Trending />
       </Suspense>
-
-      <div className="container mt-4 w-full">
-        <AdSlot slot="970x90" width={970} height={90} className="hidden lg:block" />
-        <AdSlot slot="320x100" width={320} height={100} className="lg:hidden" />
-      </div>
-
-      {videoAd && (
-        <Suspense fallback={null}>
-          <VideoAdvertisement youtubeId={videoAd.youtubeId} />
-        </Suspense>
-      )}
+      <Suspense>
+        <HeaderAd
+          desktopAd={<AdSlot slot="970x90" width={970} height={90} className="hidden lg:block" />}
+          mobileAd={<AdSlot slot="320x100" width={320} height={100} className="lg:hidden" />}
+        />
+      </Suspense>
+      {
+        videoAd && (
+          <Suspense fallback={null}>
+            <VideoAdvertisement youtubeId={videoAd.youtubeId} />
+          </Suspense>
+        )
+      }
       {linkAdvertisement && <LinkAdvertisement advertisement={linkAdvertisement} />}
-    </header>
+    </header >
   )
 }
