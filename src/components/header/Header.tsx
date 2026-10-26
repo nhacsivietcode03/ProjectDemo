@@ -36,21 +36,19 @@ export default async function Header() {
         data-mobile-header
         className="container flex justify-between border-b border-gray-200 dark:border-gray-700 dark:bg-[#444444] dark:text-white"
       >
-        <div className="flex min-w-0 flex-1 items-center gap-3 p-2">
-          <Link href={'/'}>
-            <Logo />
-            {siteTitle?.url && (
-              <Image
-                src={siteTitle.url}
-                alt={siteTitle.alt || ''}
-                width={siteTitle.width || 360}
-                height={siteTitle.height || 50}
-                className="h-auto max-w-full min-w-0 object-contain"
-                style={{ width: 'min(360px, 45vw)' }}
-              />
-            )}
-          </Link>
-        </div>
+        <Link href={'/'} className='flex min-w-0 flex-1 items-center gap-3 p-2'>
+          <Logo />
+          {siteTitle?.url && (
+            <Image
+              src={siteTitle.url}
+              alt={siteTitle.alt || ''}
+              width={siteTitle.width || 360}
+              height={siteTitle.height || 50}
+              className="h-auto max-w-full min-w-0 object-contain"
+              style={{ width: 'min(360px, 45vw)' }}
+            />
+          )}
+        </Link>
         {/* Right top bar - DESKTOP ONLY: Ẩn hoàn toàn trên Mobile */}
         <div className="hidden lg:block">
           <Suspense fallback={'...'}>
