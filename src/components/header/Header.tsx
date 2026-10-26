@@ -15,7 +15,7 @@ import HeaderAd from './HeaderAd'
 import Link from 'next/link'
 
 export default async function Header() {
-  const { categoryData, headerGlobalData, navBarData } = await getHeader()
+  const { categoryData, headerGlobalData, navBarData, trendingData } = await getHeader()
   const siteSettingsData = await getSiteSettingsData()
 
   const siteTitle =
@@ -92,7 +92,7 @@ export default async function Header() {
         <NewsCarousel carousel={carousels} />
       </div>
       <Suspense fallback={null}>
-        <Trending />
+        <Trending trendingData={trendingData} />
       </Suspense>
       <Suspense>
         <HeaderAd

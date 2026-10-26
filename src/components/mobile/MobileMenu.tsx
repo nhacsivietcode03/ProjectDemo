@@ -183,40 +183,42 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
               )
             })}
 
-            {navBar.items?.map((item, index) => {
-              const key = `nav-${item.type}-${item.label || index}`
-              const href =
-                item.type === 'tag'
-                  ? `/tag/${item.tag?.replace(' ', '-').toLowerCase()}`
-                  : item.url || '#'
+            {navBar.tags?.map((tag) => {
+              if (typeof tag === 'string') return null
 
               return (
                 <div
-                  key={key}
+                  key={`tag-${tag.id}`}
                   className="flex items-center justify-between border-b border-gray-200 px-4 py-3.5 dark:border-gray-700"
                 >
-                  <div className="w-4"></div>
-                  {item.type === 'external' ? (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm font-semibold text-gray-900 hover:text-[#d81b60] dark:text-white"
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-sm font-semibold text-gray-900 hover:text-[#d81b60] dark:text-white"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
+                  <div className="w-4" />
+                  <Link
+                    href={`/${tag.slug}`}
+                    onClick={() => setIsOpen(false)}
+                    className="text-sm font-semibold text-gray-900 hover:text-[#d81b60] dark:text-white"
+                  >
+                    {tag.title}
+                  </Link>
                 </div>
               )
             })}
+
+            {navBar.externalLinks?.map((link, index) => (
+              <div
+                key={link.id ?? `${link.url}-${index}`}
+                className="flex items-center justify-between border-b border-gray-200 px-4 py-3.5 dark:border-gray-700"
+              >
+                <div className="w-4" />
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-semibold text-gray-900 hover:text-[#d81b60] dark:text-white"
+                >
+                  {link.label}
+                </a>
+              </div>
+            ))}
           </nav>
         </div>
       </div>

@@ -8,8 +8,16 @@ export const nav: GlobalConfig = {
   },
   fields: [
     {
-      name: 'items',
+      name: 'tags',
+      type: 'relationship',
+      relationTo: 'tags',
+      hasMany: true,
+      label: 'Các thẻ',
+    },
+    {
+      name: 'externalLinks',
       type: 'array',
+      label: 'Các liên kết ngoài',
       fields: [
         {
           name: 'label',
@@ -17,27 +25,9 @@ export const nav: GlobalConfig = {
           required: true,
         },
         {
-          name: 'type',
-          type: 'select',
-          required: true,
-          options: [
-            { label: 'Tag', value: 'tag' },
-            { label: 'External link', value: 'external' },
-          ],
-        },
-        {
-          name: 'tag',
-          type: 'text',
-          admin: {
-            condition: (_, siblingData) => siblingData?.type === 'tag',
-          },
-        },
-        {
           name: 'url',
           type: 'text',
-          admin: {
-            condition: (_, siblingData) => siblingData?.type === 'external',
-          },
+          required: true,
         },
       ],
     },
