@@ -22,6 +22,15 @@ export default async function ArticleDetail({ params }: ArticleDetailProps) {
     getMainHomePageData(),
     getArticleDetail(articleId),
   ])
+
+  if (!article) {
+    return (
+      <div className="flex min-h-30 items-center justify-center">
+        <h1 className="text-2xl font-bold dark:text-white">Không tìm thấy bài viết</h1>
+      </div>
+    )
+  }
+
   const articleImage = article && typeof article.Image === 'object' ? article.Image : null
   return (
     <div>
