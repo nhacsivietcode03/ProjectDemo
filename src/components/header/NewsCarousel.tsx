@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import type { Header } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
 type Carousels = NonNullable<Header['caroselItems']>
 type CarouselProps = {
@@ -108,7 +109,7 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
           className="absolute top-1/2 left-1 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white sm:left-0.5"
           aria-label="Previous slide"
         >
-          &lt;
+          <MdChevronLeft size={20} aria-hidden="true" />
         </button>
 
         <div className="w-full overflow-hidden px-5 sm:px-0">
@@ -170,7 +171,7 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
           className="absolute top-1/2 right-1 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white sm:right-0.5"
           aria-label="Next slide"
         >
-          &gt;
+          <MdChevronRight size={20} aria-hidden="true" />
         </button>
       </div>
     </div>
