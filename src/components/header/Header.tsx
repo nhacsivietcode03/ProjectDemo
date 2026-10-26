@@ -12,9 +12,10 @@ import { ThemeSwitcher, MalaysiaTime } from '../common'
 import { Suspense } from 'react'
 import SubNavigationBar from './SubNavigationBar'
 import HeaderAd from './HeaderAd'
+import Link from 'next/link'
 
 export default async function Header() {
-  const { categoryData, headerGlobalData, navBarData } = await getHeader()
+  const { categoryData, headerGlobalData, navBarData, trendingData } = await getHeader()
   const siteSettingsData = await getSiteSettingsData()
 
   const siteTitle =
@@ -35,9 +36,8 @@ export default async function Header() {
         data-mobile-header
         className="container flex justify-between border-b border-gray-200 dark:border-gray-700 dark:bg-[#444444] dark:text-white"
       >
-        <div className="flex min-w-0 flex-1 items-center gap-3 p-2">
+        <Link href={'/'} className='flex min-w-0 flex-1 items-center gap-3 p-2'>
           <Logo />
-
           {siteTitle?.url && (
             <Image
               src={siteTitle.url}
@@ -48,8 +48,7 @@ export default async function Header() {
               style={{ width: 'min(360px, 45vw)' }}
             />
           )}
-        </div>
-
+        </Link>
         {/* Right top bar - DESKTOP ONLY: Ẩn hoàn toàn trên Mobile */}
         <div className="hidden lg:block">
           <Suspense fallback={'...'}>
@@ -93,7 +92,7 @@ export default async function Header() {
         <NewsCarousel carousel={carousels} />
       </div>
       <Suspense fallback={null}>
-        <Trending />
+        <Trending trendingData={trendingData} />
       </Suspense>
       <Suspense>
         <HeaderAd

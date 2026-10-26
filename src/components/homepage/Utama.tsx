@@ -23,7 +23,7 @@ export default async function Utama({ utamaData }: UtamaProps) {
           <div className="mt-5">
             <AdSlot slot="320x100" width={320} height={100} className="lg:hidden" />
           </div>
-          <div className="hidden pt-4 lg:block">
+          <div className="hidden lg:block">
             <BulletArticleList data={belowHeroArticles} />
           </div>
         </div>

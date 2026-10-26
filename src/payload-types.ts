@@ -544,12 +544,11 @@ export interface Header {
  */
 export interface Nav {
   id: string;
-  items?:
+  tags?: (string | Tag)[] | null;
+  externalLinks?:
     | {
         label: string;
-        type: 'tag' | 'external';
-        tag?: string | null;
-        url?: string | null;
+        url: string;
         id?: string | null;
       }[]
     | null;
@@ -646,12 +645,11 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "nav_select".
  */
 export interface NavSelect<T extends boolean = true> {
-  items?:
+  tags?: T;
+  externalLinks?:
     | T
     | {
         label?: T;
-        type?: T;
-        tag?: T;
         url?: T;
         id?: T;
       };

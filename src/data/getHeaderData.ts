@@ -1,7 +1,7 @@
 'use server'
 
 import { Payload } from 'payload'
-import { Category, Header, Nav } from '@/payload-types'
+import { Category, Header, Nav, Tag } from '@/payload-types'
 import { getPayloadClient } from '@/utils/getPayloadClient'
 import { cacheLife, cacheTag } from 'next/cache'
 
@@ -9,6 +9,7 @@ export interface CombinedHeaderData {
   categoryData: Category[]
   headerGlobalData: Header
   navBarData: Nav
+  trendingData: Tag[]
 }
 
 const getchCategories = (payload: Payload) => {
@@ -30,6 +31,15 @@ const getchHeaderGlobalData = (payload: Payload) => {
 const getchNavBar = (payload: Payload) => {
   return payload.findGlobal({
     slug: 'nav',
+    depth: 1,
+  })
+}
+
+const getchTrending = (payload: Payload) => {
+  return payload.find({
+    collection: 'tags',
+    limit: 5,
+    sort: '-createdAt',
   })
 }
 
@@ -40,15 +50,17 @@ export default async function getHeader(): Promise<CombinedHeaderData> {
 
   const payload = await getPayloadClient()
 
-  const [categoryData, headerGlobalData, navBarData] = await Promise.all([
+  const [categoryData, headerGlobalData, navBarData, trendingData] = await Promise.all([
     getchCategories(payload),
     getchHeaderGlobalData(payload),
     getchNavBar(payload),
+    getchTrending(payload),
   ])
 
   return {
     categoryData: categoryData.docs,
     headerGlobalData,
     navBarData,
+    trendingData: trendingData.docs,
   }
 }

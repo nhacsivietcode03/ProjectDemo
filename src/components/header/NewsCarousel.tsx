@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import type { Header } from '@/payload-types'
 import Image from 'next/image'
+import Link from 'next/link'
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
 type Carousels = NonNullable<Header['caroselItems']>
 type CarouselProps = {
@@ -107,7 +109,7 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
           className="absolute top-1/2 left-1 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white sm:left-0.5"
           aria-label="Previous slide"
         >
-          &lt;
+          <MdChevronLeft size={20} aria-hidden="true" />
         </button>
 
         <div className="w-full overflow-hidden px-5 sm:px-0">
@@ -122,33 +124,40 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
               const imageMedia = item && typeof item.image === 'object' ? item.image : null
               const imageUrl =
                 imageMedia && typeof imageMedia.url === 'string' ? imageMedia.url : null
+              const title = item.title?.trim().toLowerCase()
+              const linkUrl = title === 'nasional' ? '/berita/nasional' : `/${title ?? ''}`
               return (
                 <div
                   key={`${item.id}-${index}`}
                   style={{ width: `${100 / itemsPerView}%` }}
                   className="shrink-0 px-1 sm:px-2.5"
                 >
-                  <div className="group flex h-full cursor-pointer items-start gap-3 border-r border-gray-300 pr-2 sm:pr-3">
-                    <div className="relative ml-2 h-17 w-26 shrink-0 rounded-md bg-gray-200 sm:h-16 sm:w-24">
-                      {imageUrl ? (
-                        <Image
-                          src={imageUrl}
-                          alt={item.title || 'news image'}
-                          fill
-                          className="rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-xs text-gray-400">
-                          No Image
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex-1 overflow-hidden">
-                      <p className="truncate text-xs font-semibold text-[#d81b60]">{item.title}</p>
-                      <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60] dark:text-white">
-                        {item.content}
-                      </p>
-                    </div>
+                  <div className="group h-full border-r border-gray-300 pr-2 sm:pr-3">
+                    <Link
+                      href={linkUrl}
+                      className="flex min-w-0 flex-1 items-start gap-3"
+                    >
+                      <div className="relative ml-2 h-17 w-26 shrink-0 rounded-md bg-gray-200 sm:h-16 sm:w-24">
+                        {imageUrl ? (
+                          <Image
+                            src={imageUrl}
+                            alt={item.title || 'news image'}
+                            fill
+                            className="rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-xs text-gray-400">
+                            No Image
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 overflow-hidden">
+                        <p className="truncate text-xs font-semibold text-[#d81b60]">{item.title}</p>
+                        <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60] dark:text-white">
+                          {item.content}
+                        </p>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               )
@@ -162,7 +171,7 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
           className="absolute top-1/2 right-1 z-20 flex h-6.5 w-6.5 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[2px] border border-[#d81b60] bg-white text-xs font-bold text-[#d81b60] shadow-xs transition-colors hover:bg-[#d81b60] hover:text-white sm:right-0.5"
           aria-label="Next slide"
         >
-          &gt;
+          <MdChevronRight size={20} aria-hidden="true" />
         </button>
       </div>
     </div>

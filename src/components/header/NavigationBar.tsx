@@ -36,41 +36,34 @@ export default function NavigationBar({ category, navBar }: NavigationBarProps) 
         )
       })}
 
-      {/* 2. Render NavBar Items từ thiết lập chung */}
-      {navBar.items?.map((item, index) => {
-        const key = `${item.type}-${item.label || index}`
+      {navBar.tags?.map((tag) => {
+        if (typeof tag === 'string') return null
 
-        // Nhớ xử lý dấu '/' ở đầu để tránh lỗi nối URL tương đối ở trang con
-        let rawUrl = item.url || '#'
-        if (item.type !== 'external' && rawUrl !== '#' && !rawUrl.startsWith('/')) {
-          rawUrl = `/${rawUrl}`
-        }
-
-        const href =
-          item.type === 'tag' ? `/tag/${item.tag?.replace(' ', '-').toLowerCase()}` : rawUrl
-
+        const href = `/${tag.slug}`
         const isActive = checkActive(href)
 
-        return item.type === 'external' ? (
-          <a
-            className="transition hover:text-red-600"
-            href={href}
-            key={key}
-            rel="noreferrer"
-            target="_blank"
-          >
-            {item.label}
-          </a>
-        ) : (
+        return (
           <Link
             className={`transition hover:text-red-600 ${isActive ? 'text-red-600' : ''}`}
             href={href}
-            key={key}
+            key={tag.id}
           >
-            {item.label}
+            #{tag.title}
           </Link>
         )
       })}
+
+      {navBar.externalLinks?.map((link, index) => (
+        <a
+          className="transition hover:text-red-600"
+          href={link.url}
+          key={link.id ?? `${link.url}-${index}`}
+          rel="noreferrer"
+          target="_blank"
+        >
+          {link.label}
+        </a>
+      ))}
     </nav>
   )
 }
