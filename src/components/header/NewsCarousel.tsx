@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import type { Header } from '@/payload-types'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Carousels = NonNullable<Header['caroselItems']>
 type CarouselProps = {
@@ -122,33 +123,40 @@ export default function NewsCarousel({ carousel }: CarouselProps) {
               const imageMedia = item && typeof item.image === 'object' ? item.image : null
               const imageUrl =
                 imageMedia && typeof imageMedia.url === 'string' ? imageMedia.url : null
+              const title = item.title?.trim().toLowerCase()
+              const linkUrl = title === 'nasional' ? '/berita/nasional' : `/${title ?? ''}`
               return (
                 <div
                   key={`${item.id}-${index}`}
                   style={{ width: `${100 / itemsPerView}%` }}
                   className="shrink-0 px-1 sm:px-2.5"
                 >
-                  <div className="group flex h-full cursor-pointer items-start gap-3 border-r border-gray-300 pr-2 sm:pr-3">
-                    <div className="relative ml-2 h-17 w-26 shrink-0 rounded-md bg-gray-200 sm:h-16 sm:w-24">
-                      {imageUrl ? (
-                        <Image
-                          src={imageUrl}
-                          alt={item.title || 'news image'}
-                          fill
-                          className="rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-xs text-gray-400">
-                          No Image
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex-1 overflow-hidden">
-                      <p className="truncate text-xs font-semibold text-[#d81b60]">{item.title}</p>
-                      <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60] dark:text-white">
-                        {item.content}
-                      </p>
-                    </div>
+                  <div className="group h-full border-r border-gray-300 pr-2 sm:pr-3">
+                    <Link
+                      href={linkUrl}
+                      className="flex min-w-0 flex-1 items-start gap-3"
+                    >
+                      <div className="relative ml-2 h-17 w-26 shrink-0 rounded-md bg-gray-200 sm:h-16 sm:w-24">
+                        {imageUrl ? (
+                          <Image
+                            src={imageUrl}
+                            alt={item.title || 'news image'}
+                            fill
+                            className="rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-xs text-gray-400">
+                            No Image
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 overflow-hidden">
+                        <p className="truncate text-xs font-semibold text-[#d81b60]">{item.title}</p>
+                        <p className="line-clamp-2 text-xs leading-snug font-normal text-gray-900 transition-colors group-hover:text-[#d81b60] dark:text-white">
+                          {item.content}
+                        </p>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               )
