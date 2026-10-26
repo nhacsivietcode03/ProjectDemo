@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { FaBars, FaRegUser, FaPlus } from 'react-icons/fa6'
+import { FaBars, FaMinus, FaPlus, FaRegUser } from 'react-icons/fa6'
 import { Category, Nav } from '@/payload-types'
 import ThemeSwitcher from '../common/ThemeSwitcher'
+import getSubCategoryData from '@/data/getSubCategoryData'
 
 type MobileMenuProps = {
   category: Category[]
@@ -14,8 +15,13 @@ type MobileMenuProps = {
 
 export default function MobileMenu({ category, navBar, socialMediaNode }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [expandedCategoryId, setExpandedCategoryId] = useState<string | null>(null)
+  const [subCategoryList, setSubCategoryList] = useState<Category[]>([])
+  const [isLoadingSubCategories, setIsLoadingSubCategories] = useState(false)
+  const [subCategoryError, setSubCategoryError] = useState<string | null>(null)
   const [headerHeight, setHeaderHeight] = useState(0)
   const menuRootRef = useRef<HTMLDivElement>(null)
+  const subCategoryRequestRef = useRef(0)
 
   useEffect(() => {
     const header = menuRootRef.current?.closest<HTMLElement>('[data-mobile-header]')
@@ -51,6 +57,40 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
     setIsOpen((open) => !open)
   }
 
+  const toggleCategory = async (categoryId: string) => {
+    subCategoryRequestRef.current += 1
+    const requestId = subCategoryRequestRef.current
+
+    if (expandedCategoryId === categoryId) {
+      setExpandedCategoryId(null)
+      setSubCategoryList([])
+      setSubCategoryError(null)
+      setIsLoadingSubCategories(false)
+      return
+    }
+
+    setExpandedCategoryId(categoryId)
+    setSubCategoryList([])
+    setSubCategoryError(null)
+    setIsLoadingSubCategories(true)
+
+    try {
+      const subCategories = await getSubCategoryData(categoryId, 100)
+      if (subCategoryRequestRef.current === requestId) {
+        setSubCategoryList(subCategories)
+      }
+    } catch (error) {
+      console.error('Không thể tải danh mục con:', error)
+      if (subCategoryRequestRef.current === requestId) {
+        setSubCategoryError('Không tải được danh mục con. Vui lòng thử lại.')
+      }
+    } finally {
+      if (subCategoryRequestRef.current === requestId) {
+        setIsLoadingSubCategories(false)
+      }
+    }
+  }
+
   return (
     <div ref={menuRootRef} className="flex items-center gap-4 lg:hidden">
       {/* Nút User */}
@@ -73,9 +113,8 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
 
       {/* Ngăn kéo Menu (Drawer) trượt từ phải vào */}
       <div
-        className={`fixed right-0 bottom-0 z-70 w-[85%] max-w-sm bg-[#f8f9fa] shadow-2xl transition-transform duration-300 ease-in-out dark:bg-gray-800 dark:text-white ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        } touch-pan-y overflow-y-auto overscroll-contain`}
+        className={`fixed right-0 bottom-0 z-70 w-[85%] max-w-sm bg-[#f8f9fa] shadow-2xl transition-transform duration-300 ease-in-out dark:bg-gray-800 dark:text-white ${isOpen ? 'translate-x-0' : 'translate-x-full'
+          } touch-pan-y overflow-y-auto overscroll-contain`}
         style={{ top: headerHeight }}
       >
         <div className="flex flex-col p-4">
@@ -89,17 +128,60 @@ export default function MobileMenu({ category, navBar, socialMediaNode }: Mobile
 
           {/* Danh sách Liên kết (Links) */}
           <nav className="flex flex-col bg-white dark:bg-gray-800">
-            {category.map((item) => (
-              <Link
-                href={`/${item.title.trim().replace(' ', '-').toLowerCase()}`}
-                key={`cat-${item.id}`}
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-between border-b border-gray-200 px-4 py-3.5 text-sm font-semibold text-gray-900 transition-colors hover:text-[#d81b60] dark:border-gray-700 dark:text-white"
-              >
-                <FaPlus className="text-gray-700 dark:text-gray-300" size={14} />
-                <span>{item.title}</span>
-              </Link>
-            ))}
+            {category.map((item) => {
+              const isExpanded = expandedCategoryId === item.id
+              const subCategoryRegionId = `subcategories-${item.id}`
+
+              return (
+                <div key={`cat-${item.id}`} className="border-b border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center justify-between px-4 py-3.5">
+                    <Link
+                      href={`/${item.slug}`}
+                      onClick={() => setIsOpen(false)}
+                      className="text-sm font-semibold text-gray-900 transition-colors hover:text-[#d81b60] dark:text-white"
+                    >
+                      {item.title}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-label={`${isExpanded ? 'Thu gọn' : 'Mở'} danh mục ${item.title}`}
+                      aria-expanded={isExpanded}
+                      aria-controls={subCategoryRegionId}
+                      onClick={() => void toggleCategory(item.id)}
+                      className="p-1 text-gray-700 dark:text-gray-300"
+                    >
+                      {isExpanded ? <FaMinus size={14} /> : <FaPlus size={14} />}
+                    </button>
+                  </div>
+                  {isExpanded && (
+                    <div id={subCategoryRegionId} className="pb-2 pl-8">
+                      {isLoadingSubCategories && (
+                        <p className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300">
+                          Đang tải...
+                        </p>
+                      )}
+                      {subCategoryError && (
+                        <p role="alert" className="px-4 py-2 text-sm text-red-600">
+                          {subCategoryError}
+                        </p>
+                      )}
+                      {!isLoadingSubCategories &&
+                        !subCategoryError &&
+                        subCategoryList.map((subCategory) => (
+                          <Link
+                            key={subCategory.id}
+                            href={`/${item.slug}/${subCategory.slug}`}
+                            onClick={() => setIsOpen(false)}
+                            className="block px-4 py-2 text-sm  transition-colors hover:text-[#d81b60] dark:text-gray-200"
+                          >
+                            {subCategory.title}
+                          </Link>
+                        ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
 
             {navBar.items?.map((item, index) => {
               const key = `nav-${item.type}-${item.label || index}`

@@ -3,7 +3,7 @@
 import { getPayloadClient } from '@/utils/getPayloadClient'
 import { cacheLife, cacheTag } from 'next/cache'
 
-export default async function getSubCategoryData(parentId: string) {
+export default async function getSubCategoryData(parentId: string, limit = 5) {
   'use cache'
   cacheLife('default')
   cacheTag('category')
@@ -11,7 +11,7 @@ export default async function getSubCategoryData(parentId: string) {
   const subCategoryList = await payload.find({
     collection: 'categories',
     depth: 1,
-    limit: 5,
+    limit,
     sort: 'createdAt',
     where: {
       parent: { equals: parentId },
