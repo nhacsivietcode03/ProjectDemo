@@ -10,21 +10,25 @@ export default async function getArticleDetail(id: string) {
 
   const payload = await getPayloadClient()
 
-  const article = await payload.findByID({
-    collection: 'articles',
-    id: id,
-    depth: 1,
-    select: {
-      Image: true,
-      createdAt: true,
-      excerpt: true,
-      slug: true,
-      title: true,
-      content: true,
-      author: true,
-      relatedArticles: true,
-    },
-  })
+  try {
+    const article = await payload.findByID({
+      collection: 'articles',
+      id: id,
+      depth: 1,
+      select: {
+        Image: true,
+        createdAt: true,
+        excerpt: true,
+        slug: true,
+        title: true,
+        content: true,
+        author: true,
+        relatedArticles: true,
+      },
+    })
 
-  return article
+    return article
+  } catch (error) {
+    return null
+  }
 }
