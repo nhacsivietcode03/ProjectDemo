@@ -10,7 +10,7 @@ export default async function Logo() {
   if (!logo?.url) return null
 
   return (
-    <Link href={'/'}>
+    <div>
       <Image
         src={logo.url}
         alt={logo.alt || ''}
@@ -19,6 +19,6 @@ export default async function Logo() {
         className="h-auto shrink-0 object-contain"
         style={{ width: 'clamp(48px, 8vw, 80px)' }}
       />
-    </Link>
+    </div>
   )
 }
