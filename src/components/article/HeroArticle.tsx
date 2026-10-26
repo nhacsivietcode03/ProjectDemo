@@ -16,7 +16,7 @@ export default function HeroArticle({ data }: HeroArticleProps) {
   const { image, subCategoryTitle, subCategory, articleUrl } = formatArticle(article)
 
   return (
-    <article className="-mx-8 flex flex-col lg:mx-0 lg:w-full">
+    <article className=" -mx-8 flex flex-col lg:mx-0 lg:w-full">
       <Link href={articleUrl} className="group relative block w-full overflow-hidden">
         {/* Khung ảnh */}
         <div className="relative aspect-4/3 w-full overflow-hidden bg-gray-200 lg:aspect-video dark:bg-gray-700">

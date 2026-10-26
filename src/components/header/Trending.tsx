@@ -11,7 +11,7 @@ export default function Trending() {
 
   // Nếu là trang chủ, hiển thị phần tử này
   return (
-    <div className="mt-2 ml-2 flex w-full min-w-0 items-center gap-2 overflow-hidden text-sm whitespace-nowrap sm:gap-3">
+    <div className="mt-2 pl-3 flex w-full min-w-0 items-center gap-2 overflow-hidden text-sm whitespace-nowrap sm:gap-3">
       <div className="shrink-0 font-bold text-red-600">Trending :</div>
       <div className="min-w-0 flex-1 overflow-hidden">
         <ul className="flex w-max gap-4 whitespace-nowrap dark:text-white">
