@@ -1,17 +1,22 @@
 import { Suspense } from 'react'
+import TypePage from './TypePage'
+import getCategoryListData from '@/data/getCategoryListData'
+import { Category } from '@/payload-types'
 
 type CategoryPageProps = PageProps<'/[category]'>
 
-async function CategoryContent({ params }: { params: CategoryPageProps['params'] }) {
-  const { category } = await params
-  return <div className="ml-2">{category}</div>
+export async function generateStaticParams() {
+  const categoryList = await getCategoryListData()
+  return categoryList.map((category: Category) => ({
+    category: category.slug,
+  }))
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
   return (
     <div>
       <Suspense fallback={''}>
-        <CategoryContent params={params} />
+        <TypePage params={params} />
       </Suspense>
     </div>
   )
