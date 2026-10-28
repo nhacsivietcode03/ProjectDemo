@@ -5,7 +5,6 @@ import { Suspense } from 'react'
 const GetParam = () => {
   const params = useParams<{ category: string; subCategory: string }>()
   const { subCategory } = params
-  console.log(params)
   return <div className="ml-2">Đây là trang {subCategory}</div>
 }
 
