@@ -15,7 +15,6 @@ import {
   VerticalAriclesInColumn,
 } from '@/components/article'
 const BHTV = dynamic(() => import('@/components/homepage/BHTV'), {
-  ssr: false,
 });
 
 export default async function HomePage() {
