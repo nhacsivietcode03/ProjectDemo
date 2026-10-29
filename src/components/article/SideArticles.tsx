@@ -37,7 +37,7 @@ export default function SideArticles({ data }: SideArticleProps) {
             <div className="absolute inset-x-0 bottom-0 p-3">
               <div className="mb-1 flex items-center gap-2 text-xs">
                 <span className="font-semibold text-red-600 uppercase">{subCategoryTitle}</span>
-                <ArticleTime date={article.createdAt} className="text-gray-300" />
+                <ArticleTime date={article.createdAt} className="text-white" />
               </div>
 
               <h3 className="line-clamp-2 text-xs font-semibold text-white group-hover:text-red-400">

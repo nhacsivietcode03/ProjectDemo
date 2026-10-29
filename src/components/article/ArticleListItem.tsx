@@ -22,7 +22,7 @@ export default function ArticleListItem({ article }: ArticleListItemProps) {
               </h3>
               <ArticleTime
                 date={article.createdAt}
-                className="block pb-2 text-xs leading-none text-gray-400"
+                className="block pb-2 text-xs leading-none text-black"
               />
             </div>
           </div>
