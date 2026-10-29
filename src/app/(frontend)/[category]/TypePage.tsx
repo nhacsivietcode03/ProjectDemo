@@ -5,6 +5,7 @@ import CategoryView from "./CategoryView"
 import TagView from "./TagView"
 import { notFound } from "next/navigation"
 import isTagPage from "@/data/isTagPage"
+import TagPageLayout from "@/layouts/TagPageLayout"
 
 type TypePageProps = {
     params: Promise<{
@@ -21,7 +22,11 @@ export default async function TypePage({ params }: TypePageProps) {
     }
 
     if (isTagePageData) {
-        return <TagView param={category} />
+        return (
+            <TagPageLayout>
+                <TagView param={category} />
+            </TagPageLayout>
+        )
     }
 
     notFound()
