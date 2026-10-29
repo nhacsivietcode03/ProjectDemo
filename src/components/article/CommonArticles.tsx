@@ -20,9 +20,8 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
         return (
           <Link key={article.id} href={articleUrl} className="group block">
             <div
-              className={`relative w-full overflow-hidden bg-gray-200 dark:bg-gray-700 ${
-                type === 'big' ? 'aspect-4/3' : 'aspect-video'
-              }`}
+              className={`relative w-full overflow-hidden bg-gray-200 dark:bg-gray-700 ${type === 'big' ? 'aspect-4/3' : 'aspect-video'
+                }`}
             >
               {image?.url && (
                 <Image
@@ -42,7 +41,7 @@ export default function CommonArticle({ articlesData, type = 'normal' }: Article
                 </p>
                 <ArticleTime
                   date={article.createdAt}
-                  className="text-gray-500 dark:text-gray-400"
+                  className="text-black dark:text-white"
                 />
               </div>
 

@@ -1,4 +1,5 @@
 import AdSlot from '@/components/common/Ads'
+import dynamic from 'next/dynamic';
 import {
   GaleriFotoSection,
   InfografikSection,
@@ -6,13 +7,16 @@ import {
   Terkini,
   TrendingSection,
 } from '@/components/sidebar'
-import { Utama, Disyorkan, BHPLUS, BHTV, VideoTerkini } from '@/components/homepage'
+import { Utama, Disyorkan, BHPLUS, VideoTerkini } from '@/components/homepage'
 import { getMainHomePageData, getSideBarData } from '@/data'
 import {
   Horizontal6Articles,
   Vertical6Articles,
   VerticalAriclesInColumn,
 } from '@/components/article'
+const BHTV = dynamic(() => import('@/components/homepage/BHTV'), {
+  ssr: false,
+});
 
 export default async function HomePage() {
   const [sideBarData, mainHomePageData] = await Promise.all([

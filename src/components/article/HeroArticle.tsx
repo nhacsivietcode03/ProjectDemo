@@ -48,15 +48,15 @@ export default function HeroArticle({ data }: HeroArticleProps) {
               </span>
               <ArticleTime
                 date={article.createdAt}
-                className="text-xs text-gray-300 lg:text-gray-500 lg:dark:text-gray-400"
+                className="text-xs text-black  lg:dark:text-white "
               />
             </div>
           )}
 
           {/* Tiêu đề chính */}
-          <h2 className="mt-1 line-clamp-3 text-lg leading-snug font-bold text-white transition-colors group-hover:text-[#e1161e] sm:text-xl lg:line-clamp-2 lg:text-2xl lg:text-black lg:dark:text-white">
+          <div className="mt-1 line-clamp-3 text-lg leading-snug font-bold text-white transition-colors group-hover:text-[#e1161e] sm:text-xl lg:line-clamp-2 lg:text-2xl lg:text-black lg:dark:text-white">
             {article.title}
-          </h2>
+          </div>
 
           {/* Đoạn tóm tắt */}
           {article.excerpt && (
