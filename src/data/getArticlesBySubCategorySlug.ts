@@ -6,6 +6,7 @@ import { cacheLife, cacheTag } from 'next/cache'
 export default async function getArticlesBySubCategorySlug(
   subCategorySlug: string,
   categorySlug: string,
+  limit = 6,
 ) {
   'use cache'
   cacheLife('default')
@@ -14,7 +15,7 @@ export default async function getArticlesBySubCategorySlug(
   const payload = await getPayloadClient()
   const articles = await payload.find({
     collection: 'articles',
-    limit: 6,
+    limit: limit,
     sort: '-createdAt',
     where: {
       'subCategory.slug': { equals: subCategorySlug },
