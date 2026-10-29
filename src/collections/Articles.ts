@@ -63,34 +63,34 @@ export const Articles: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
-      // filterOptions: ({ data }): Where => {
-      //   const selectedCategories = data?.category || []
+      filterOptions: ({ data }): Where => {
+        const selectedCategories = data?.category || []
 
-      //   // 1. Ép kiểu về mảng nếu nó vô tình là 1 giá trị đơn
-      //   const categoryArray = Array.isArray(selectedCategories)
-      //     ? selectedCategories
-      //     : [selectedCategories]
+        // 1. Ép kiểu về mảng nếu nó vô tình là 1 giá trị đơn
+        const categoryArray = Array.isArray(selectedCategories)
+          ? selectedCategories
+          : [selectedCategories]
 
-      //   // 2. BƯỚC QUAN TRỌNG: Trích xuất chính xác chuỗi ID
-      //   // Dù data truyền lên là ['id_1'] hay [{ id: 'id_1' }] thì đều lấy được chuỗi
-      //   const categoryIds = categoryArray
-      //     .map((cat: any) => (typeof cat === 'object' ? cat?.id : cat))
-      //     .filter(Boolean) // Loại bỏ các giá trị null/undefined
+        // 2. BƯỚC QUAN TRỌNG: Trích xuất chính xác chuỗi ID
+        // Dù data truyền lên là ['id_1'] hay [{ id: 'id_1' }] thì đều lấy được chuỗi
+        const categoryIds = categoryArray
+          .map((cat: any) => (typeof cat === 'object' ? cat?.id : cat))
+          .filter(Boolean) // Loại bỏ các giá trị null/undefined
 
-      //   if (categoryIds.length === 0) {
-      //     return {
-      //       id: {
-      //         exists: false,
-      //       },
-      //     }
-      //   }
+        if (categoryIds.length === 0) {
+          return {
+            id: {
+              exists: false,
+            },
+          }
+        }
 
-      //   return {
-      //     parent: {
-      //       in: categoryIds,
-      //     },
-      //   }
-      // },
+        return {
+          parent: {
+            in: categoryIds,
+          },
+        }
+      },
     },
     {
       name: 'excerpt',
