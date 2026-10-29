@@ -1,6 +1,7 @@
 import { Logo, SocialMediaIcon } from '../common'
 import { getFooter } from '@/data'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Footer() {
   const { footerData } = await getFooter()
@@ -12,12 +13,12 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Berita</h2>
       <ul className="space-y-1">
-        <li>BHPLUS</li>
-        <li>Nasional</li>
-        <li>Kes</li>
-        <li>Politik</li>
-        <li>Pendidikan</li>
-        <li>Wilayah</li>
+        <Link href='/bhplus'><li>BHPLUS</li></Link>
+        <Link href='/berita/nasional'><li>Nasional</li></Link>
+        <Link href='/berita/kes'><li>Kes</li></Link>
+        <Link href='/berita/politik'><li>Politik</li></Link>
+        <Link href='/berita/pendidikan'><li>Pendidikan</li></Link>
+        <Link href='/berita/wilayah'><li>Wilayah</li></Link>
       </ul>
     </div>
   )
@@ -26,12 +27,12 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Sukan</h2>
       <ul className="space-y-1">
-        <li>Dunia</li>
-        <li>Hiburan</li>
-        <li>Bisnes</li>
-        <li>Rencana</li>
-        <li>Wanita</li>
-        <li>Hujung Minggu</li>
+        <Link href='/dunia'><li>Dunia</li></Link>
+        <Link href='/hiburan'><li>Hiburan</li></Link>
+        <Link href='/bisnes'><li>Bisnes</li></Link>
+        <Link href='/rencana'><li>Rencana</li></Link>
+        <Link href='/bisnes'><li>Bisnes</li></Link>
+        <Link href='/hujung-minggu'><li>Hujung Minggu</li></Link>
       </ul>
     </div>
   )
@@ -40,9 +41,9 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Multimedia</h2>
       <ul className="space-y-1">
-        <li>Foto</li>
-        <li>BHTV</li>
-        <li>Infografik</li>
+        <Link href='/foto'><li>Foto</li></Link>
+        <Link href='/bHTV'><li>BHTV</li></Link>
+        <Link href='/infografik'><li>Infografik</li></Link>
       </ul>
     </div>
   )
@@ -51,8 +52,8 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Langgan</h2>
       <ul className="space-y-1">
-        <li>Akhbar Digital</li>
-        <li>Akhbar BH</li>
+        <Link href='/akhbar-digital'><li>Akhbar-Digital</li></Link>
+        <Link href='/akhbar-BH'><li>Akhbar-BH</li></Link>
       </ul>
     </div>
   )
@@ -61,9 +62,9 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Perkhidmatan</h2>
       <ul className="space-y-1">
-        <li>Iklan Web</li>
-        <li>1Klassifieds</li>
-        <li>NSTP KLiK</li>
+        <Link href='/iklan-Web'><li>Iklan Web</li></Link>
+        <Link href='/1Klassifieds'><li>1Klassifieds</li></Link>
+        <Link href='/NSTP-KLiK'><li>NSTP KLiK</li></Link>
       </ul>
     </div>
   )
@@ -72,12 +73,12 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Radio</h2>
       <ul className="space-y-1">
-        <li>Dapatkan Audio+</li>
-        <li>Hot FM</li>
-        <li>Buletin FM</li>
-        <li>Fly FM</li>
-        <li>Eight FM</li>
-        <li>Molek FM</li>
+        <Link href="/dapatkan-audio+"><li>Dapatkan Audio+</li></Link>
+        <Link href="/hot-fm"><li>Hot FM</li></Link>
+        <Link href="/buletin-fm"><li>Buletin FM</li></Link>
+        <Link href="/fly-fm"><li>Fly FM</li></Link>
+        <Link href="/eight-fm"><li>Eight FM</li></Link>
+        <Link href="/molek-fm"><li>Molek FM</li></Link>
       </ul>
     </div>
   )
