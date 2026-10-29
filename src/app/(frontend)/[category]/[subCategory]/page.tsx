@@ -1,18 +1,13 @@
-'use client'
-import { useParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { Suspense } from "react"
+import SubCategoryDetail from "./SubCategoryDetail"
 
-const GetParam = () => {
-  const params = useParams<{ category: string; subCategory: string }>()
-  const { subCategory } = params
-  return <div className="ml-2">Đây là trang {subCategory}</div>
-}
+type SubCategoryPageProps = PageProps<'/[category]/[subCategory]'>
 
-export default function SubCategoryPage() {
+export default function SubCategoryPage({ params }: SubCategoryPageProps) {
   return (
     <div>
       <Suspense>
-        <GetParam />
+        <SubCategoryDetail params={params} />
       </Suspense>
     </div>
   )
