@@ -48,7 +48,7 @@ export default function TrendingSection({ trendingData }: TrendingProps) {
                       </h3>
                       <ArticleTime
                         date={article.createdAt}
-                        className="mt-1 py-2 text-xs leading-none text-gray-400"
+                        className="mt-1 py-2 text-xs leading-none text-black dark:text-white"
                       />
                     </div>
                   </div>
