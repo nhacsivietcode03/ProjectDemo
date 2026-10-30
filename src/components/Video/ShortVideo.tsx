@@ -1,9 +1,10 @@
 'use client'
 import { useState } from 'react'
+import { YouTubeEmbed } from '@next/third-parties/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { VideoShortItem } from '@/data/getMainHomePageData'
-import { getThumnailYoutube, getYoutubeUrl } from '@/utils'
+import { getThumnailYoutube } from '@/utils'
 
 type ShortVideoProps = {
   video: VideoShortItem
@@ -28,12 +29,14 @@ export default function ShortVideo({ video }: ShortVideoProps) {
           className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
         />
       ) : (
-        <iframe
-          src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${video.youtubeId}`}
-          allow="autoplay; encrypted-media"
-          loading="lazy"
-          className="pointer-events-none absolute inset-0 h-full w-full"
-        />
+        <div className="absolute inset-0 [&>div]:h-full! [&>div]:w-full!">
+          <YouTubeEmbed
+            videoid={video.youtubeId}
+            playlabel={`Play ${video.title}`}
+            params={`autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${video.youtubeId}`}
+            style="width: 100%; height: 100%;"
+          />
+        </div>
       )}
 
       {/* Gradient Overlay & Content - Ẩn khi hover */}
@@ -58,13 +61,15 @@ export default function ShortVideo({ video }: ShortVideoProps) {
         </div>
       </div>
 
-      {/* Clickable Link Overlay */}
       <Link
         href={video.youtubeUrl}
         target="_blank"
-        className="absolute inset-0 z-20"
+        rel="noopener noreferrer"
+        className="absolute top-2 right-2 z-20 rounded bg-black/70 px-2 py-1 text-xs text-white"
         prefetch={false}
-      />
+      >
+        Mở YouTube
+      </Link>
     </div>
   )
 }

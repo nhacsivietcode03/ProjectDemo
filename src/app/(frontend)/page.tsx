@@ -7,13 +7,14 @@ import {
   Terkini,
   TrendingSection,
 } from '@/components/sidebar'
-import { Utama, Disyorkan, BHPLUS, VideoTerkini } from '@/components/homepage'
+import { Utama, Disyorkan, BHPLUS } from '@/components/homepage'
 import { getMainHomePageData, getSideBarData } from '@/data'
 import {
   Horizontal6Articles,
   Vertical6Articles,
   VerticalAriclesInColumn,
 } from '@/components/article'
+const VideoTerkini = dynamic(() => import('@/components/homepage/VideoTerkini'), {})
 const BHTV = dynamic(() => import('@/components/homepage/BHTV'), {
 });
 
