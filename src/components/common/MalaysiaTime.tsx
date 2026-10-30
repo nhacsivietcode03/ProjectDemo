@@ -28,8 +28,8 @@ export default function MalaysiaTime() {
   // Lúc Server render, nó chỉ trả về một khoảng trống hoặc chữ Loading.
   // Nhờ vậy Server và Client không bị cãi nhau.
   if (!time) {
-    return <p className="p-2 text-right text-sm text-transparent">Đang tải...</p>
+    return <div className="p-2 text-right text-sm text-transparent">Đang tải...</div>
   }
 
-  return <p className="p-2 text-right text-sm">{time}</p>
+  return <div className="p-2 text-right text-sm">{time}</div>
 }

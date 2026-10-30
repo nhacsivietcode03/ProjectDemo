@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { YouTubeEmbed } from '@next/third-parties/google'
 import { CloseButton } from '../common'
-import { getYoutubeUrl } from '@/utils'
 
 type VideoAdvertisementProps = {
   youtubeId: string
@@ -15,20 +15,16 @@ export default function VideoAdvertisement({ youtubeId }: VideoAdvertisementProp
 
   // Chỉ hiển thị trên homepage
   if (pathname !== '/' || !isVisible) return null
-  const youtubeUrl = getYoutubeUrl(youtubeId)
   return (
     <div className="fixed top-55 right-15 z-50 w-50">
       <div className="absolute -top-4 -right-4 z-10">
         <CloseButton onClick={() => setIsVisible(false)} />
       </div>
       <div className="relative aspect-video overflow-hidden rounded-lg">
-        <iframe
-          title="Video advertisement"
-          src={youtubeUrl}
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          loading="lazy"
-          className="absolute inset-0 h-full w-full"
+        <YouTubeEmbed
+          videoid={youtubeId}
+          playlabel="Play video advertisement"
+          params={`autoplay=0&mute=1&controls=0&modestbranding=1&loop=1&playlist=${youtubeId}`}
         />
       </div>
     </div>
