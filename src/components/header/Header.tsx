@@ -51,7 +51,7 @@ export default async function Header() {
         </Link>
         {/* Right top bar - DESKTOP ONLY: Ẩn hoàn toàn trên Mobile */}
         <div className="hidden lg:block">
-          <Suspense fallback={'...'}>
+          <Suspense fallback={<div>Đang lấy thời gian</div>}>
             <MalaysiaTime />
           </Suspense>
           <div className="flex gap-3 pt-2">
