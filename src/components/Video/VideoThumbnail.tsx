@@ -32,7 +32,7 @@ export default function VideoThumbnail({ video }: VideoThumbnailProps) {
       <div className="w-full py-3">
         <div className="mb-1 flex flex-wrap items-center gap-2 text-xs">
           <p className="font-semibold text-red-600 uppercase">{videoCategory}</p>
-          <ArticleTime date={video.createdAt} className="text-gray-400" />
+          <ArticleTime date={video.createdAt} className="text-black dark:text-white" />
         </div>
 
         <h3 className="line-clamp-2 min-h-10.5 text-sm font-semibold text-black transition-colors group-hover:text-red-600 dark:text-white">

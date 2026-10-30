@@ -13,7 +13,7 @@ export default function HeaderAd({
   const isArticlePage = pathname.split('/').filter(Boolean).length >= 3
 
   return (
-    <div className="container mt-4 w-full">
+    <div className="container mt-4 h-[100px] w-full lg:h-[90px]">
       {/* Luôn render quảng cáo Desktop */}
       {desktopAd}
 

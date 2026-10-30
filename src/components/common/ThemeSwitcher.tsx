@@ -19,6 +19,7 @@ export default function ThemeSwitcher() {
 
   return (
     <select
+      aria-label="Chọn giao diện sáng hoặc tối"
       value={theme}
       onChange={(e) => setTheme(e.target.value)}
       className="flex w-24 cursor-pointer justify-end rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-xs text-gray-800 outline-none hover:border-gray-400 dark:border-gray-600 dark:bg-gray-800 dark:text-white"

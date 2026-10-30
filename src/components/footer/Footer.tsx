@@ -13,12 +13,12 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Berita</h2>
       <ul className="space-y-1">
-        <Link href='/bhplus'><li>BHPLUS</li></Link>
-        <Link href='/berita/nasional'><li>Nasional</li></Link>
-        <Link href='/berita/kes'><li>Kes</li></Link>
-        <Link href='/berita/politik'><li>Politik</li></Link>
-        <Link href='/berita/pendidikan'><li>Pendidikan</li></Link>
-        <Link href='/berita/wilayah'><li>Wilayah</li></Link>
+        <li className="block py-2 lg:py-1"><Link href="/bhplus">BHPLUS</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/berita/nasional">Nasional</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/berita/kes">Kes</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/berita/politik">Politik</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/berita/pendidikan">Pendidikan</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/berita/wilayah">Wilayah</Link></li>
       </ul>
     </div>
   )
@@ -27,12 +27,12 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Sukan</h2>
       <ul className="space-y-1">
-        <Link href='/dunia'><li>Dunia</li></Link>
-        <Link href='/hiburan'><li>Hiburan</li></Link>
-        <Link href='/bisnes'><li>Bisnes</li></Link>
-        <Link href='/rencana'><li>Rencana</li></Link>
-        <Link href='/bisnes'><li>Bisnes</li></Link>
-        <Link href='/hujung-minggu'><li>Hujung Minggu</li></Link>
+        <li className="block py-2 lg:py-1"><Link href="/dunia">Dunia</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/hiburan">Hiburan</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/bisnes">Bisnes</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/rencana">Rencana</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/bisnes">Bisnes</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/hujung-minggu">Hujung Minggu</Link></li>
       </ul>
     </div>
   )
@@ -41,9 +41,9 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Multimedia</h2>
       <ul className="space-y-1">
-        <Link href='/foto'><li>Foto</li></Link>
-        <Link href='/bHTV'><li>BHTV</li></Link>
-        <Link href='/infografik'><li>Infografik</li></Link>
+        <li className="block py-2 lg:py-1"><Link href="/foto">Foto</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/bHTV">BHTV</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/infografik">Infografik</Link></li>
       </ul>
     </div>
   )
@@ -52,8 +52,8 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Langgan</h2>
       <ul className="space-y-1">
-        <Link href='/akhbar-digital'><li>Akhbar-Digital</li></Link>
-        <Link href='/akhbar-BH'><li>Akhbar-BH</li></Link>
+        <li className="block py-2 lg:py-1"><Link href="/akhbar-digital">Akhbar-Digital</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/akhbar-BH">Akhbar-BH</Link></li>
       </ul>
     </div>
   )
@@ -62,9 +62,9 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Perkhidmatan</h2>
       <ul className="space-y-1">
-        <Link href='/iklan-Web'><li>Iklan Web</li></Link>
-        <Link href='/1Klassifieds'><li>1Klassifieds</li></Link>
-        <Link href='/NSTP-KLiK'><li>NSTP KLiK</li></Link>
+        <li className="block py-2 lg:py-1"><Link href="/iklan-Web">Iklan Web</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/1Klassifieds">1Klassifieds</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/NSTP-KLiK">NSTP KLiK</Link></li>
       </ul>
     </div>
   )
@@ -73,12 +73,12 @@ export default async function Footer() {
     <div>
       <h2 className="mb-2 font-medium text-white">Radio</h2>
       <ul className="space-y-1">
-        <Link href="/dapatkan-audio+"><li>Dapatkan Audio+</li></Link>
-        <Link href="/hot-fm"><li>Hot FM</li></Link>
-        <Link href="/buletin-fm"><li>Buletin FM</li></Link>
-        <Link href="/fly-fm"><li>Fly FM</li></Link>
-        <Link href="/eight-fm"><li>Eight FM</li></Link>
-        <Link href="/molek-fm"><li>Molek FM</li></Link>
+        <li className="block py-2 lg:py-1"><Link href="/dapatkan-audio+">Dapatkan Audio+</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/hot-fm">Hot FM</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/buletin-fm">Buletin FM</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/fly-fm">Fly FM</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/eight-fm">Eight FM</Link></li>
+        <li className="block py-2 lg:py-1"><Link href="/molek-fm">Molek FM</Link></li>
       </ul>
     </div>
   )

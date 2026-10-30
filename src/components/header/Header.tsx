@@ -94,7 +94,7 @@ export default async function Header() {
       <Suspense fallback={null}>
         <Trending trendingData={trendingData} />
       </Suspense>
-      <Suspense>
+      <Suspense fallback={<div className="container mt-4 h-[100px] w-full lg:h-[90px]" />}>
         <HeaderAd
           desktopAd={<AdSlot slot="970x90" width={970} height={90} className="hidden lg:block" />}
           mobileAd={<AdSlot slot="320x100" width={320} height={100} className="lg:hidden" />}
